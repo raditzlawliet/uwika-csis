@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+
+#img_header_uwika_transparant{
+margin: 9px 0 0 0;
+position:absolute;
+background:url('images/uwika_transparan_s.png') no-repeat;
+width:109px;
+height:75px;
+}
+
+#img_header_top_left{
+top:0;
+left:-10px;
+position:absolute;
+background:url('images/header_top_left.png') no-repeat;
+width:154px;
+height:124px;
+}
+
+#img_header_uwika_text{
+top:40px;
+left:130px;
+position:absolute;
+background:url('images/uwika_text.png') no-repeat;
+width:379px;
+height:40px;
+}
