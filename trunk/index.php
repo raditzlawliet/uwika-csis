@@ -193,7 +193,7 @@ function postAjax(source, values, respons, hanres) {
   }
 }
 function postContent(){
-	/* Query value that send to php.*/
+	/* Query value that send to phpnya.*/
 	var username = 'username=' + encodeURI(document.getElementById('username').value ) + '&password=' + encodeURI( document.getElementById('password').value );
 	/*server side */
 	var send_to = 'auth.php';
