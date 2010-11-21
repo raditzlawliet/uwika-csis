@@ -14,7 +14,7 @@ var delay = 1000
 
 function InitializeTimer()
 {
-    secs = 3
+    secs = 5
     StopTheClock()
     StartTheTimer()
 }
@@ -34,10 +34,16 @@ function StartTheTimer()
         // Here's where you put something useful that's
         // supposed to happen after the allotted time.
         // For example, you could display a message:
-		$("#alert_login").append(" <br />Error ?, Try to <a href=\"\">Refresh</a> this page.");
+		$("#alert_login").append("Try to <a href=\"\">Refresh</a> this page.");
 	}
     else
     {
+		if((secs>0)&&(secs <4)) {
+			$("#alert_login").append(". ");
+		}
+		else{
+			$("#alert_login").append(" <br />Error ? ");
+		}
         self.status = secs
         secs = secs - 1
         timerRunning = true
@@ -70,15 +76,6 @@ $(function() {
 	
 $(document).ready(function(){
 	$("#id_1").hover(function(){
-		jQuery.ajaxSetup({
-		  beforeSend: function() {
-			 $('#login_loading').show()
-		  },
-		  complete: function(){
-//			 $('#loader').hide()
-		  },
-		  success: function() {}
-		});
 		$("#id_1_subpanel").toggle("fast");
 		return false;
 	});
