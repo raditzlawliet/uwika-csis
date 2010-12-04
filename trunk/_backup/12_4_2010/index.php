@@ -61,7 +61,7 @@ include_once 'session.php';
     <a id="img_header_uwika_text" title="Website Universitas Widya Kartika" href="http://www.widyakartika.ac.id/"></a>
     <h1>CAMPUS SYSTEM INFORMATION STUDENT</h1>
 	<a id="header_id_login" class="header_trigger" href="#">LOGIN</a>
-<!--	<a id="header_id_login_jq" class="header_trigger" style="right:200px;" href="#">LOGIN JQ</a> -->
+	<a id="header_id_login_jq" class="header_trigger" style="right:200px;" href="#">LOGIN JQ</a>
 
     </div>
 </div><!--end header-->
@@ -103,7 +103,7 @@ include_once 'session.php';
             <table>&nbsp;<div id="alert_login">&nbsp;</div>
 </table>
 </div>
-<!--
+
 <div class="header_panel" id="header_id_login_panel_jq">
 			<table>
 				<form action="javascript:PostLoginJQ()" method="post">
@@ -122,7 +122,7 @@ include_once 'session.php';
             <table>&nbsp;<div id="alert_login">&nbsp;</div>
 </table>
 </div>
--->
+
 <div class="panel">
 	<h3>Jadwal Doang</h3>
 	<p>Just for Jadwal...</p>

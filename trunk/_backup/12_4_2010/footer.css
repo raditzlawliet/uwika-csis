@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+#footer{
+	height:2em;
+	background:#093349;
+	margin-top:3px;
+	position:fixed;
+	bottom:0;
+	right:right-sidebar-<length>;
+	width:100%;
+	height:footer-<length>;
+}
+#footer p{
+	color:#FFF;
+	font-size:11px;
+	text-align:right;
+	padding:5px;
+	
+}
