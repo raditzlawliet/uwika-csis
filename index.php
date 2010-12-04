@@ -17,7 +17,7 @@ include_once 'session.php';
 <script type="text/javascript" src="js/jcek-session.js"></script>
 <script type="text/javascript" src="js/jpost-login.js"></script>
 <script type="text/javascript" src="js/jpost-logoff.js"></script>
-<script type="text/javascript" src="js/jpost-login-timer-error.jsp"></script>
+<script type="text/javascript" src="js/jpost-login-timer-error.js"></script>
 
 <link href="index.css" rel="stylesheet" type="text/css" />
 <link href="header.css" rel="stylesheet" type="text/css" />
@@ -52,7 +52,7 @@ include_once 'session.php';
 		<?php
 		for ($i=1; $i<=20; $i++)
           {
-          echo "<a href=\"javascript:PostLogoff()\"><p>MENU " . $i . "</p></a>";
+          echo "<a onclick=\"javascript:PostLogoff()\" href=\"#\"><p>MENU " . $i . "</p></a>";
           }
         ?>
     </div>

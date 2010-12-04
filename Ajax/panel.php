@@ -3,12 +3,12 @@ $code = htmlentities($_POST['code']);
 $code_panel = htmlentities($_POST['code_panel']);
 switch($code){
 	case 1 : { //login panel
-			$header_login = "<a id=\"header_id_login\" class=\"header_trigger\" href=\"javascript:header_login_click()\">LOGIN</a>";
+			$header_login = "<a id=\"header_id_login\" class=\"header_trigger\" onclick=\"javascript:header_login_click()\" href=\"#\">LOGIN</a>";
 			exit($header_login);
 		break;
 	}
 	case 2 : { //logoff panel
-			$header_logoff = "<a id=\"header_id_logoff\" class=\"header_trigger\" href=\"javascript:header_logoff_click()\">LOGOFF</a>";
+			$header_logoff = "<a id=\"header_id_logoff\" class=\"header_trigger\" onclick=\"javascript:header_logoff_click()\" href=\"#\">LOGOFF</a>";
 			exit($header_logoff);
 		break;
 	}
@@ -27,15 +27,14 @@ switch($code_panel){
                     <td><input id=\"password\" name=\"password\" type=\"password\" size=\"20\" maxlength=\"15\"/></td>
                 </tr></table><table style=\"padding-left:50px;\">
 				<tr>
-					<td><a class=\"header_login_cancel\" href=\"javascript:header_login_cancel_click()\"></a></td>
+					<td><a class=\"header_login_cancel\" onclick=\"javascript:header_login_cancel_click()\" href=\"#\"></a></td>
                 </tr>
             </table>
 			<table style=\"position:fixed;right:30px;top:88px;\">
 					<tr><td><input id=\"submit\" class=\"submit\" name=\"tombol\" type=\"submit\" value=\"SUBMIT\" /></td>
                     </tr>
             </table>
-            <table>&nbsp;<div id=\"alert_login\">&nbsp;</div>
-			</table>
+            &nbsp;<div id=\"alert_login\">&nbsp;</div>
 			</form>
 			</div>
 			<script>$(function() {

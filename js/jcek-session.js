@@ -18,7 +18,9 @@ function LoginLogoffPanel(){
 
 function ShowLoginPanel(){
     var source = 'Ajax/panel.php'; 
-	var respons = 'html';
+	$("#main").html("");
+	$("#header_group").html("");
+	$("#header_panel_group").html("");
 	$("#header_group").load(source,{code:1});
 	$("#header_panel_group").load(source,{code_panel:1});
 	panelLogin = true;
@@ -27,7 +29,8 @@ function ShowLoginPanel(){
 
 function ShowLogoffPanel(){
     var source = 'Ajax/panel.php'; 
-	var respons = 'html';
+	$("#header_group").html("");
+	$("#header_panel_group").html("");
 	$("#header_group").load(source,{code:2});
 	$("#header_panel_group").load(source,{code_panel:2});
 	panelLogoff = true;

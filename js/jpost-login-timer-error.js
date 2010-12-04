@@ -22,7 +22,7 @@ function StartTheTimer()
     if (secs==0)
     {
         StopTheClock()
-		$("#alert_login").append("Try to <a href=\"\">Refresh</a> this page.");
+		$("#alert_login").append("Try to <a href=\"index.php\">Refresh</a> this page.");
 	}
     else
     {
