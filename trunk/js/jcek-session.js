@@ -2,14 +2,43 @@ var detik
 var timerS = null
 var timerR = false
 var timerD = 5000
-var xmlHttpCekSession = createXmlHttpRequest();
+var session = false;
+var panelLogin = false;
+var panelLogoff = false;
 
-InitializeTimerCekSession();
+function LoginLogoffPanel(){
+	if(session){
+		if(!panelLogoff){
+		ShowLogoffPanel();}
+	}else{
+		if(!panelLogin){
+		ShowLoginPanel();}
+	}
+}
+
+function ShowLoginPanel(){
+    var source = 'Ajax/panel.php'; 
+	var respons = 'html';
+	$("#header_group").load(source,{code:1});
+	$("#header_panel_group").load(source,{code_panel:1});
+	panelLogin = true;
+	panelLogoff = false;
+}
+
+function ShowLogoffPanel(){
+    var source = 'Ajax/panel.php'; 
+	var respons = 'html';
+	$("#header_group").load(source,{code:2});
+	$("#header_panel_group").load(source,{code_panel:2});
+	panelLogoff = true;
+	panelLogin = false;
+}
 
 function InitializeTimerCekSession()
 {
-    StopTheClockCekSession()
-    StartTheTimerCekSession()
+    StopTheClockCekSession();
+    StartTheTimerCekSession();
+	LoginLogoffPanel();
 }
 
 function StopTheClockCekSession()
@@ -27,37 +56,25 @@ function StartTheTimerCekSession()
 }
 
 function postCekSession(){
-	/* Query value that send to phpnya.*/
-	var kode = 'code=' + encodeURI('1');
-	/*server side */
-	var send_to = 'Ajax/session.php';
-	/*Div id for handle preloader image or errors.*/
+    var source = 'Ajax/session.php'; 
+	var values = 'code=' + encodeURI('1');
 	var respons = 'status';
-	postAjax(send_to, kode, respons, handleResponCekSession, xmlHttpCekSession);
+	var hanres = function(recv){
+				 	var JSONRespons = eval('(' + recv + ')');
+					handleResponCekSession(JSONRespons);
+				 };
+	postAjax(source, values, respons, hanres);
 }
 
-function handleResponCekSession(){
-	if (xmlHttpCekSession.readyState == 4){
-		if (xmlHttpCekSession.status == 200){
-//			alert(xmlHttpCekSession.responseText);
-			var JSONRespons = eval('(' + xmlHttpCekSession.responseText + ')');
-			alert('session cookies status : '+ JSONRespons.status);
+function handleResponCekSession(JSONRespons){
+//			alert('session cookies status : '+ JSONRespons.status);
 			if(JSONRespons.status == 1){ //login true
-				
-				SessionResponse(JSONRespons);
+				session = true;
+				LoginLogoffPanel();
 			}
 			else{ //login false (session tak ada / curang)
-				$('#login').html("tidak . . . .");
+				session = false;
+				LoginLogoffPanel();
 			}
-		} else {
-			/*Incase we found errors on trancaction proccess.*/
-			document.getElementById(obj).innerHTML = 'Error: ' + xmlHttpCekSession.statusText;
-		}
-	}
 }
 
-
-function SessionResponse(JSONRespons){
-	alert('ada');
-	$('#login').html("lagi login...");
-}

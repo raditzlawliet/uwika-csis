@@ -21,11 +21,11 @@ if((isset($_POST['username']))&&(isset($_POST['password']))){
 		exit($alert_login);
 	}
 	if(!auth_first($username,$password)){
-		$alert_login = array('status'=>'0', 'message'=>'Wrong NRP / Email and Password combination.'.$_COOKIE['login']);
+		$alert_login = array('status'=>'0', 'message'=>'Wrong NRP / Email and Password combination.');
 		$alert_login = json_encode($alert_login);
 		exit($alert_login);
 	}else{
-		$alert_login = array('status'=>'1', 'message'=>'Waiting for login. . .'.$_COOKIE['login']);
+		$alert_login = array('status'=>'1', 'message'=>'Waiting for login. . .');
 		$alert_login = json_encode($alert_login);
 		exit($alert_login);
 	}
