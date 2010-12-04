@@ -1,25 +1,3 @@
-$(function() {
-			$(".submit")
-					.click(function() {
-						InitializeTimer();  //di html awal
-						$("#alert_login").html("Loading ...");
-					})
-					.throbber();
-			$(".submit")
-				.click(function() {
-					$("#loading").html("Loading stopped!");
-					$.throbberHide();
-				})
-			$("#ajax")
-				.click(function() {
-					$("#ajax-target").load("demo_content.html");
-				})
-				.throbber();
-			$("#google1").throbber("click");
-			$("#google2").throbber({parent: "#throbber-container"});
-			$("#div").throbber("dblclick", {image: "throbber_2.gif", wrap: '<div class="throbber"></div>'});
-});
-	
 $(document).ready(function(){
 	$("#footer_id_1").hover(function(){
 		$("#footer_id_1_subpanel").toggle("fast");
@@ -90,29 +68,5 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	$("#header_id_login").click(function(){
-		$("#header_id_login_panel").toggle("fast");
-		$(this).toggleClass("active");
-//		$(".trigger").toggle("fast");
-//		$(".trigger2").toggle("fast");
-		return false;
-	});
-	$(".header_login_cancel").click(function(){
-		$("#header_id_login_panel").toggle("fast");
-		$(this).toggleClass("active");
-		$("#header_id_login").toggleClass("active");
-//		$(".trigger").toggle("fast");
-//		$(".trigger2").toggle("fast");
-		return false;
-	});
-	$("#header_id_login_jq").click(function(){
-		$("#header_id_login_panel_jq").toggle("fast");
-		$(this).toggleClass("active");
-//		$(".trigger").toggle("fast");
-//		$(".trigger2").toggle("fast");
-		return false;
-	});
-	
-	
-	
+
 });

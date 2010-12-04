@@ -60,17 +60,13 @@ include_once 'session.php';
     <a id="img_header_uwika_transparant" title="Website Universitas Widya Kartika" href="http://www.widyakartika.ac.id/"></a>
     <a id="img_header_uwika_text" title="Website Universitas Widya Kartika" href="http://www.widyakartika.ac.id/"></a>
     <h1>CAMPUS SYSTEM INFORMATION STUDENT</h1>
-	<a id="header_id_login" class="header_trigger" href="#">LOGIN</a>
-<!--	<a id="header_id_login_jq" class="header_trigger" style="right:200px;" href="#">LOGIN JQ</a> -->
+	<div id="header_group"></div>
 
     </div>
 </div><!--end header-->
 	<div id="container_space">
     	<div id="main">
-		<?php 
-		if (isset($_POST['username'])){
-			echo "Now login... ".$_POST['username']." .... Please Wait.... <br />";
-		}
+		<?php
         echo "Waittt.... !!! You can login at right top on this page :)";
         for ($i=1; $i<=250; $i++)
           {
@@ -80,49 +76,9 @@ include_once 'session.php';
         ?>
         </div>
 	</div>
+<div id="header_panel_group">
 
-<div class="header_panel" id="header_id_login_panel">
-			<table>
-				<form action="javascript:PostLogin()" method="post">
-				<tr>
-                	<td>USERNAME&nbsp;&nbsp;</td>
-                    <td><input id="username" name="username" type="text" size="20" maxlength="50" /></td>
-                </tr>
-            	<tr>
-                	<td>PASSWORD&nbsp;&nbsp;</td>
-                    <td><input id="password" name="password" type="password" size="20" maxlength="15"/></td>
-                </tr></table ><table style="padding-left:50px;">
-				<tr>
-					<td><a class="header_login_cancel" href="#"></a></td>
-                </tr>
-            </table>
-			<table style="position:fixed;right:30px;top:88px;">
-					<tr><td><input id="submit" class="submit" name="tombol" type="submit" value="SUBMIT" /></form></td>
-                    </tr>
-            </table>
-            <table>&nbsp;<div id="alert_login">&nbsp;</div>
-</table>
 </div>
-<!--
-<div class="header_panel" id="header_id_login_panel_jq">
-			<table>
-				<form action="javascript:PostLoginJQ()" method="post">
-				<tr>
-                	<td>USERNAME&nbsp;&nbsp;</td>
-                    <td><input id="usernamejq" name="usernamejq" type="text" size="20" maxlength="50" /></td>
-                </tr>
-            	<tr>
-                	<td>PASSWORD&nbsp;&nbsp;</td>
-                    <td><input id="passwordjq" name="passwordjq" type="password" size="20" maxlength="15"/></td>
-                </tr></table >
-			<table style="position:fixed;right:130px;top:88px;">
-					<tr><td><input id="submit" class="submit" name="tombol" type="submit" value="SUBMIT" /></form></td>
-                    </tr>
-            </table>
-            <table>&nbsp;<div id="alert_login">&nbsp;</div>
-</table>
-</div>
--->
 <div class="panel">
 	<h3>Jadwal Doang</h3>
 	<p>Just for Jadwal...</p>
@@ -217,6 +173,6 @@ include_once 'session.php';
 	<p>Who are the maker of this site ??</p>
 	<h1>Click <em id="red">ABOUT</em> for more info</h1>
 </div>
-
+<script>InitializeTimerCekSession();</script>
 </body>
 </html>

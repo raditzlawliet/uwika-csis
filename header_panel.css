@@ -105,13 +105,15 @@ input.submit{
 	top: -1px; right: -1px;
 }
 
-#header_id_login_panel_jq{
-	top: 57px;
-	right: 100px;	
+#header_id_logoff_panel{
+	background:none;
 }
-#header_id_login_jq{
-	top: 0px; right: 100px;
+#header_id_logoff{
+	background:none;
+	padding: 20px 15px 25px 15px;
+	top: 0px; right: 0px;
 }
-#header_id_login_jq:hover{
-	top: -1px; right: 99px;
+#header_id_logoff:hover{
+	background:#255670;
+	top: -1px; right: -1px;
 }

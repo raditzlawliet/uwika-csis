@@ -1,7 +1,7 @@
 <?php
 include '../session.php';
 session_start();
-$code = htmlentities($_REQUEST['code']);
+$code = htmlentities($_POST['code']);
 switch($code){
 	case 1 : {
 		if($_COOKIE['login']==1){	
