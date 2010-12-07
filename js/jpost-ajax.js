@@ -26,7 +26,6 @@
 //	setTimeout('postAjax(source, values, respons, hanres, xmpHttp)', 100000);
 //  }
 //}
-function postAjax(source, values, respons, hanres){
-	obj = respons;
+function postAjax(source, values, hanres){
 	$.ajax({type: "POST", url: source, data: values,async: true, success:hanres, timeout:10000}); 
 }

@@ -47,6 +47,7 @@
 	color: #F00;
 }
 .footer_panel {
+	opacity: .70;
 	font-size:12px;
 	text-align:left;
 	color:#CCC;
@@ -64,8 +65,7 @@
 	-webkit-border-bottom-left-radius: 20px;
 	width: 330px;
 	height: auto;
-	padding: 30px 130px 30px 30px;	filter: alpha(opacity=70);
-	opacity: .70;
+	padding: 30px 130px 30px 30px;
 }
 
 .footer_panel p{

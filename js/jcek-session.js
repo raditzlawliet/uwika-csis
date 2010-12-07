@@ -2,27 +2,30 @@ var detik
 var timerS = null
 var timerR = false
 var timerD = 5000
-var session = false;
+var session = 0;
 var panelLogin = false;
 var panelLogoff = false;
+var panelHome =new Array(false,false,false,false,false);
 
 function LoginLogoffPanel(){
-	if(session){
-		if(!panelLogoff){
-		ShowLogoffPanel();}
-	}else{
-		if(!panelLogin){
-		ShowLoginPanel();}
-	}
+	if(session==2){
+		if(!panelLogoff){ShowLogoffPanel();}
+	}else if(session==1){
+		if(!panelLogin){ShowLoginPanel();}
+		if(!panelHome){ShowLoginPanel('Ajax/panel.php',1);}
+	}else{}
 }
 
 function ShowLoginPanel(){
     var source = 'Ajax/panel.php'; 
-	$("#main").html("");
 	$("#header_group").html("");
 	$("#header_panel_group").html("");
-	$("#header_group").load(source,{code:1});
-	$("#header_panel_group").load(source,{code_panel:1});
+	$.post(source,{code:1}, function(data) {
+	  $('#header_group').append(data);
+	}); 
+	$.post(source,{code_panel:1}, function(data) {
+	  $('#header_panel_group').append(data);
+	});
 	panelLogin = true;
 	panelLogoff = false;
 }
@@ -31,12 +34,32 @@ function ShowLogoffPanel(){
     var source = 'Ajax/panel.php'; 
 	$("#header_group").html("");
 	$("#header_panel_group").html("");
-	$("#header_group").load(source,{code:2});
-	$("#header_panel_group").load(source,{code_panel:2});
+	$.post(source,{code:2}, function(data) {
+	  $('#header_group').append(data);
+	}); 
+	$.post(source,{code_panel:2}, function(data) {
+	  $('#header_panel_group').append(data);
+	});
 	panelLogoff = true;
 	panelLogin = false;
+	ShowHomePanel(source,0);
 }
 
+function ShowHomePanel(source, value){
+	switch(value){
+		case 0:{
+			ShowHomePanel(source,1);
+			break;}
+		case 1:{
+			$.post(source,{code:3}, function(data) {
+			  $('#header_group').append(data);
+			}); 
+			$.post(source,{code_panel:3}, function(data) {
+			  $('#header_panel_group').append(data);
+			});
+			panelHome[1]==true; break;}
+	}
+}
 function InitializeTimerCekSession()
 {
     StopTheClockCekSession();
@@ -61,22 +84,21 @@ function StartTheTimerCekSession()
 function postCekSession(){
     var source = 'Ajax/session.php'; 
 	var values = 'code=' + encodeURI('1');
-	var respons = 'status';
 	var hanres = function(recv){
 				 	var JSONRespons = eval('(' + recv + ')');
 					handleResponCekSession(JSONRespons);
 				 };
-	postAjax(source, values, respons, hanres);
+	postAjax(source, values, hanres);
 }
 
 function handleResponCekSession(JSONRespons){
-//			alert('session cookies status : '+ JSONRespons.status);
+			$('#main').append('session cookies status : '+ JSONRespons.status +'<br \>');
 			if(JSONRespons.status == 1){ //login true
-				session = true;
+				session = 2;
 				LoginLogoffPanel();
 			}
 			else{ //login false (session tak ada / curang)
-				session = false;
+				session = 1;
 				LoginLogoffPanel();
 			}
 }

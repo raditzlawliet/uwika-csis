@@ -67,19 +67,38 @@ include_once 'session.php';
 	<div id="container_space">
     	<div id="main">
 		<?php
-        echo "Waittt.... !!! You can login at right top on this page :)";
-        for ($i=1; $i<=250; $i++)
+        echo "Waittt.... !!! You can login at right top on this page :)<br /><b>User : 31109000, Pass : 2</b><br />";
+		$array = array('lastname', 'email kuuuu', 'phone');
+		$comma_separated = implode("| ", $array);			
+		echo $comma_separated;
+		$comma_separated = "akuuuuuuu a???|suko i ta|lalalalal a|aa";
+		$pieces = explode("|", $comma_separated);
+		echo "<br />";
+		foreach($pieces as $i){
+			echo $i."<br />";
+		}
+		function add($id,$nama,$tgl,$anak){
+				$sql = "INSERT INTO t_mahasiswa (nrp , nama , password, jenis_kelamin ) VALUES ( '31110000, '".$nama."', '".$tgl."', '".$anak."' )";
+			if (!mysql_query($sql))
+			  {
+			  echo "<td><form action=\"#\" method=\"post\" name=\"delete\">
+				<input name=\"tombol\" type=\"submit\" value=\"Kembali\" /></form></td>";
+			  die('<div id="error" >Error: ' . mysql_error().'</div>');
+			  }	
+		}		
+		
+/*        for ($i=1; $i<=250; $i++)
           {
 		  echo md5("31109036");
           echo "<br />".$i." - ".sha1(md5($i))." : ".strlen(sha1(md5($i)));
-          }
+          } */
         ?>
         </div>
 	</div>
 <div id="header_panel_group">
 
 </div>
-<div class="panel">
+<div class="panel" style="filter:alpha(opacity=70);">
 	<h3>Jadwal Doang</h3>
 	<p>Just for Jadwal...</p>
 
@@ -117,7 +136,7 @@ include_once 'session.php';
 <div style="clear:both;"></div>
 </div>
 
-<div class="panel2">
+<div class="panel2" style="filter:alpha(opacity=70);">
 	<h3>Jadwal Sekarang</h3>
 	<p>Jadwal test ini di uji coba dengan menggunakan link <a href="http://widyakartika.ac.id" title="website utama">UWIKA</a> Dan telah diuji coba panelnya</p>
 	
@@ -136,40 +155,40 @@ include_once 'session.php';
 <a id="footer_id_4" class="footer_trigger" href="#">ABOUT</a>
 </div>
 
-<div class="footer_panel" id="footer_id_1_panel">
+<div class="footer_panel" id="footer_id_1_panel" style="filter:alpha(opacity=70);">
 	<p>Campus System Information Student © 2010</p>
 	<p>This site has copyright from us or team maker of CSIS Universitas Widya Kartika.</p>
     All reversed 2010.
 	<a class="trigger_footer_cancel" href="#"></a>
 </div>
-<div class="footer_panel" id="footer_id_2_panel">
+<div class="footer_panel" id="footer_id_2_panel" style="filter:alpha(opacity=70);">
 	<p>Help is unavaialbe now for a while. Thank you.</p>
 	<a class="trigger_footer_cancel" href="#"></a>
 </div>
-<div class="footer_panel" id="footer_id_3_panel">
+<div class="footer_panel" id="footer_id_3_panel" style="filter:alpha(opacity=70);">
 	<p>This site has recommended Bestview using <b><a href="http://www.mozilla.com/products/download.html">Mozilla FireFox 3.5+</a></b>, <b>1024x786</b> Resolusion and without Zoom.</p>
     <p>You can download <a href="http://www.mozilla.com/products/download.html">here</a>.</p>
 	<a class="trigger_footer_cancel" href="#"></a>
 </div>
-<div class="footer_panel" id="footer_id_4_panel">
+<div class="footer_panel" id="footer_id_4_panel" style="filter:alpha(opacity=70);">
 	<p><b>Team Maker</b></p>
      Radityo H<br /> Bobby H<br /> Evan<br /> Ferry N
 	<a class="trigger_footer_cancel" href="#"></a>
 </div>
 
-<div class="footer_subpanel" id="footer_id_1_subpanel">
+<div class="footer_subpanel" id="footer_id_1_subpanel" style="filter:alpha(opacity=90);">
 	<p>Campus System Information Student © 2010</p>
 	<h1>Click <em id="red">COPYRIGHT</em> for more info</h1>
 </div>
-<div class="footer_subpanel" id="footer_id_2_subpanel">
+<div class="footer_subpanel" id="footer_id_2_subpanel"style="filter:alpha(opacity=90);">
 	<p>You want some help from us ??</p>
 	<h1>Click <em id="red">HELP</em> for more info</h1>
 </div>
-<div class="footer_subpanel" id="footer_id_3_subpanel">
+<div class="footer_subpanel" id="footer_id_3_subpanel"style="filter:alpha(opacity=90);">
 	<p>Recommended bestview using <em id="red_noline">Mozilla FireFox 3.5+</em>, <b>1024x786</b> Resolusion</p>
 	<h1>Click <em id="red">COMPATIBLE</em> for more info</h1>
 </div>
-<div class="footer_subpanel" id="footer_id_4_subpanel">
+<div class="footer_subpanel" id="footer_id_4_subpanel"style="filter:alpha(opacity=90);">
 	<p>Who are the maker of this site ??</p>
 	<h1>Click <em id="red">ABOUT</em> for more info</h1>
 </div>
