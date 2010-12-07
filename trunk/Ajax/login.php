@@ -1,5 +1,5 @@
 <?php
-include '..\auth.php';
+include '../auth.php';
 
 if((isset($_POST['username']))&&(isset($_POST['password']))){
 	$username = htmlentities($_POST['username']);

@@ -59,9 +59,7 @@ a.active.header_trigger {
 	-webkit-border-top-left-radius: 20px;
 	-moz-border-radius-bottomleft: 20px;
 	-webkit-border-bottom-left-radius: 20px;
-	width: 200px;
 	height: auto;
-	padding: 30px 130px 30px 30px;
 	z-index: 1;
 }
 
@@ -95,8 +93,10 @@ input.submit{
 	color:white;
 }
 #header_id_login_panel{
+	padding: 30px 130px 30px 30px;
+	width:200px;
 	top: 57px;
-	right: 0;	
+	right: 0;
 }
 #header_id_login{
 	top: 0px; right: 0px;
@@ -116,4 +116,48 @@ input.submit{
 #header_id_logoff:hover{
 	background:#255670;
 	top: -1px; right: -1px;
+}
+
+#header_id_account_panel{
+	top: 57px;
+	right: 70px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	background:white;
+	border:1px black solid;
+	border-top:none;
+}
+#header_id_account{
+	top: 0px; right: 70px;
+}
+#header_id_account:hover{
+	top: -1px; right: 69px;
+}
+#header_id_account.active{
+	top: 0px; right: 70px;
+	background:white url(images/up.png) 22% 48% no-repeat;
+	color:black;
+	border:1px black solid;
+	border-bottom:1px black;
+}
+
+#header_id_account_panel a{	
+	color:black;
+	padding: 5px 30px 5px 15px; 
+	text-align:left;
+	letter-spacing:-1px;
+	font:10px Verdana, Geneva, sans-serif;
+	font-weight:700;
+	display:block;
+	border-bottom:none;
+	text-decoration:none;
+}
+#header_id_account_panel a:hover{	
+	background:#6AB1FF;
+	color: #FA161C;
+	padding: 5px 30px 5px 15px; 
 }

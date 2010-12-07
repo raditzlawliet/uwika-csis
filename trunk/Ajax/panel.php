@@ -12,6 +12,11 @@ switch($code){
 			exit($header_logoff);
 		break;
 	}
+	case 3 : { //account panel
+			$header_logoff = "<a id=\"header_id_account\" class=\"header_trigger\" onclick=\"javascript:header_account_click()\" href=\"#\">ACCOUNT</a>";
+			exit($header_logoff);
+		break;
+	}
 }
 switch($code_panel){
 	case 1: { //login
@@ -41,7 +46,7 @@ switch($code_panel){
 			$(\".submit\")
 					.click(function() {
 						InitializeTimer();  //di html awal
-						$(\"#alert_login\").html(\"Loading ...\");
+						$(\"#alert_login\").html(\"Loading ... (<i>Login Require Cookies</i>)\");
 					})
 					.throbber();
 			$(\".submit\")
@@ -69,9 +74,19 @@ switch($code_panel){
 		break;
 	}
 	case 2 : { //logoff panel
-		$header_logoff_panel = '<script>
-		function header_logoff_click(){PostLogoff();}
-			</script>';	
+		$header_logoff_panel = '<script>function header_logoff_click(){PostLogoff();}</script>';
+		exit($header_logoff_panel);
+		break;
+	}
+	case 3 : { //account panel
+		$header_logoff_panel = '
+		<div class="header_panel" id="header_id_account_panel">
+		<ul><li><a href="#">ACCOUNT MENU 1</a></li><li><a href="#">ACCOUNT MENU 2</a></li></ul>
+		</div>
+		<script>function header_account_click(){
+			$("#header_id_account_panel").toggle("fast");
+			$("#header_id_account").toggleClass("active");
+		}</script>';
 		exit($header_logoff_panel);
 		break;
 	}

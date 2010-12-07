@@ -11,7 +11,6 @@ body  {
 	padding: 0;
 	text-align: left; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
 	color: #000000;
-//	background:url('images/back_autumn_center.png') 22% 85% no-repeat fixed;
 }
 
 #container { 
@@ -26,11 +25,11 @@ body  {
 	text-align: left; /* this overrides the text-align: center on the body element. */	
 	margin-bottom:2em;
 	padding-left:7px;
-//	background: #FFF url('images/back_autumn_center.png') 22% 85% no-repeat fixed;
 } 
 
 #main{
-	font:15px Tahoma, Geneva, sans-serif;
+	font:12px Tahoma, Geneva, sans-serif;
 	border: 1px solid #CCC;
+	position:static;
 }
 

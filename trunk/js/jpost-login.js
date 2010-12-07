@@ -1,8 +1,9 @@
 //test ajax jq
+var obj;
 function PostLogin(){
     var source = "Ajax/login.php"; 
 	var values = "username=" + encodeURI(document.getElementById('username').value ) + "&password=" + encodeURI( document.getElementById('password').value);
-	var respons = 'alert_login';
+	obj = 'alert_login';
 	var hanres = function(recv){
 				 	var JSONRespons = eval('(' + recv + ')');
 					enableFormLogin();
@@ -11,17 +12,20 @@ function PostLogin(){
 	document.getElementById('username').disabled=true;
 	document.getElementById('password').disabled=true;
 	document.getElementById('submit').disabled=true;
-	postAjax(source, values, respons, hanres);
+	postAjax(source, values, hanres);
 }
 function handleResponLogin(JSONRespons){
+			$('#main').append('login status : '+ JSONRespons.status +'<br \>');
 			if(JSONRespons.status == 1){
 				document.getElementById(obj).innerHTML = JSONRespons.message;
 				enableFormLogin();
-				$('#login').html("login . .. . ");
+				$('#login').html("Cookies must enable. . .");
+				InitializeTimer();
 				InitializeTimerCekSession();
 			}
 			else{
 				document.getElementById(obj).innerHTML = JSONRespons.message;
+				InitializeTimer();
 			}
 }
 
