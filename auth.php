@@ -87,45 +87,4 @@ function getDataSession($uid,$turn){
 		return $data_session;
 }
 
-
-$today_date	= date("d/m/Y H:i:s");
-
-function insert_comment($name, $comment){
-	global $db;
-	
-	$sql_date	= date("Y-m-d H:i:s");
-	$sql		= $db->query("INSERT INTO comments (name, comment, date) VALUES('$name', '$comment', '$sql_date')");
-	
-	if($sql){
-		
-		//get this comment id from db
-		$result = $db->query("SELECT id FROM comments WHERE date = '$sql_date'");
-		$data = $result->fetch_array(MYSQLI_ASSOC);
-		$comment_id = $data['id'];
-		return $comment_id;
-		
-	}
-	else{
-		
-		return false;
-	}
-}
-
-function delete_comment($id){
-	global $db;
-	
-	$delete = $db->query("DELETE FROM comments WHERE id = '$id'");
-	
-	if($delete){
-		
-		return true;
-		
-	}
-	else{
-		
-		return false;
-		
-	}
-}
-
 ?>

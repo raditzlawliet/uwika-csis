@@ -18,5 +18,11 @@ switch($code){
 		}
 		break;
 	}
+	case 5 : { //get giliran session
+				$status = array('turn'=>$_SESSION['turn']);
+				$status = json_encode($status);
+				exit($status);
+				break;
+	}
 }
 ?>

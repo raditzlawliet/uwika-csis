@@ -10,10 +10,14 @@ var panelHome =new Array(false,false,false,false,false);
 function LoginLogoffPanel(){
 	if(session==2){
 		if(!panelLogoff){ShowLogoffPanel();}
+		if(!panelHome[1]){ShowHomePanel('Ajax/panel.php',1);}
+		if(!panelHome[2]){ShowHomePanel('Ajax/panel.php',2);}
+		if(!panelHome[3]){ShowHomePanel('Ajax/panel.php',3);}
+		if(!panelHome[4]){ShowHomePanel('Ajax/panel.php',4);}
 	}else if(session==1){
 		if(!panelLogin){ShowLoginPanel();}
-		if(!panelHome){ShowLoginPanel('Ajax/panel.php',1);}
 	}else{}
+	$("#array_session").html("Array : "+panelLogin+" "+panelLogoff+" "+panelHome[0]+" "+panelHome[1]+" "+panelHome[2]+" "+panelHome[3]+" "+panelHome[4]);
 }
 
 function ShowLoginPanel(){
@@ -28,6 +32,9 @@ function ShowLoginPanel(){
 	});
 	panelLogin = true;
 	panelLogoff = false;
+	for(var i = 0;i<=4;i++){
+		panelHome[i]=false;
+	}
 }
 
 function ShowLogoffPanel(){
@@ -49,6 +56,9 @@ function ShowHomePanel(source, value){
 	switch(value){
 		case 0:{
 			ShowHomePanel(source,1);
+			ShowHomePanel(source,2);
+			ShowHomePanel(source,3);
+			ShowHomePanel(source,4);
 			break;}
 		case 1:{
 			$.post(source,{code:3}, function(data) {
@@ -57,7 +67,31 @@ function ShowHomePanel(source, value){
 			$.post(source,{code_panel:3}, function(data) {
 			  $('#header_panel_group').append(data);
 			});
-			panelHome[1]==true; break;}
+			panelHome[1]=true; break;}
+		case 2:{
+			$.post(source,{code:4}, function(data) {
+			  $('#header_group').append(data);
+			}); 
+			$.post(source,{code_panel:4, code_panel_turn:getTurn()}, function(data) {
+			  $('#header_panel_group').append(data);
+			});
+			panelHome[2]=true; break;}
+		case 3:{
+			$.post(source,{code:5}, function(data) {
+			  $('#header_group').append(data);
+			}); 
+			$.post(source,{code_panel:5, code_panel_turn:getTurn()}, function(data) {
+			  $('#header_panel_group').append(data);
+			});
+			panelHome[3]=true; break;}
+		case 4:{
+			$.post(source,{code:6}, function(data) {
+			  $('#header_group').append(data);
+			}); 
+			$.post(source,{code_panel:6, code_panel_turn:getTurn()}, function(data) {
+			  $('#header_panel_group').append(data);
+			});
+			panelHome[4]=true; break;}
 	}
 }
 function InitializeTimerCekSession()
@@ -92,7 +126,7 @@ function postCekSession(){
 }
 
 function handleResponCekSession(JSONRespons){
-			$('#main').append('session cookies status : '+ JSONRespons.status +'<br \>');
+			$('#cek_session').html('session cookies status : '+ JSONRespons.status);
 			if(JSONRespons.status == 1){ //login true
 				session = 2;
 				LoginLogoffPanel();
@@ -101,5 +135,16 @@ function handleResponCekSession(JSONRespons){
 				session = 1;
 				LoginLogoffPanel();
 			}
+}
+
+function getTurn(){
+    var source = 'Ajax/session.php'; 
+	var values = 'code=' + encodeURI('5');
+	var hanres = function(recv){
+				 	var JSONRespons = eval('(' + recv + ')');
+//					alert(JSONRespons.turn);
+					return JSONRespons.turn;
+				 };
+	postAjax(source, values, hanres);
 }
 

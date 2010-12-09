@@ -15,7 +15,7 @@ function PostLogin(){
 	postAjax(source, values, hanres);
 }
 function handleResponLogin(JSONRespons){
-			$('#main').append('login status : '+ JSONRespons.status +'<br \>');
+			$('#cek_login').html('login status : '+ JSONRespons.status);
 			if(JSONRespons.status == 1){
 				document.getElementById(obj).innerHTML = JSONRespons.message;
 				enableFormLogin();

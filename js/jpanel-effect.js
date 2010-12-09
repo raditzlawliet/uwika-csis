@@ -56,7 +56,6 @@ $(document).ready(function(){
 		$(".panel").toggle("fast");
 		$(this).toggleClass("active");
 		$(".trigger2").toggle("fast");
-//		$(".header_trigger").toggle("fast");
 		return false;
 	});
 
@@ -64,9 +63,6 @@ $(document).ready(function(){
 		$(".panel2").toggle("fast");
 		$(this).toggleClass("active");
 		$(".trigger").toggle("fast");
-//		$(".header_trigger").toggle("fast");
 		return false;
 	});
-	
-
 });
