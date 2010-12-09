@@ -156,3 +156,19 @@ a.trigger_footer_cancel{
 	width:22px;
 	height:22px;
 }
+
+
+
+#footer_q_panel{
+	background:#78FC01;
+	width:50%;
+	height:10px;
+	bottom: 5px; left: -48%;
+	padding: 5px;
+	padding-top:1px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border:1px solid white;
+	color:black;
+	font-size:10px;
+}

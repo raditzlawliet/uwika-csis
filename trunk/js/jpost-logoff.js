@@ -9,7 +9,7 @@ function PostLogoff(){
 }
 
 function handleResponLogoff(JSONRespons){
-			$('#main').append('logoff status : '+ JSONRespons.status +'<br \>');
+			$('#cek_logoff').html('logoff status : '+ JSONRespons.status);
 			if(JSONRespons.status == 1){
 				logoffResponse(); //sukses
 			}

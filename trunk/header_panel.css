@@ -132,17 +132,24 @@ input.submit{
 	border-top:none;
 }
 #header_id_account{
+	padding: 20px 5px 25px 25px;
 	top: 0px; right: 70px;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-right-radius: 10px;
+	background:url(images/down.png) 5% 48% no-repeat;
 }
 #header_id_account:hover{
 	top: -1px; right: 69px;
+	background:#255670 url(images/down.png) 5% 48% no-repeat;
 }
 #header_id_account.active{
-	top: 0px; right: 70px;
-	background:white url(images/up.png) 22% 48% no-repeat;
+	top: -1px; right: 69px;
+	background:white url(images/up.png) 5% 48% no-repeat;
 	color:black;
 	border:1px black solid;
 	border-bottom:1px black;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-right-radius: 10px;
 }
 
 #header_id_account_panel a{	
@@ -158,6 +165,78 @@ input.submit{
 }
 #header_id_account_panel a:hover{	
 	background:#6AB1FF;
-	color: #FA161C;
+	color: white;
 	padding: 5px 30px 5px 15px; 
+}
+
+#header_id_account_panel #menu_profile_pic{	
+	padding: 10px 5px 10px 5px;
+}
+
+#header_id_account_panel #menu_profile_text{
+	text-align:right;
+	font-style:normal;
+	margin:5px;
+	font-size:12px;
+}
+
+#header_id_student{
+	padding: 15px 5px 20px 25px;
+	top: 0px; right: 148px;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-right-radius: 10px;
+	background:url(images/down.png) 5% 48% no-repeat;
+}
+#header_id_student:hover{
+	top: -1px; right: 147px;
+	background:#255670 url(images/down.png) 5% 48% no-repeat;
+}
+#header_id_student.active{
+	top: -1px; right: 147px;
+	background:white url(images/up.png) 5% 45% no-repeat;
+	color:black;
+	border:1px black solid;
+	border-bottom:1px black;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-right-radius: 10px;
+}
+#header_id_faculty{
+	padding: 15px 5px 20px 25px;
+	top: 0px; right: 254px;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-right-radius: 10px;
+	background:url(images/down.png) 5% 48% no-repeat;
+}
+#header_id_faculty:hover{
+	top: -1px; right: 253px;
+	background:#255670 url(images/down.png) 5% 48% no-repeat;
+}
+#header_id_faculty.active{
+	top: -1px; right: 253px;
+	background:white url(images/up.png) 5% 45% no-repeat;
+	color:black;
+	border:1px black solid;
+	border-bottom:1px black;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-right-radius: 10px;
+}
+#header_id_employee{
+	top: 0px; right: 360px;
+	padding: 15px 5px 20px 25px;
+	background:url(images/down.png) 5% 48% no-repeat;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-right-radius: 10px;
+}
+#header_id_employee:hover{
+	top: -1px; right: 359px;
+	background:#255670 url(images/down.png) 5% 48% no-repeat;
+}
+#header_id_employee.active{
+	top: -1px; right: 253px;
+	background:white url(images/up.png) 5% 45% no-repeat;
+	color:black;
+	border:1px black solid;
+	border-bottom:1px black;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-right-radius: 10px;
 }

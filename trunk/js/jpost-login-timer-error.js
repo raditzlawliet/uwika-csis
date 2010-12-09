@@ -18,11 +18,12 @@ function StopTheClock()
 }
 
 function StartTheTimer()
-{
+{	
+	$("#cek_timer_error").html("Timer Error secs : "+secs);
     if (secs==0)
     {
         StopTheClock()
-		$("#alert_login").append("Error ? Try to <a href=\"index.php\">Refresh</a> this page.");
+		$("#alert_login").append("Error ? Try to <a href=\"\">Refresh</a> this page.");
 	}
     else
     {

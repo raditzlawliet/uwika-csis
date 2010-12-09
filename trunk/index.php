@@ -52,7 +52,7 @@ include_once 'session.php';
 		<?php
 		for ($i=1; $i<=20; $i++)
           {
-          echo "<a onclick=\"javascript:PostLogoff()\" href=\"#\"><p>MENU " . $i . "</p></a>";
+          echo "<a onclick=\"javascript:PostLogoff()\" href=\"#!\"><p>MENU " . $i . "</p></a>";
           }
         ?>
     </div>
@@ -66,37 +66,19 @@ include_once 'session.php';
 </div><!--end header-->
 	<div id="container_space">
     	<div id="main">
-		<?php
-        echo "Waittt.... !!! You can login at right top on this page :)<br /><b>User : 31109000, Pass : 2</b><br />";
-		$array = array('lastname', 'email kuuuu', 'phone');
-		$comma_separated = implode("| ", $array);			
-		echo $comma_separated;
-		$comma_separated = "akuuuuuuu a???|suko i ta|lalalalal a|aa";
-		$pieces = explode("|", $comma_separated);
-		echo "<br />";
-		foreach($pieces as $i){
-			echo $i."<br />";
-		}
-		function add($id,$nama,$tgl,$anak){
-				$sql = "INSERT INTO t_mahasiswa (nrp , nama , password, jenis_kelamin ) VALUES ( '31110000, '".$nama."', '".$tgl."', '".$anak."' )";
-			if (!mysql_query($sql))
-			  {
-			  echo "<td><form action=\"#\" method=\"post\" name=\"delete\">
-				<input name=\"tombol\" type=\"submit\" value=\"Kembali\" /></form></td>";
-			  die('<div id="error" >Error: ' . mysql_error().'</div>');
-			  }	
-		}		
-		
-/*        for ($i=1; $i<=250; $i++)
-          {
-		  echo md5("31109036");
-          echo "<br />".$i." - ".sha1(md5($i))." : ".strlen(sha1(md5($i)));
-          } */
-        ?>
+<script>
+if(window.location.hash) {
+  // Fragment exists
+  $('#main').append(window.location.hash);
+} else {
+  $('#main').append(window.location.hash);
+  $('#main').append("Doesn't hav hash !");
+  // Fragment doesn't exist
+}
+</script>
         </div>
 	</div>
 <div id="header_panel_group">
-
 </div>
 <div class="panel" style="filter:alpha(opacity=70);">
 	<h3>Jadwal Doang</h3>
@@ -191,6 +173,14 @@ include_once 'session.php';
 <div class="footer_subpanel" id="footer_id_4_subpanel"style="filter:alpha(opacity=90);">
 	<p>Who are the maker of this site ??</p>
 	<h1>Click <em id="red">ABOUT</em> for more info</h1>
+</div>
+
+<div class="footer_panel" id="footer_q_panel"style="filter:alpha(opacity=90); display:block;">
+	<em id="cek_session" style="font-style:normal;">none</em> | 
+    <em id="array_session" style="font-style:normal;">none</em> |
+	<em id="cek_timer_error" style="font-style:normal;">none</em> |
+    <em id="cek_login" style="font-style:normal;">none</em> | 
+    <em id="cek_logoff" style="font-style:normal;">none</em>
 </div>
 <script>InitializeTimerCekSession();</script>
 </body>
