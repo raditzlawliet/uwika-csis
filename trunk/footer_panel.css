@@ -48,7 +48,7 @@
 }
 .footer_panel {
 	opacity: .70;
-	font-size:12px;
+	font-size:11px;
 	text-align:left;
 	color:#CCC;
 	margin:0 auto;
@@ -160,7 +160,6 @@ a.trigger_footer_cancel{
 
 
 #footer_q_panel{
-	background:#78FC01;
 	width:50%;
 	height:10px;
 	bottom: 5px; left: -48%;
@@ -168,7 +167,7 @@ a.trigger_footer_cancel{
 	padding-top:1px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	border:1px solid white;
-	color:black;
+	border:1px dotted white;
+	color:white;
 	font-size:10px;
 }

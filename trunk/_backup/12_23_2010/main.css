@@ -1,0 +1,128 @@
+@charset "utf-8";
+/* CSS Document */
+
+#main{
+	font:11px Verdana, Geneva, sans-serif;
+	border: 1px solid #CCC;
+	position:static;
+}
+
+#main table{
+	width:80%;
+	font:10px Verdana, Geneva, sans-serif;
+	text-align:left;
+}
+#main tr{
+	background:#D2FFD5;
+}
+#main tr#diff{
+	background:#B0FFB7;
+}
+#main td{
+	border:#F2F2F2;
+	padding:2px;
+	padding-left:5px;
+}
+#main table#krs_profile_student{
+	width:50%;
+}
+
+#main td#EL{
+	border-left:none;
+}
+#main td#ER{
+	border-right:none;
+}
+#main td#ERbold{
+	border-right:none;
+	font-weight:bold;
+}
+#main td#bold{
+	font-weight:bold;
+}
+#main #red_mozilla{
+	font-size:9px;
+	color:red;
+	background:#FFE6E7;
+	width:50%;
+	margin:5px;
+	margin-bottom:-7px;
+	padding:2px;
+}
+#main table#mk{
+	width:95%;
+}
+#main table#mk td{
+	width:10%;
+}
+#main table#mk #center{
+	text-align:center;
+}
+#main table#mk th{
+	border:solid 1px #900;
+	color:#900;
+	background:#82FF8B;
+	text-align:center;
+	letter-spacing:1px;
+	text-transform:uppercase
+}
+#main table#mk td#nama_mat_kul{
+	width:60%;
+}
+#main table#mk tr:hover{
+	background:#44D200;
+	color:white;
+	letter-spacing:1px;
+	text-transform:uppercase;
+}
+#main #header_krs_semester{
+	font-size:12px; 
+	font-weight:bold;
+	text-transform:uppercase;
+	color:#900;
+	padding:5px;
+}
+#main #list_mat_kul2{
+	width:95%;
+	border:solid 1px #CCC;
+}
+#div_ov_list_mk_student{
+	border:1px solid #ccc;
+	border-top:none;
+	overflow:auto; 
+}
+#div_ov_list_mk_student table{
+	width:100%;
+	font:10px Verdana, Geneva, sans-serif;
+	text-align:left;
+}
+#div_ov_list_mk_student tr{
+	background:#E1FEFF;
+}
+#div_ov_list_mk_student tr#diff{
+	background:#B1FEFE;
+}
+#div_ov_list_mk_student tr:hover{
+	background:#04A0CE;
+	color:white;
+}
+#div_ov_list_mk_student tr#diff:hover{
+	background:#04A0CE;
+	color:white;
+}
+#div_ov_list_mk_student th{
+	border:solid 1px #900;
+	color:#900;
+	background:#83F4FE;
+	text-align:center;
+	letter-spacing:1px;
+	text-transform:uppercase
+}
+#div_ov_list_mk_student td{
+	border:#F2F2F2;
+	padding:2px;
+	padding-left:5px;
+}
+#center{
+	text-align:center;
+}
