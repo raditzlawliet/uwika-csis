@@ -1,0 +1,82 @@
+@charset "utf-8";
+/* CSS Document */
+
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+
+#mask_p{
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+
+.main_panel {
+	position:absolute;
+	left:0;
+	top:0;
+	width:680px;
+	height:auto;
+	display:none;
+	z-index:9999;
+	position: fixed;
+	font-size:11px;
+	text-align:left;
+	color:#CCC;
+	padding:10px;
+	background: white;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border:1px solid #111111;
+	color:black;
+}
+.main_panel a{
+	background:black;
+	color:white;
+	border:1px solid black;
+	text-decoration:none;
+	padding:5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#main_id_agreement_panel{
+}
+
+.main_panel .button{
+	border:#F8161C ridge 2px;
+	font:11px Verdana, Geneva, sans-serif bolder;
+	color:white;
+	background:#900;
+}
+
+.main_panel .button#diff{
+	border:#666 ridge 2px;
+	background:#F5F5F5;
+	color:black;
+}
+
+.main_panel .button#diff_blue{
+	background:#03F;
+	border:#006 ridge 2px;
+}
+
+.main_panel .button#dead{
+	border:#666 ridge 2px;
+	background:#F5F5F5;
+	color:white;
+}
+
+.button#diff{
+	background:#F5F5F5;
+	color:black;
+	padding:3px;
+}

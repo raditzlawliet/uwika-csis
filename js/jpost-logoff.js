@@ -1,17 +1,17 @@
 function PostLogoff(){
     var source = 'Ajax/logoff.php';
-	var values = 'code=' + encodeURI('1');
-	var hanres = function(recv){
-				 	var JSONRespons = eval('(' + recv + ')');
-					handleResponLogoff(JSONRespons);
-				 };
-	postAjax(source, values, hanres);
+	$("#main").html("");
+	$.post(source,{code:1}, function(data) {
+	 	var JSONRespons = eval('(' + data + ')');
+		handleResponLogoff(JSONRespons);
+	}); 
 }
 
 function handleResponLogoff(JSONRespons){
 			$('#cek_logoff').html('logoff status : '+ JSONRespons.status);
 			if(JSONRespons.status == 1){
-				logoffResponse(); //sukses
+				 HidePanel();
+				 logoffResponse(); //sukses
 			}
 			else{
 				PostLogoff();
@@ -19,5 +19,6 @@ function handleResponLogoff(JSONRespons){
 }
 
 function logoffResponse(){
+	$("#alert_login").html("Login Again ^^a. ");
 	InitializeTimerCekSession();
 }
