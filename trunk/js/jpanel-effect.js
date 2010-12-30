@@ -128,6 +128,7 @@ function ShowHiddenPanel(permanent,id,source,main_id,insert_data){
 		//Get the A tag
 //		var id = $(this).attr('href');
 		$(main_id).html("");
+		$(main_id).html('<div><center><img src="images/throbber_white.gif"></center></div>');
 		if(insert_data==null){
 			$.post(source,{code_hidden:id}, function(data) {
 				$(main_id).html(data);
@@ -149,8 +150,8 @@ function ShowHiddenPanel(permanent,id,source,main_id,insert_data){
 		main_id_panel = id;
 
 		//Get the screen height and width
-		var maskHeight = $(window).height()*5;
-		var maskWidth = $(window).width()*5;
+		var maskHeight = $(window).height()*10;
+		var maskWidth = $(window).width()*10;
 		var mask = '#mask';
 		if(permanent){
 			mask = '#mask_p';	

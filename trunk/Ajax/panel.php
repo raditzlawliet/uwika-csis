@@ -130,14 +130,18 @@ switch($code_panel){
 				}
 				function GoPROFILE(){
 					header_account_click();
+					$("#main").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
 					$("#main").load("Ajax/profile.php?id='.$data_profile['nrp'].'");
+					
 				}
 				function GoHOME(){
 					header_account_click();
+					$("#main").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
 					ShowHiddenPanel(true,\'agreement\',\'Ajax/panel.php\',\'.main_panel\');
 				}
 				function GoCONFIGURATIONMENU(){
 					header_account_click();
+					$("#main").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
 					ShowHiddenPanel(true,\'agreement\',\'Ajax/panel.php\',\'.main_panel\');
 				}
 				function GoBACKEND(){
@@ -181,6 +185,7 @@ switch($code_panel){
 				}
 				function GoKRS(){
 					header_student_click();
+					$("#main").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
 					$.post("Ajax/krs.php",{code:"krs", uid:"'.$_SESSION["uid"].'"}, function(data) {
 					  $("#main").html("");
 					  $("#main").append(data);
@@ -188,12 +193,15 @@ switch($code_panel){
 				}
 				function GoLIBRARY(){
 					header_student_click();
+					$("#main").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
 				}
 				function GoELEARNING(){
 					header_student_click();
+					$("#main").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
 				}
 				function GoINFORMATIONSTUDENT(){
 					header_student_click();
+					$("#main").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
 				}
 		</script>';
 		$header_logoff_panel = $f.$c.$b;
@@ -217,6 +225,7 @@ switch($code_panel){
 		}
 			function GoFACULTYINFORMATION(){
 				header_faculty_click();
+				$("#main").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
 			}
 		</script>';
 		exit($header_logoff_panel);
@@ -239,6 +248,7 @@ switch($code_panel){
 		}
 			function GoEMPLOYEEINFORMATION(){
 				header_employee_click();
+					$("#main").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
 			}
 		</script>';
 		exit($header_logoff_panel);
@@ -269,6 +279,7 @@ switch($code_panel){
 				}
 				function GoDATABASE(){
 					header_admin_click();
+					$("#main").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
 					$.post("Ajax/database.php",{code:"db_admin", uid:"'.$_SESSION["uid"].'", admin:"'.$_SESSION["admin"].'"}, function(data) {
 					  $("#main").html("");
 					  $("#main").append(data);
@@ -412,13 +423,16 @@ switch($code_hidden){
 	}
 	case 'krs_list_mk' : { //list mk
 			$set_height = "250";
-			$semester = htmlentities($_POST['semester']);
+			
 			$uid = htmlentities($_POST['uid']);
 			$kode_mk = htmlentities($_POST['kode_mk']);
 			$e;
 			if($_SESSION['uid']!=$uid){$uid="null";$e = $e."YOU CAN'T CHEAT THIS KRS !<br>"; $e = $e."<script>alert('Do Not Cheat this KRS !!!')</script>";}
 			$data_profile = getProfile($uid,$_SESSION['turn']);
 			$data_mk = getMataKuliah($kode_mk);
+			
+			$semester = htmlentities($_POST['semester']);
+			$semester = getMKSemesterProdi($kode_mk,$data_profile['kode_jurusan']);
 			if(isset($_COOKIE['set_height_mk_list'])){
 				$set_height = $_COOKIE['set_height_mk_list'];
 			}
@@ -540,6 +554,12 @@ switch($code_hidden){
 			<td id="krs_cancel_class">'.$t_c.'<b>CANCEL THIS CLASS</b></a></td>
 			<td id="krs_register_class">'.$t_r.'<b>REGISTER THIS CLASS</b></a></td>
 			';
+			$dosen = $data_mk['nama'].' ('.$data_mk['nrp'].')';
+			if($data_mk['k']>1){
+				for($i=2;$i <= $data_mk['k'];$i++){
+				$dosen = $dosen.', '.$data_mk[$i]['nama'].' ('.$data_mk[$i]['nrp'].')';}
+			}
+			
 			$panel_hidden = '<div><b>
 			<table style="background:#FFE1E2;font-weight:bold;padding-top:5px;padding-right:5px;padding-left:5px;text-transform:uppercase;letter-spacing:1px;width:100%;border:1px solid #ccc;border-bottom:none;">
 			<tr><td style="width:6%;">NRP </td><td style="width:2%;">:</td><td style="width:30%;">'.$data_profile['nrp'].'</td>
@@ -551,7 +571,7 @@ switch($code_hidden){
 			<tr><td style="width:21%;">Kode Mata Kuliah </td><td style="width:2%;">:</td><td>'.$data_mk['kode_mata_kuliah'].'</td><td width="6%">S K S</td><td width="2%">:</td><td>'.$data_mk['jumlah_sks'].'</td></tr>
 			<tr><td>Nama Mata Kuliah </td><td>:</td><td>'.$data_mk['nama_mata_kuliah'].'</td></tr>
 			<tr><td>Jadwal </td><td>:</td><td>'.getHari($data_mk['hari']).', '.$data_mk['jam_mulai'].' - '.$data_mk['jam_selesai'].'</td><td width="6%">Quota</td><td width="2%">:</td><td>'.$data_mk['quota'].'</td></tr>
-			<tr><td>Dosen Pengajar </td><td>:</td><td>'.$data_mk['nama'].' ('.$data_mk['nrp'].')</td><td width="6%">Registered</td><td width="2%">:</td><td>'.$data_mk['registered'].'</td></tr>
+			<tr><td>Dosen Pengajar </td><td>:</td><td>'.$dosen.'</td><td width="6%">Registered</td><td width="2%">:</td><td>'.$data_mk['registered'].'</td></tr>
 			</table>
 			<div style="text-transform:uppercase;letter-spacing:1px;color:#A00;"><center><b>'.$e.'<br>registered list of this mata kuliah</b><p></center></div>
 			<div id="div_ov_list_mk_student" style="height:'.$set_height.'px;">
@@ -575,6 +595,7 @@ switch($code_hidden){
 			function Cancel_Class_Click(){
 				if(klik==0){klik=1;
 				HidePanel();
+				ShowHiddenPanel(true,\'loading\',\'Ajax/n.php\',\'.main_panel\');
 				$.post("Ajax/mk_.php",{code:"cancel_class", kode_mk:"'.$data_mk['kode_mata_kuliah'].'", nrp:"'.$data_profile['nrp'].'", masa:"'.$masa.'"},
 					function(data) {
 						if(data==1){
@@ -583,14 +604,15 @@ switch($code_hidden){
 						}else{
 							alert("Pembatalan Mata Kuliah '.$data_mk['nama_mata_kuliah'].' Gagal !");
 						}
-						GoDAFTARKRSMK("'.$kode_mk.'","'.$_SESSION["uid"].'");
 						reload_isi_mat_kul("'.$semester.'");
+						HidePanel();
 				});
 				}
 			}
 			function Register_Class_Click(){
 				if(klik==0){klik=1;
 				HidePanel();
+				ShowHiddenPanel(true,\'loading\',\'Ajax/n.php\',\'.main_panel\');
 				$.post("Ajax/mk_.php",{code:"register_class", kode_mk:"'.$data_mk['kode_mata_kuliah'].'", nrp:"'.$data_profile['nrp'].'", masa:"'.$masa.'"},
 					function(data) {
 						if(data==1){
@@ -601,8 +623,8 @@ switch($code_hidden){
 						}else{
 							alert("Pendaftaran Mata Kuliah '.$data_mk['nama_mata_kuliah'].' Gagal !");
 						}
-						GoDAFTARKRSMK("'.$kode_mk.'","'.$_SESSION["uid"].'");
 						reload_isi_mat_kul("'.$semester.'");
+						HidePanel();
 				});
 				}
 			}

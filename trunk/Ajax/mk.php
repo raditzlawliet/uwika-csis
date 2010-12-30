@@ -71,7 +71,7 @@ if($code=="mat_kul"){
 			<script>
 			function GoDAFTARKRSMK(kode_mk,uid){
 				data = "&uid=" + encodeURI(uid) + "&kode_mk=" + encodeURI(kode_mk) + "&semester=" + encodeURI("'.$sms.'");
-				ShowHiddenPanel(false,\'krs_list_mk\',\'Ajax/panel.php\',\'.main_panel\',data);
+				ShowHiddenPanel(true,\'krs_list_mk\',\'Ajax/panel.php\',\'.main_panel\',data);
 			}
 			function SetHeightMkClick(FormSetHeightMkClick){
 				var temp = parseInt(document.getElementById("set_height_mk_list").value);

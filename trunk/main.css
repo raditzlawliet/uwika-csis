@@ -23,6 +23,27 @@ a.submit#add{
 	background:#FFCECE url('images/plus.png') 1% 50% no-repeat;
 	padding-left:23px;
 }
+a.submit#del{
+	background:#FFCECE url('images/minus.png') 1% 50% no-repeat;
+	padding-left:23px;
+}
+a.submit#refresh{
+	background:#FFCECE url('images/r.png') 1% 50% no-repeat;
+	padding-left:23px;
+}
+a.submit#add_blue{
+	background:#CECFFF url('images/plus.png') 1% 50% no-repeat;
+	padding-left:23px;
+}
+a.submit#del_blue{
+	background:#CECFFFurl('images/minus.png') 1% 50% no-repeat;
+	padding-left:23px;
+}
+a.submit#refresh_blue{
+	background:#CECFFF url('images/r.png') 1% 50% no-repeat;
+	padding-left:23px;
+}
+
 #main #db_cmd{
 	width:90%;
 	text-align:left;

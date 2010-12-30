@@ -43,11 +43,5 @@ if($code=="register_class"){
 	exit("1");
 }
 
-if($code=="refresh_sks"){
-	$nrp = htmlentities($_POST['nrp']);
-	$sks = getSKSMahasiswa($nrp);
-	exit($sks);
-}
-
 ?>
 

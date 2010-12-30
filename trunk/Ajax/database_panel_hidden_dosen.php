@@ -1,17 +1,17 @@
 <?php
 session_start();
-include 'transfer_.php';
+include 'transfer_dosen.php';
 
 $code = htmlentities($_POST['code_hidden']);
 $code_ = htmlentities($_POST['code_edit']);
 $nrp = htmlentities($_POST['nrp']);
 
 switch($code){
-	case 'db_m' : { //db awal
+	case 'db_d' : { //db awal
 		switch($code_){
 			case 1:{ //add
 				$view = '';
-				$addd = '<label style="color:red;">Usually 0 for new students.</label>';
+				$addd = '<div style="background:red;">Usually 0 for new students.</div>';
 				break;}
 			case 2:{ //modify
 				$view= '';
@@ -245,70 +245,6 @@ value = value +document.getElementById("set_db_mahasiswa_semester").value +"|"+d
 
 			</script>
 			';
-			exit($out);
-		break;
-	}
-	case 'db_m' : { //db mahasiswa
-			exit(getTabelDatabaseMahasiswa($search_text,$search_in,$sort_text,$sort_by,$color));
-		break;
-	}
-	case 'db_d' : { //db dosen
-			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>FACULTY</b></h1><p>
-				'.$code.' '.$uid.' '.$admin.'  d
-				</center>
-				
-				<script>
-				</script>
-				';
-			exit($out);
-		break;
-	}
-	case 'db_k' : { //db karyawan
-			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>EMPLOYEE</b></h1><p>
-				'.$code.' '.$uid.' '.$admin.'  k
-				</center>
-				
-				<script>
-				</script>
-				';
-			exit($out);
-		break;
-	}
-	case 'db_mk' : { //db mata kul
-			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>MATA KULIAH</b></h1><p>
-				'.$code.' '.$uid.' '.$admin.'  mk
-				</center>
-				
-				<script>
-				</script>
-				';
-			exit($out);
-		break;
-	}
-	case 'db_sc' : { //db score
-			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>SCORE</b></h1><p>
-				'.$code.' '.$uid.' '.$admin.' sc
-				</center>
-				
-				<script>
-				</script>
-				';
-			exit($out);
-		break;
-	}
-	case 'db_jf' : { //db fj
-			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>JURUSAN & FAKULTAS</b></h1><p>
-				'.$code.' '.$uid.' '.$admin.'  jf
-				</center>
-				
-				<script>
-				</script>
-				';
 			exit($out);
 		break;
 	}
