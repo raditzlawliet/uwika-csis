@@ -80,3 +80,15 @@
 	color:black;
 	padding:3px;
 }
+
+.input{
+	font:11.5px Arial, Helvetica, sans-serif;
+	background:#FFF9F9;
+	border:1px solid #FFE6E6;
+}
+a.submit{
+	font:9px Arial, Helvetica, sans-serif;
+	background:#FFBFC1;
+	color:black;
+	padding:-5px;
+}

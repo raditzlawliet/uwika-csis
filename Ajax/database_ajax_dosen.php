@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'transfer_.php';
+include 'transfer_dosen.php';
 
 $code = htmlentities($_POST['code']);
 $search_text = htmlentities($_POST['search_text']);
@@ -15,20 +15,8 @@ switch($code){
 			exit($out);
 		break;
 	}
-	case 'db_m' : { //db mahasiswa
-			exit(getTabelDatabaseMahasiswa($search_text,$search_in,$sort_text,$sort_by,$color));
-		break;
-	}
-	case 'db_k' : { //db karyawan
-			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>EMPLOYEE</b></h1><p>
-				'.$code.' '.$uid.' '.$admin.'  k
-				</center>
-				
-				<script>
-				</script>
-				';
-			exit($out);
+	case 'db_d' : { //db dosen
+			exit(getTabelDatabaseDosen($search_text,$search_in,$sort_text,$sort_by,$color));
 		break;
 	}
 }

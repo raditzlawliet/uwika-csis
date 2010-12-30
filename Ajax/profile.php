@@ -7,6 +7,7 @@
 <body>
 	<?php
 		echo $_GET['id'];
+		phpversion();
 	?>
     </body>
 </html>

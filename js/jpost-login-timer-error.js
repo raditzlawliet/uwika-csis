@@ -14,7 +14,8 @@ function StopTheClock()
 {
     if(timerRunning)
         clearTimeout(timerID)
-    timerRunning = false
+    timerRunning = false			
+
 }
 
 function StartTheTimer()
