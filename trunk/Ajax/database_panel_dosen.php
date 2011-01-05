@@ -17,8 +17,8 @@ switch($code){
 				$set_height_mk_list = 250;
 			}
 			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>FACULTY</b></h1><p>
-				<div id="db_cmd"><a id="refresh" class="submit" onclick="javascript:search(\'db_d\');" href="#!">Refresh</a>&nbsp;<a id="add" class="submit" onclick="javascript:edit_db_m(1,null);" href="#!">Add New Account</a>
+				<center><h1 style="letter-spacing:20px;"><b>LECTURER</b></h1><p>
+				<div id="db_cmd"><a id="refresh" class="submit" onclick="javascript:searchR(\'db_d\');" href="#!">Refresh</a>&nbsp;<a id="add" class="submit" onclick="javascript:edit_db_d(1,null);" href="#!">Add New Account</a>
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
 				<div style="text-align:left;padding-left:25px;">
@@ -59,7 +59,9 @@ switch($code){
 				</center>
 				<script>
 				document.getElementById("color_db_d").selectedIndex = 1;
-				
+				function searchR(db){
+					searchpage(db,1);
+				}
 				function search(db){
 					searchpage(db,1);
 				}

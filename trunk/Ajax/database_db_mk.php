@@ -28,7 +28,7 @@ switch($code){
 	}
 	case 'del_mk_m' :{
 			$message = "Remove Data Success";
-			delOneDataMataKuliahTRMahasiswa($kode_mk,$value);
+			delOneDataMataKuliahTRMahasiswa($kode_mk,$value,$value2);
 			exit($message);
 		break;
 	}

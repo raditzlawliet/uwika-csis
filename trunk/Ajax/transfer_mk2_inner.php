@@ -3,7 +3,7 @@ include '../config.php';
 include 'calc.php';
 function getMataKuliahSearch(){$sql="SELECT nama_mata_kuliah,kode_mata_kuliah FROM t_mata_kuliah";$rs=mysql_query($sql);$data;while($row = mysql_fetch_array($rs)){$data[$row['kode_mata_kuliah']]=$row['nama_mata_kuliah'];}mysql_free_result($rs);unset($sql, $rs);return $data;}
 function getDosenSearch(){$sql="SELECT nama,nrp FROM t_dosen";$rs=mysql_query($sql);$data;while($row = mysql_fetch_array($rs)){$data[$row['nrp']]=$row['nama'];}mysql_free_result($rs);unset($sql, $rs);return $data;}
-function getMahasiswaSearch(){$sql="SELECT nama,nrp FROM t_mahasiswa";$rs=mysql_query($sql);$data;while($row = mysql_fetch_array($rs)){$data[$row['nrp']]=$row['nama'];}mysql_free_result($rs);unset($sql, $rs);return $data;}
+function getMahasiswaSearch(){$sql="SELECT nama,nrp,semester FROM t_mahasiswa";$rs=mysql_query($sql);$data;while($row = mysql_fetch_array($rs)){$data[$row['nrp']]=$row['nama'];}mysql_free_result($rs);unset($sql, $rs);return $data;}
 
 function getAllDataMataKuliahTRJurusan($kode_mk){
 	$sql = "SELECT * FROM t_mata_kuliah AS m JOIN tr_mata_kuliah_jurusan AS j ON m.kode_mata_kuliah=j.kode_mata_kuliah JOIN t_jurusan as t ON t.kode_jurusan=j.kode_jurusan WHERE m.kode_mata_kuliah = '$kode_mk'";$rs=mysql_query($sql);$data;$k=0;while($row = mysql_fetch_array($rs)){$data[$k]['kode_jurusan'] = $row['kode_jurusan'];$data[$k]['semester']=$row['semester'];$data[$k]['nama_jurusan']=$row['nama_jurusan'];$k++;$data['k']=$k;}mysql_free_result($rs);unset($sql, $rs);return $data;}
@@ -69,13 +69,13 @@ function getOneDataMataKuliahTRMahasiswa($kode_mk,$nrp){
 	}
 	mysql_free_result($rs);unset($sql, $rs);return $data;}
 function setOneDataMataKuliahTRMahasiswa($kode_mk,$nrp,$data){
-	$sql="UPDATE tr_mata_kuliah_mahasiswa SET nrp = '$data[0]',nrp = '$data[0]',semester= '$data[1]',masa= '$data[2]',hari_register= '$data[3]',time_register = '$data[4]',tanggal_register = '$data[5]',nilai = '$data[6]',lulus = '$data[7]' WHERE `kode_mata_kuliah` = '$kode_mk' AND nrp='$nrp'";
+	$sql="UPDATE tr_mata_kuliah_mahasiswa SET nrp = '$data[0]',nrp = '$data[0]',semester= '$data[1]',masa= '$data[2]',hari_register= '$data[3]',time_register = '$data[4]',tanggal_register = '$data[5]',nilai = '$data[6]',lulus = '$data[7]' WHERE `kode_mata_kuliah` = '$kode_mk' AND nrp='$nrp' AND masa='$data[8]'";
 	if (!mysql_query($sql)){die('Error: ' . mysql_error().'');}unset($sql);}
 function addOneDataMataKuliahTRMahasiswa($kode_mk,$data){
 	$sql="INSERT INTO `tr_mata_kuliah_mahasiswa` (kode_mata_kuliah, nrp, semester, masa, hari_register, time_register, tanggal_register, nilai, lulus) VALUES ('$kode_mk', '$data[0]', '$data[1]', '$data[2]', '$data[3]', '$data[4]', '$data[5]', '$data[6]', '$data[7]');";
 	if (!mysql_query($sql)){die('Error: ' . mysql_error().'');}unset($sql);}
-function delOneDataMataKuliahTRMahasiswa($kode_mk,$nrp){
-	$sql="DELETE FROM `tr_mata_kuliah_mahasiswa`  WHERE `kode_mata_kuliah` = '$kode_mk' AND nrp='$nrp'";
+function delOneDataMataKuliahTRMahasiswa($kode_mk,$nrp,$data){
+	$sql="DELETE FROM `tr_mata_kuliah_mahasiswa`  WHERE `kode_mata_kuliah` = '$kode_mk' AND nrp='$nrp' AND masa='$data[0]'";
 	if (!mysql_query($sql)){die('Error: ' . mysql_error().'');}unset($sql);}
 	
 $code = htmlentities($_POST['code']);
@@ -207,7 +207,7 @@ switch($code){
 			case 'add' : {$msg="Add Success";addOneDataMataKuliahTRMahasiswa($kode_mk,$data);exit($msg);
 				break;
 			}
-			case 'del' : {$msg="Delete Success";delOneDataMataKuliahTRMahasiswa($kode_mk,$nrp);exit($msg);
+			case 'del' : {$msg="Delete Success";delOneDataMataKuliahTRMahasiswa($kode_mk,$nrp,$data);exit($msg);
 				break;
 			}
 		}

@@ -29,6 +29,12 @@ function removeDataDatabaseMahasiswa($nrp){
 		  die('Error: ' . mysql_error().'');
 	  }
 	unset($sql);
+	$sql = "DELETE FROM `tb_password` WHERE `nrp` = '$nrp'";
+	if (!mysql_query($sql))
+	  {		
+		  die('Error: ' . mysql_error().'');
+	  }
+	unset($sql);
 }
 function resetDataSKSDatabaseMahasiswa($v){
 	$sql="SELECT nrp,ipk,semester FROM t_mahasiswa";
@@ -171,8 +177,10 @@ function getTabelDatabaseMahasiswa($search,$searchin,$orderby,$order,$color,$sta
 				$k++;
 			}
 			$mk = $mk.'</table>';
-			if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
-			else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+			//if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
+
+			//else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+$mk=$mk.'<br>';
 			if(is_null($color)||$color==""){$color="green";}for($i=1; $i<=$pages; $i++){$mk=$mk.'<a id="'.$color.'" class="submit" href="#!" onclick="javascript:searchpage(\'db_m\','.$i.');">'.$i.'</a>&nbsp;';}
 			mysql_free_result($rs);
 			unset($sql, $rs);

@@ -27,7 +27,7 @@ switch($code){
 		break;
 	}
 	case 5 : { //info student panel
-			$header_logoff = "<a id=\"header_id_faculty\" class=\"header_trigger\" onclick=\"javascript:header_faculty_click()\" href=\"#!\">FACULTY<br \>INFORMATION</a>";
+			$header_logoff = "<a id=\"header_id_faculty\" class=\"header_trigger\" onclick=\"javascript:header_faculty_click()\" href=\"#!\">LECTURER<br \>INFORMATION</a>";
 			exit($header_logoff);
 		break;
 	}
@@ -213,7 +213,7 @@ switch($code_panel){
 		$header_logoff_panel = '
 		<div class="header_panel" id="header_id_faculty_panel">
 		<ul>
-		<li><a onclick="javascript:GoFACULTYINFORMATION()" href="#!">F A C U L T Y &nbsp; &nbsp; &nbsp; I N F O R M A T I O N</a></li>
+		<li><a onclick="javascript:GoFACULTYINFORMATION()" href="#!">L E C T U R E R &nbsp; &nbsp; &nbsp; I N F O R M A T I O N</a></li>
 		</ul>
 		</div>
 		<script>function header_faculty_click(){
@@ -544,7 +544,7 @@ switch($code_hidden){
 			}
 				$sks_m = getSKSMahasiswa($data_profile['nrp']);
 				$sks_mk = getSKSMataKuliah($kode_mk);
-				if(!$sdh){if($sks_m <= $sks_mk){
+				if(!$sdh){if($sks_m < $sks_mk){
 					$e = $e."<div style=\"padding-top:3px;\">Your SKS Doesn't have much Requirement to take this Mata Kuliah</div>";
 					$t_c = $t3;
 					$t_r = $t3;

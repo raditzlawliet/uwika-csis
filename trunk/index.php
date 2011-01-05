@@ -55,16 +55,16 @@ include_once 'session.php';
     <div id="header">
         <div id="header_white">
         </div>
-    <div id="sidebar_left">
+   <!--  <div id="sidebar_left">
     </div>
     <div id="sidebar_left_text">
-		<?php
+		<?php /*
 		for ($i=1; $i<=20; $i++)
           {
           echo "<a onclick=\"javascript:PostLogoff()\" href=\"#!\"><p>MENU LOGOFF " . $i . "</p></a>";
-          }
+          }*/
         ?>
-    </div>
+    </div>-->
     <a id="img_header_top_left"></a>
     <a id="img_header_uwika_transparant" title="Website Universitas Widya Kartika" href="http://www.widyakartika.ac.id/"></a>
     <a id="img_header_uwika_text" title="Website Universitas Widya Kartika" href="http://www.widyakartika.ac.id/"></a>

@@ -156,8 +156,10 @@ function getTabelDatabaseMataKuliah_Syarat($search,$searchin,$orderby,$order,$co
 							});	
 					}
 				}</script>';
-			if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
-			else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+			//if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
+
+			//else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+$mk=$mk.'<br>';
 			if(is_null($color)||$color==""){$color="green";}for($i=1; $i<=$pages; $i++){$mk=$mk.'<a id="'.$color.'" class="submit" href="#!" onclick="javascript:searchpage(\'db_mk_s\','.$i.');">'.$i.'</a>&nbsp;';}
 			mysql_free_result($rs);
 			unset($sql, $rs);
@@ -201,28 +203,30 @@ function getTabelDatabaseMataKuliah_Mahasiswa($search,$searchin,$orderby,$order,
 				.$row['tanggal_register'].'</td><td id="center">'
 				.$row['nilai'].'</td><td id="center">'
 				.$status[$lls].'</td><td id="center">'
-				.'<a id="v" onclick="javascript:edit_db_mk(3,\''.$kode_mk.'\')" href="#!">&nbsp;</a><a href="#!"><a id="e" onclick="javascript:edit_db_mk(2,\''.$kode_mk.'\')" href="#!">&nbsp;</a><a href="#!"><a id="x" onclick="javascript:del_mk_m_x(\''.$kode_mk.'\',\''.$row['nrp'].'\')" href="#!">&nbsp;</a></td>'
+				.'<a id="v" onclick="javascript:edit_db_mk(3,\''.$kode_mk.'\')" href="#!">&nbsp;</a><a href="#!"><a id="e" onclick="javascript:edit_db_mk(2,\''.$kode_mk.'\')" href="#!">&nbsp;</a><a href="#!"><a id="x" onclick="javascript:del_mk_m_x(\''.$kode_mk.'\',\''.$row['nrp'].'\',\''.$row['masa'].'\')" href="#!">&nbsp;</a></td>'
 				.'</tr>';
 				$k++;
 			}
-			$mk = $mk.'</table><script>function del_mk_m_x(kd_mk,nrp){
+			$mk = $mk.'</table><script>function del_mk_m_x(kd_mk,nrp,masa){
 						var x = confirm("Are you want to delete this data ("+kd_mk+" - "+nrp+") ?");
 						if(x){
-							$.post("Ajax/database_db_mk.php",{code:"del_mk_m", kode_mk:kd_mk, value:nrp}, function(data) {
+							$.post("Ajax/database_db_mk.php",{code:"del_mk_m", kode_mk:kd_mk, value:nrp, value2:masa}, function(data) {
 								alert(data);
 								search(\'db_mk_m\');
 							});	
 					}
 				}</script>';
-			if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
-			else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+			//if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
+
+			//else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+$mk=$mk.'<br>';
 			if(is_null($color)||$color==""){$color="green";}for($i=1; $i<=$pages; $i++){$mk=$mk.'<a id="'.$color.'" class="submit" href="#!" onclick="javascript:searchpage(\'db_mk_m\','.$i.');">'.$i.'</a>&nbsp;';}
 			mysql_free_result($rs);
 			unset($sql, $rs);
 			return $mk;
 }
-function delOneDataMataKuliahTRMahasiswa($kode_mk,$nrp){
-	$sql="DELETE FROM `tr_mata_kuliah_mahasiswa`  WHERE `kode_mata_kuliah` = '$kode_mk' AND nrp='$nrp'";
+function delOneDataMataKuliahTRMahasiswa($kode_mk,$nrp,$masa){
+	$sql="DELETE FROM `tr_mata_kuliah_mahasiswa`  WHERE `kode_mata_kuliah` = '$kode_mk' AND nrp='$nrp' AND masa='$masa'";
 	if (!mysql_query($sql)){die('Error: ' . mysql_error().'');}unset($sql);}
 function delOneDataMataKuliahTRSyarat($kode_mk,$kode_mk_syarat){
 	$sql="DELETE FROM `tr_mata_kuliah_syarat`  WHERE `kode_mata_kuliah` = '$kode_mk' AND kode_mata_kuliah_syarat = '$kode_mk_syarat'";
@@ -277,8 +281,10 @@ function getTabelDatabaseMataKuliah_Jurusan($search,$searchin,$orderby,$order,$c
 							});	
 					}
 				}</script>';
-			if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
-			else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+			//if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
+
+			//else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+$mk=$mk.'<br>';
 			if(is_null($color)||$color==""){$color="green";}for($i=1; $i<=$pages; $i++){$mk=$mk.'<a id="'.$color.'" class="submit" href="#!" onclick="javascript:searchpage(\'db_mk_j\','.$i.');">'.$i.'</a>&nbsp;';}
 			mysql_free_result($rs);
 			unset($sql, $rs);
@@ -326,8 +332,10 @@ function getTabelDatabaseMataKuliah_Dosen($search,$searchin,$orderby,$order,$col
 							});	
 					}
 				}</script>';
-			if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
-			else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+			//if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
+
+			//else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+$mk=$mk.'<br>';
 			if(is_null($color)||$color==""){$color="green";}for($i=1; $i<=$pages; $i++){$mk=$mk.'<a id="'.$color.'" class="submit" href="#!" onclick="javascript:searchpage(\'db_mk_d\','.$i.');">'.$i.'</a>&nbsp;';}
 			mysql_free_result($rs);
 			unset($sql, $rs);
@@ -371,8 +379,10 @@ function getTabelDatabaseMataKuliah($search,$searchin,$orderby,$order,$color,$st
 				$k++;
 			}
 			$mk = $mk.'</table>';
-			if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
-			else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+			//if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
+
+			//else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+$mk=$mk.'<br>';
 			if(is_null($color)||$color==""){$color="green";}for($i=1; $i<=$pages; $i++){$mk=$mk.'<a id="'.$color.'" class="submit" href="#!" onclick="javascript:searchpage(\'db_mk\','.$i.');">'.$i.'</a>&nbsp;';}
 			mysql_free_result($rs);
 			unset($sql, $rs);

@@ -22,18 +22,6 @@ switch($code){
 			exit(getTabelDatabaseMahasiswa($search_text,$search_in,$sort_text,$sort_by,$color,$start));
 		break;
 	}
-	case 'db_k' : { //db karyawan
-			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>EMPLOYEE</b></h1><p>
-				'.$code.' '.$uid.' '.$admin.'  k
-				</center>
-				
-				<script>
-				</script>
-				';
-			exit($out);
-		break;
-	}
 }
 ?>
 

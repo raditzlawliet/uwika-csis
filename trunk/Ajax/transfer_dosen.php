@@ -1,7 +1,52 @@
 <?php
-session_start();
 include '../config.php';
 include 'calc.php';
+function removeDataDatabaseDosen($nrp){
+	$sql = "DELETE FROM `t_dosen` WHERE `nrp` = '$nrp'";
+	if (!mysql_query($sql))
+	  {		
+		  die('Error: ' . mysql_error().'');
+	  }
+	unset($sql);
+	$sql = "DELETE FROM `tb_password` WHERE `nrp` = '$nrp'";
+	if (!mysql_query($sql))
+	  {		
+		  die('Error: ' . mysql_error().'');
+	  }
+	unset($sql);
+}
+function addDataDatabaseDosen($nrp,$data,$set){
+	$sql="INSERT INTO `t_dosen` (`nrp` ,`password` ,`nama` ,`aka` ,`jenis_kelamin`,`kode_jurusan_prioritas`,`uid` ,`admin`)VALUES ('$data[0]', '$data[2]', '$data[3]', '$data[4]', '$data[5]', '$data[6]', '$data[7]', '$data[8]')";
+	if (!mysql_query($sql))
+	  {		
+		  die('Error: ' . mysql_error().'');
+	  }
+	unset($sql);
+	$sql="INSERT INTO `tb_password` (`nrp` ,`password`)VALUES ('$data[0]', '$data[1]')";
+	if (!mysql_query($sql))
+	  {		
+		  die('Error: ' . mysql_error().'');
+	  }
+	unset($sql);
+}
+
+function setDataDatabaseDosen($nrp,$data,$set){
+	$k = 1;if($set)$k=2;
+	$sql = "UPDATE `t_dosen` SET nrp='$data[0]',password='$data[2]',nama='$data[3]',aka= '$data[4]',jenis_kelamin='$data[5]',kode_jurusan_prioritas='$data[6]',uid='$data[7]',admin='$data[8]' WHERE t_dosen.nrp = '$nrp'";
+	if (!mysql_query($sql))
+	  {		
+		  die('Error: ' . mysql_error().'');
+	  }
+	unset($sql);
+	if($set=="true"){
+		$sql = "UPDATE `tb_password` SET `nrp` = '$data[0]', `password` = '$data[1]' WHERE `tb_password`.`nrp` = '$nrp' LIMIT 1";
+		if (!mysql_query($sql))
+		  {		
+			  die('Error: ' . mysql_error().'');
+		  }
+		unset($sql);
+	}
+}
 
 function getTabelDatabaseDosen($search,$searchin,$orderby,$order,$color,$start){
 			$s = "Ordering Table with Coloum <b>'".$orderby."'</b> By <b>'".$order."'</b>";
@@ -16,7 +61,7 @@ function getTabelDatabaseDosen($search,$searchin,$orderby,$order,$color,$start){
 			$sql=$sql." LIMIT ".$start.",30";
 			$rs = mysql_query($sql);
 			$mk = '<table id="db" class="'.$color.'">
-			<tr id="header_table"><th>NRP</th><th width="25%">Name</th><th>Gender</th><th>Fakultas/Jurusan</th><th>Admin</th><th>ActION</tr></tr>
+			<tr id="header_table"><th>NRP</th><th width="25%">Name</th><th>Gender</th><th>Faculty/Programs</th><th>Admin</th><th>ActION</tr></tr>
 			';
 			$k = 0;
 			while($row = mysql_fetch_array($rs)){
@@ -38,8 +83,10 @@ function getTabelDatabaseDosen($search,$searchin,$orderby,$order,$color,$start){
 				$k++;
 			}
 			$mk = $mk.'</table>';
-			if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
-			else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+			//if($k==0){$mk = $s.' has Return <b>Zero</b> of Searching / Sorting</div><br>';}
+
+			//else{if($k==1){$nm="Data";}else{$nm="Datas";}$mk = $mk.$s.' has Return <b>'.$k.'</b> '.$nm.'</div><br>';}
+$mk=$mk.'<br>';
 			if(is_null($color)||$color==""){$color="green";}for($i=1; $i<=$pages; $i++){$mk=$mk.'<a id="'.$color.'" class="submit" href="#!" onclick="javascript:searchpage(\'db_d\','.$i.');">'.$i.'</a>&nbsp;';}
 			mysql_free_result($rs);
 			unset($sql, $rs);
