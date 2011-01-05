@@ -60,6 +60,19 @@ AND (
 		FROM `t_mata_kuliah` AS mk
 		WHERE mk.kode_mata_kuliah = '$kode_mk'
 	)
+	OR (
+			(SELECT mk.jam_mulai
+			FROM `t_mata_kuliah` AS mk
+			WHERE mk.kode_mata_kuliah = '$kode_mk')
+			BETWEEN mku.jam_mulai AND mku.jam_selesai
+		
+			OR
+		
+			(SELECT mk.jam_selesai
+			FROM `t_mata_kuliah` AS mk
+			WHERE mk.kode_mata_kuliah = '$kode_mk')
+			BETWEEN mku.jam_mulai AND mku.jam_selesai
+		)
 )";	
 			$rs = mysql_query($sql);
 			$data[0]['ada'] = false;
@@ -414,7 +427,7 @@ function getListMataKuliahPerSemester($kode_jurusan,$sms,$probis,$nrp){
 			}
 				$sks_m = getSKSMahasiswa($nrp);
 				$sks_mk = $row['jumlah_sks'];
-				if(!$sdh){if($sks_m <= $sks_mk){
+				if(!$sdh){if($sks_m < $sks_mk){
 					$ac = $status["x"];
 					$tr = $tr.' class="red" ';
 				}}
@@ -548,7 +561,7 @@ function getListMataKuliahPerNRP($nrp,$masa,$krs_true,$show_msg){
 			}
 				$sks_m = getSKSMahasiswa($nrp);
 				$sks_mk = $row['jumlah_sks'];
-				if(!$sdh){if($sks_m <= $sks_mk){
+				if(!$sdh){if($sks_m < $sks_mk){
 					$ac = $status["x"];
 					$tr = $tr.' class="red" ';
 				}}

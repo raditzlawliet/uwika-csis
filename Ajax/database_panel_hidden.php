@@ -14,7 +14,7 @@ switch($code){
 				$addd = '<label style="color:red;">Usually 0 for new students.</label>';
 				break;}
 			case 2:{ //modify
-				$view= '';
+				$view= '';	
 				break;}
 			case 3:{ //view
 				$view = 'disabled="true"';
@@ -115,8 +115,27 @@ switch($code){
 			<p><table style="float:right;"><tr><td><a onclick="javascript:GoSAVE('.$code_.')" class="button" href="#!"><b>&nbsp;SAVE&nbsp;</b></a></td><td><a onclick="javascript:HidePanel();" class="button" id="diff" href="#!"><b>CANCEL</b></a></td></tr></table>
 			</div>
 			<script>
+			document.getElementById("set_db_mahasiswa_password_enc").title = "'.$data['password'].'";
+			document.getElementById("set_db_mahasiswa_tanggal_lahir_thn").value = "'.substr($data['tanggal_lahir'],0,4).'";
+			document.getElementById("set_db_mahasiswa_tanggal_lahir_bln").value = "'.substr($data['tanggal_lahir'],5,2).'";
+			document.getElementById("set_db_mahasiswa_tanggal_lahir_hri").value = "'.substr($data['tanggal_lahir'],8,2).'";
+			document.getElementById("set_db_mahasiswa_tanggal_masuk_thn").value = "'.substr($data['tanggal_masuk'],0,4).'";
+			document.getElementById("set_db_mahasiswa_tanggal_masuk_bln").value = "'.substr($data['tanggal_masuk'],5,2).'";
+			document.getElementById("set_db_mahasiswa_tanggal_masuk_hri").value = "'.substr($data['tanggal_masuk'],8,2).'";
+			document.getElementById("set_db_mahasiswa_probis").value = "'.$data['probis'].'";
+			document.getElementById("set_db_mahasiswa_jenis_kelamin").value = "'.$data['jenis_kelamin'].'";
+			document.getElementById("set_db_mahasiswa_angkatan").value = "'.substr($data['nrp'],3,2).'";
+			document.getElementById("set_db_mahasiswa_fakultas").value = "'.$data['kode_fakultas'].'";
+			document.getElementById("set_db_mahasiswa_jurusan").value = "'.$data['kode_jurusan'].'";
+			if("'.$code_.'"=="1"){alert("Fill the Blank !");}else{
+				GoChangeLabelKodeFakultas("'.$data['kode_fakultas'].'");
+				GoChangeLabelKodeJurusan("'.$data['kode_jurusan'].'");
+				document.getElementById("set_db_mahasiswa_jurusan").value = "'.$data['kode_jurusan'].'";
+			}
 			function GoSAVE(v){  //1 add, 2 modif
 			if(v==3){HidePanel();return false;}
+				var xx = document.getElementById("set_db_nrp_depan").title .length;
+				if(xx<5){alert("Pilih Jurusan & Angkatan");return false;}
 				var leng = document.getElementById("set_db_mahasiswa_nrp_belakang").value.length;
 				if(leng==0){document.getElementById("set_db_mahasiswa_nrp_belakang").value = "001";}
 				if(leng==1){document.getElementById("set_db_mahasiswa_nrp_belakang").value = "00"+document.getElementById("set_db_mahasiswa_nrp_belakang").value;}
@@ -177,20 +196,6 @@ value = value +document.getElementById("set_db_mahasiswa_semester").value +"|"+d
 				}
 			}
 			var setpassmhs = false;
-			document.getElementById("set_db_mahasiswa_password_enc").title = "'.$data['password'].'";
-			document.getElementById("set_db_mahasiswa_tanggal_lahir_thn").value = "'.substr($data['tanggal_lahir'],0,4).'";
-			document.getElementById("set_db_mahasiswa_tanggal_lahir_bln").value = "'.substr($data['tanggal_lahir'],5,2).'";
-			document.getElementById("set_db_mahasiswa_tanggal_lahir_hri").value = "'.substr($data['tanggal_lahir'],8,2).'";
-			document.getElementById("set_db_mahasiswa_tanggal_masuk_thn").value = "'.substr($data['tanggal_masuk'],0,4).'";
-			document.getElementById("set_db_mahasiswa_tanggal_masuk_bln").value = "'.substr($data['tanggal_masuk'],5,2).'";
-			document.getElementById("set_db_mahasiswa_tanggal_masuk_hri").value = "'.substr($data['tanggal_masuk'],8,2).'";
-			document.getElementById("set_db_mahasiswa_probis").value = "'.$data['probis'].'";
-			document.getElementById("set_db_mahasiswa_jenis_kelamin").value = "'.$data['jenis_kelamin'].'";
-			document.getElementById("set_db_mahasiswa_angkatan").value = "'.substr($data['nrp'],3,2).'";
-			document.getElementById("set_db_mahasiswa_fakultas").value = "'.$data['kode_fakultas'].'";
-			GoChangeLabelKodeFakultas("'.$data['kode_fakultas'].'");
-			document.getElementById("set_db_mahasiswa_jurusan").value = "'.$data['kode_jurusan'].'";
-			GoChangeLabelKodeJurusan("'.$data['kode_jurusan'].'");
 			function getNRP(){
 				return document.getElementById("set_db_nrp_depan").title +""+document.getElementById("set_db_mahasiswa_nrp_belakang").value;
 			}
@@ -243,7 +248,11 @@ value = value +document.getElementById("set_db_mahasiswa_semester").value +"|"+d
 				GoChangeLabelKodeJurusan(hardcoded_values[combo1_value][0]);
 				GoChangeNrpDepan();
 			}
-
+			if('.$code_.'==1){document.getElementById("set_db_mahasiswa_fakultas").value = "FE";
+			document.getElementById("set_db_mahasiswa_jurusan").value = "611";
+			document.getElementById("set_db_mahasiswa_angkatan").value = "11";
+			GoChangeLabelKodeJurusan("611");GoChangeLabelKodeFakultas("FE");
+			}
 			</script>
 			';
 			exit($out);

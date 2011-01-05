@@ -13,32 +13,35 @@ $admin = htmlentities($_POST['admin']);
 
 switch($code){
 	case 'db_h' : { //db awal
-	$q = '
-	<select id="a" onchange="javascript:xxx();" class="select" name="list" size="5" title="titlelist">
-		<option value="nrp">NRP</option>
-		<option value="nama">NAME</option>
-		<option value="aka">ALIAS NAME</option>
-		<option value="jenis_kelamin">GENDER</option>
-		<option value="tanggal_lahir">BIRTHDAY</option>	
-	</select>
-	<select id="b" onchange="javascript:xxxx();" class="select" title="Search In" dir="ltr">
-		<option value="nrp">NRP</option>
-		<option value="nama">NAME</option>
-		<option value="aka">ALIAS NAME</option>
-		<option value="jenis_kelamin">GENDER</option>
-		<option value="tanggal_lahir">BIRTHDAY</option>
-	</select>
-	<div id="xxx"></div><p>
-	<div id="xxxx"></div>
-	<script>
-	function xxx(){
-		$("#xxx").append(document.getElementById("a").value);
-	}
-	function xxxx(){
-		$("#xxxx").append(document.getElementById("b").value);
-	}
-	</script>
-	';
+	$q='		
+				<center><h1 style="letter-spacing:20px;"><b>LIST</b></h1><p>
+				<div id="db" style="width:100%;">
+					<div id="db_menu">
+					<ul>
+						<a id="db_l_mk" onclick="javascript:GoHELL2(\'db_l_mk\',\'Ajax/database_panel_l_mk.php\');" href="#!">LIST PER-MATA KULIAH</a>
+						<a id="db_l_m" onclick="javascript:GoHELL2(\'db_l_m\',\'Ajax/database_panel_l_m.php\');" href="#!">LIST PER-MAHASISWA</a>
+					</ul>
+					</div>
+					<h1 style="margin-bottom:27px;"></h1>
+					<div id="db_main_home">
+					</div>
+				</div>
+				</center>
+				<script>
+				function GoHELL2(ids,src){
+					var doku = new Array("db_l_m","db_l_mk");
+					for(var i = 0;i<2;i++){
+						document.getElementById(doku[i]).className = "";
+					}
+					document.getElementById(ids).className = "active";
+					$("#db_main_home").html("");
+					$("#db_main_home").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
+					$.post(src,{code:ids, uid:"'.$uid.'", admin:"'.$admin.'"}, function(data) {
+						$("#db_main_home").html(data);
+					}); 
+					
+				}
+				</script>';
 			exit($q);
 		break;
 	}
@@ -48,7 +51,7 @@ switch($code){
 			}
 			$out = '
 				<center><h1 style="letter-spacing:20px;"><b>STUDENT</b></h1><p>
-				<div id="db_cmd"><a id="refresh" class="submit" onclick="javascript:search(\'db_m\');" href="#!">Refresh</a>&nbsp;<a id="add" class="submit" onclick="javascript:edit_db_m(1,null);" href="#!">Add New Account</a>&nbsp;<a id="refresh" class="submit" onclick="javascript:resetSKS();" href="#!">Refresh SKS for KRS</a>&nbsp;<a id="add" class="submit" onclick="javascript:resetSemester(1,true);" href="#!">1 Semester</a>&nbsp;<a id="del" class="submit" onclick="javascript:resetSemester(1,false);" href="#!">1 Semester</a>
+				<div id="db_cmd"><a id="refresh" class="submit" onclick="javascript:searchR(\'db_m\');" href="#!">Refresh</a>&nbsp;<a id="add" class="submit" onclick="javascript:edit_db_m(1,null);" href="#!">Add New Account</a>&nbsp;<a id="refresh" class="submit" onclick="javascript:resetSKS();" href="#!">Refresh SKS for KRS</a>&nbsp;<a id="add" class="submit" onclick="javascript:resetSemester(1,true);" href="#!">1 Semester</a>&nbsp;<a id="del" class="submit" onclick="javascript:resetSemester(1,false);" href="#!">1 Semester</a>
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
 				<div style="text-align:left;padding-left:25px;">
@@ -131,6 +134,9 @@ switch($code){
 				document.getElementById("color_db_m").selectedIndex = 1;
 				function GoDB_MAHASISWA_EDIT(nrp,code){
 				}
+				function searchR(db){
+					searchpage(db,1);
+				}
 				function search(db){
 					searchpage(db,1);
 				}
@@ -179,66 +185,6 @@ switch($code){
 						}
 					}
 				}
-				</script>
-				';
-			exit($out);
-		break;
-	}
-	case 'db_d' : { //db dosen
-			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>FACULTY</b></h1><p>
-				'.$code.' '.$uid.' '.$admin.'  d
-				</center>
-				
-				<script>
-				</script>
-				';
-			exit($out);
-		break;
-	}
-	case 'db_k' : { //db karyawan
-			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>EMPLOYEE</b></h1><p>
-				'.$code.' '.$uid.' '.$admin.'  k
-				</center>
-				
-				<script>
-				</script>
-				';
-			exit($out);
-		break;
-	}
-	case 'db_mk' : { //db mata kul
-			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>MATA KULIAH</b></h1><p>
-				'.$code.' '.$uid.' '.$admin.'  mk
-				</center>
-				
-				<script>
-				</script>
-				';
-			exit($out);
-		break;
-	}
-	case 'db_sc' : { //db score
-			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>SCORE</b></h1><p>
-				'.$code.' '.$uid.' '.$admin.' sc
-				</center>
-				
-				<script>
-				</script>
-				';
-			exit($out);
-		break;
-	}
-	case 'db_jf' : { //db fj
-			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>JURUSAN & FAKULTAS</b></h1><p>
-				'.$code.' '.$uid.' '.$admin.'  jf
-				</center>
-				
-				<script>
 				</script>
 				';
 			exit($out);

@@ -16,10 +16,10 @@ switch($code){
 			if(!isset($_COOKIE['set_height_mk_list'])){
 				$set_height_mk_list = 350;
 			}
-			$out = '<div style="text-align:center;width:99%;padding:5px;"><a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor">SUBJECT</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_d">SUBJECT R FACULTY</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_j">SUBJECT R COURSE</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_m">SUBJECT R STUDENTS</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_s">SUBJECT R REQUIREMENT</a>&nbsp;
+			$out = '<div style="text-align:center;width:99%;padding:5px;"><a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor">SUBJECT</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_d">SUBJECT R LECTURER</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_j">SUBJECT R PROGRAMS</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_m">SUBJECT R STUDENTS</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_s">SUBJECT R REQUIREMENT</a>&nbsp;
 				</div><div id="subject_anchor"></div>
 				<center><h1 style="letter-spacing:20px;"><b>SUBJECT</b></h1><p>
-				<div id="db_cmd"><a id="refresh_blue" class="submit" onclick="javascript:search(\'db_mk\');" href="#!">Refresh</a>&nbsp;<a id="add_blue" class="submit" onclick="javascript:edit_db_mk(1,null);" href="#!">Add New Subject</a>&nbsp;
+				<div id="db_cmd"><a id="refresh_blue" class="submit" onclick="javascript:searchR(\'db_mk\');" href="#!">Refresh</a>&nbsp;<a id="add_blue" class="submit" onclick="javascript:edit_db_mk(1,null);" href="#!">Add New Subject</a>&nbsp;
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
 				<div style="text-align:left;padding-left:25px;">
@@ -59,20 +59,20 @@ switch($code){
 				</div><p></center>
 				<a class="submit" style="background:url(\'images/up.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#container_space">TOP</a>
 				<div id="subject_anchor_d"></div>
-				<center><h1 style="letter-spacing:20px;"><b>SUBJECT - FACULTY</b></h1><p>
-				<div id="db_cmd">
+				<center><h1 style="letter-spacing:20px;"><b>SUBJECT - LECTURER</b></h1><p>
+				<div id="db_cmd"><a id="refresh" class="submit" onclick="javascript:searchR(\'db_mk_d\');" href="#!">Refresh</a>&nbsp;
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
 				<div style="text-align:left;padding-left:25px;">
 				Search <input onKeyUp="javascript:search(\'db_mk_d\');" id="search_db_mk_d" class="input" type="text" size="15" maxlength="50" />
 				In <select onchange="javascript:search(\'db_mk_d\');" id="search_in_db_mk_d" class="select" title="Search In" dir="ltr">
 				<option value="kode_mata_kuliah">CODE</option>
-				<option value="nrp">FACULTY NRP</option>
+				<option value="nrp">LECTURER NRP</option>
 				</select>
 				&nbsp;
 				Sort <select onchange="javascript:search(\'db_mk_d\');" id="sort_db_mk_d" class="select"  title="Sort" dir="ltr">
 				<option value="kode_mata_kuliah">CODE</option>
-				<option value="nrp">FACULTY NRP</option>
+				<option value="nrp">LECTURER NRP</option>
 				</select>
 				By <select onchange="javascript:search(\'db_mk_d\');" id="sort_by_db_mk_d" class="select" title="Sort By" dir="ltr">
 				<option value="ASC">ASCENDING</option>
@@ -90,15 +90,15 @@ switch($code){
 				</div><p></center>
 				<a class="submit" style="background:url(\'images/up.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#container_space">TOP</a>
 				<div id="subject_anchor_j"></div>
-				<center><h1 style="letter-spacing:20px;"><b>SUBJECT - COURSE</b></h1><p>
-				<div id="db_cmd">
+				<center><h1 style="letter-spacing:20px;"><b>SUBJECT - PROGRAMS</b></h1><p>
+				<div id="db_cmd"><a id="refresh_yellow" class="submit" onclick="javascript:searchR(\'db_mk_j\');" href="#!">Refresh</a>&nbsp;
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
 				<div style="text-align:left;padding-left:25px;">
 				Search <input onKeyUp="javascript:search(\'db_mk_j\');" id="search_db_mk_j" class="input" type="text" size="15" maxlength="50" />
 				In <select onchange="javascript:search(\'db_mk_j\');" id="search_in_db_mk_j" class="select" title="Search In" dir="ltr">
 				<option value="kode_mata_kuliah">SUBJECT CODE</option>
-				<option value="kode_jurusan">JURUSAN CODE</option>
+				<option value="kode_jurusan">PROGRAMS CODE</option>
 				<option value="semester">SEMESTER</option>
 				</select>
 				&nbsp;
@@ -124,7 +124,7 @@ switch($code){
 				<a class="submit" style="background:url(\'images/up.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#container_space">TOP</a>
 				<div id="subject_anchor_m"></div>
 				<center><h1 style="letter-spacing:20px;"><b>SUBJECT - STUDENTS</b></h1><p>
-				<div id="db_cmd">
+				<div id="db_cmd"><a id="refresh" class="submit" onclick="javascript:searchR(\'db_mk_m\');" href="#!">Refresh</a>&nbsp;
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
 				<div style="text-align:left;padding-left:25px;">
@@ -169,7 +169,7 @@ switch($code){
 				<a class="submit" style="background:url(\'images/up.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#container_space">TOP</a>
 				<div id="subject_anchor_s"></div>
 				<center><h1 style="letter-spacing:20px;"><b>SUBJECT - REQUIREMENT</b></h1><p>
-				<div id="db_cmd">
+				<div id="db_cmd"><a id="refresh_blue" class="submit" onclick="javascript:searchR(\'db_mk_s\');" href="#!">Refresh</a>&nbsp;
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
 				<div style="text-align:left;padding-left:25px;">
@@ -207,6 +207,9 @@ switch($code){
 				document.getElementById("color_db_mk_j").selectedIndex = 3;				
 				document.getElementById("color_db_mk_m").selectedIndex = 1;				
 				document.getElementById("color_db_mk_s").selectedIndex = 2;				
+				function searchR(db){
+					searchpage(db,1);
+				}
 				function search(db){
 					searchpage(db,1);
 				}
@@ -251,7 +254,7 @@ switch($code){
 					}else{
 						var x = confirm("Are you want to delete this data ("+kd_mk+") ?");
 						if(x){
-							var y = confirm("Are You also Want to delete data relationshio with this data ("+kd_mk+") [course,students,faculty,requirement] ?");
+							var y = confirm("Are You also Want to delete data relationshio with this data ("+kd_mk+") [programs,students,lecturer,requirement] ?");
 							var z;if(y){z="true";}else{z="false";}
 							$.post("Ajax/database_db_mk.php",{code:kd, kode_mk:kd_mk, value2:z}, function(data) {
 								alert(data);

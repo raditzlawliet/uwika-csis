@@ -55,6 +55,18 @@ a.submit#refresh_blue{
 	background:#CECFFF url('images/r.png') 1% 50% no-repeat;
 	padding-left:23px;
 }
+a.submit#refresh_yellow{
+	background:#FDFFB0 url('images/r.png') 1% 50% no-repeat;
+	padding-left:23px;
+}
+a.submit#refresh_pink{
+	background:#FFB0FD url('images/r.png') 1% 50% no-repeat;
+	padding-left:23px;
+}
+a.submit#add_yellow{
+	background:#FDFFB0 url('images/plus.png') 1% 50% no-repeat;
+	padding-left:23px;
+}
 
 #main #db_cmd{
 	width:90%;
@@ -107,6 +119,16 @@ a.submit#refresh_blue{
 #db_menu a#db_h{background:#DFFFE1;}
 #db_menu a#db_h.active{background:#51FF55;color:white;}
 
+#db_menu a#db_l_m:hover{background:#FFB3FA;}
+#db_menu a#db_l_m{background:#FEDFFF;}
+#db_menu a#db_l_m.active{background:#FB51FF;color:white;}
+#db_menu a#db_l_mk:hover{background:#FFB3FA;}
+#db_menu a#db_l_mk{background:#FEDFFF;}
+#db_menu a#db_l_mk.active{background:#FB51FF;color:white;}
+
+#main table#show{width:100%;background:#FCE1FF;}
+#main table#show tr{background:none;}
+
 #main table#db tr:hover{background:#44D200;color:white;}
 #main table#db.red th{background:#FF8285;color:white;}
 #main table#db.red tr{background:#FFD2D2;}
@@ -123,6 +145,17 @@ a.submit#refresh_blue{
 #main table#db.yellow tr#diff{background:#FDFFB0;}
 #main table#db.yellow tr#diff:hover{background:#D2CD00;color:white;}
 #main table#db.yellow tr:hover{background:#D2CD00;color:white;}
+#main table#db.pink th{background:#FC82FF;}
+#main table#db.pink tr{background:#FFD2FF;}
+#main table#db.pink tr#diff{background:#FFB0FF;}
+#main table#db.pink tr#diff:hover{background:#BD00D2;color:white;}
+#main table#db.pink tr:hover{background:#C200D2;color:white;}
+#main table#db.bw {background:#CCC;}
+#main table#db.bw th{background:#999;color:white;border:none;}
+#main table#db.bw tr{background:white;}
+#main table#db.bw tr#diff{background:#EEE;}
+#main table#db.bw tr#diff:hover{background:#8D8D8D;color:white;}
+#main table#db.bw tr:hover{background:#8D8D8D;color:white;}
 
 #main a#e {background:url('images/e.png') 50% 50% no-repeat;padding:7px;text-decoration:none;}
 #main a#v {background:url('images/v.png') 50% 50% no-repeat;padding:7px;text-decoration:none;}

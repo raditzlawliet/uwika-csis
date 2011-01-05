@@ -58,7 +58,7 @@ switch($code){
 			}
 			
 			$table = $table.
-			'<tr><td>1<small>st</small> Course</td><td> : </td>
+			'<tr><td>1<small>st</small> Programs</td><td> : </td>
 			<td><select class="input" onchange="javascript:GoChangeLabelKodeJurusanV(this)" id="set_db_mk_jurusan" title="jurusan" dir="ltr" '.$view.'>'.$opt_jurusan.'</select>&nbsp;&frasl;&nbsp;<label id="set_db_mk_kode_jurusan">'.substr($data['kode_mata_kuliah'],0,2).'</label></td>
 			
 			<td>Type</td><td> : </td><td><select onchange="javascript:GoChangeLabelKodeJenisV(this)" class="input" id="set_db_mk_jenis" title="jenis" dir="ltr" '.$view.'><option value="0">Study</option><option value="5">Practice (Specialist, T)</option><option value="1">Religius (General, PU)</option><option value="2">Language (General, PU)</option></select>&nbsp;&frasl;&nbsp;<label id="set_db_mk_kode_jenis">'.substr($data['kode_mata_kuliah'],2,1).'</label></td></tr>
@@ -96,17 +96,18 @@ switch($code){
 			}
 			for($i=0;$i<$data_m['k'];$i++){
 				$data_m_op = $data_m_op.'<option value="'.$data_m[$i]['nrp'].'">'.$data_m[$i]['nama'].' ( '.$data_m[$i]['nrp'].' ) at '.$data_m[$i]['masa'].' &amp; Semester '.$data_m[$i]['semester'].' ['.$data_m[$i]['lulus'].']</option>';
+				$zxc=$zxc."list_set_db_mk_mx[".$i."]=\"".$data_m[$i]['masa']."\";";
 			}
 			for($i=0;$i<$data_s['k'];$i++){
 				$data_s_op = $data_s_op.'<option value="'.$data_s[$i]['kode_mata_kuliah_syarat'].'">'.$data_s[$i]['nama_mata_kuliah'].' ( '.$data_s[$i]['kode_mata_kuliah_syarat'].' ) - '.$data_s[$i]['kode_syarat'].'</option>'; 
 			}
 			
 			$table2 = $table2.
-			'<tr><td width="50%">List of Course that Registered this Subject</td><td><a id="submitdb" onclick="javascript:goAddMK_J();" class="submit" href="#!">Add</a>&nbsp;<a id="submitdb" onclick="javascript:goDelMK_J();" class="submit" href="#!">Del</a>&nbsp;<a id="submitdb" onclick="javascript:goEditMK_J();" class="submit" href="#!">Edit</a></td></tr>
+			'<tr><td width="50%">List of Programs that Registered this Subject</td><td><a id="submitdb" onclick="javascript:goAddMK_J();" class="submit" href="#!">Add</a>&nbsp;<a id="submitdb" onclick="javascript:goDelMK_J();" class="submit" href="#!">Del</a>&nbsp;<a id="submitdb" onclick="javascript:goEditMK_J();" class="submit" href="#!">Edit</a></td></tr>
 			<tr><td id="mk_j_list" width="50%"><select class="input" style="width:95%;" id="list_set_db_mk_j" onchange="javascript:goViewMK_J();" size="5">'.$data_j_op.'</select></td>
 			<td>
 				<table>
-				<tr><td>Course Name</td><td>:</td><td><select class="input" onchange="javascript:GoChangeLabelKodeJurusanJV(this)" id="set_db_mk_j_1" title="jurusan" dir="ltr" disabled>'.$opt_jurusanJ.'</select>&nbsp;&frasl;&nbsp;<label id="set_db_mk_j_kode_jurusan"></label></td></tr>
+				<tr><td>Programs Name</td><td>:</td><td><select class="input" onchange="javascript:GoChangeLabelKodeJurusanJV(this)" id="set_db_mk_j_1" title="jurusan" dir="ltr" disabled>'.$opt_jurusanJ.'</select>&nbsp;&frasl;&nbsp;<label id="set_db_mk_j_kode_jurusan"></label></td></tr>
 				<tr><td>Semester</td><td>:</td><td><select class="input" id="set_db_mk_j_2" dir="ltr" disabled><option value="0">0 (if u want to hide it)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></td></tr>
 				<tr><td><a id="submitdb" onclick="javascript:goSaveMK_J();" class="submit" href="#!">Save</a><a id="submitdb" onclick="javascript:goCancelMK_J();" class="submit" href="#!">Cancel</a></td><td></td></tr>
 				</table>
@@ -158,7 +159,7 @@ switch($code){
 			</td></tr>
 			';			
 			
-			$outb='<b><center>S U B J E C T &nbsp; - &nbsp; C O U R S E</center></b>
+			$outb='<b><center>S U B J E C T &nbsp; - &nbsp; P R O G R A M S</center></b>
 			<div id="mk_sc"><table style="background:#FFE1E2;padding-top:5px;padding-right:5px;padding-left:5px;width:100%;border:1px solid #ccc;border-bottom:none;">
 			'.$table2.'
 			</table><b><center>S U B J E C T &nbsp; - &nbsp; F A C U L T Y</center></b>
@@ -183,6 +184,8 @@ switch($code){
 			<p><table style="float:right;"><tr><td><a onclick="javascript:GoSAVE('.$code_.')" class="button" href="#!"><b>&nbsp;SAVE&nbsp;</b></a></td><td><a onclick="javascript:HidePanel();" class="button" id="diff" href="#!"><b>CANCEL</b></a></td></tr></table>
 			</div>
 			<script>
+			var list_set_db_mk_mx = new Array();
+			'.$zxc.'
 			$(function() {
 				$("#set_db_mk_d_1").autocomplete("Ajax/transfer_mk2_inner.php?qj=fc", {
 					minChars: 0,
@@ -278,13 +281,14 @@ switch($code){
 			document.getElementById("set_db_mk_4").value = "'.$data['probis'].'";
 			document.getElementById("set_db_mk_5").value = "'.$data['hari'].'";
 			
-			
+			if("'.$code_.'"=="1"){alert("Fill the Blank !");}else{
+
 			GoChangeLabelKodeJurusan("'.substr($data['kode_mata_kuliah'],0,2).'");
 			GoChangeLabelKodeJenis("'.substr($data['kode_mata_kuliah'],2,1).'");
 			GoChangeLabelKodeJurusanJ(document.getElementById("set_db_mk_j_1").value);
 			changeSKS('.$data['jumlah_sks'].');
 			calcKDR('.substr($data['kode_mata_kuliah'],5,1).');
-			
+			}
 			//0 normal can selected (add,del,list,edit aktif)/(save,cancel dead)
 			//1 edit can selected (save,cancel aktif)/(add,del,edit,list dead)
 			//2 add can selected (save,cancel aktif)/(add,del,edit,list dead)
@@ -599,7 +603,6 @@ switch($code){
 					document.getElementById("set_db_mk_s_2").disabled=true;
 				}
 			}
-			
 			function reloadMK_M(){
 				$("#mk_m_list").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
 				var b = document.getElementById("slct_list_set_db_mk_m").value;
@@ -609,6 +612,7 @@ switch($code){
 							respons = eval(\'(\' + data_ + \')\');
 							for(var i=0;i<respons[\'k\'];i++){
 								d=d+\'<option value="\'+respons[i].nrp+\'">\'+respons[i].nama+\' ( \'+respons[i].nrp+\' ) at \'+respons[i].masa+\' &amp; Semester \'+respons[i].semester+\' [\'+respons[i].lulus+\']</option>\'; 
+								list_set_db_mk_mx[i]=respons[i].masa;
 							}
 						}
 						var t = \'<select class="input" style="width:95%;" id="list_set_db_mk_m" onchange="javascript:goViewMK_M();" size="11">\'+d+\'</select><p>&nbsp;<br>\';			$("#mk_m_list").html(t);
@@ -677,6 +681,8 @@ switch($code){
 					if(s_mk_m==1){				//1-edit 2-add
 						v=v+"|";
 						var a=document.getElementById("list_set_db_mk_m").value;
+						var b=document.getElementById("list_set_db_mk_m").selectedIndex;
+						v=v+list_set_db_mk_mx[b]+"|";
 						$.post("Ajax/transfer_mk2_inner.php",{code:"mk_m", code_in:"set",kode_mk:"'.$kode_mk.'",nrp:a,data:v}, function(data_) {
 							alert(data_);
 							document.getElementById("list_set_db_mk_m").disabled=false;
@@ -697,7 +703,9 @@ switch($code){
 				if((s_mk_m==0)&&(document.getElementById("list_set_db_mk_m").selectedIndex!=-1)){
 					mk_m_lock();
 					var a=document.getElementById("list_set_db_mk_m").value;
-					$.post("Ajax/transfer_mk2_inner.php",{code:"mk_m", code_in:"del",kode_mk:"'.$kode_mk.'",nrp:a}, function(data_) {
+					var b=document.getElementById("list_set_db_mk_m").selectedIndex;
+					var c=list_set_db_mk_mx[b]+"|";
+					$.post("Ajax/transfer_mk2_inner.php",{code:"mk_m", code_in:"del",kode_mk:"'.$kode_mk.'",nrp:a,data:c}, function(data_) {
 							alert(data_);
 							document.getElementById("list_set_db_mk_m").disabled=false;
 							reloadMK_M();
@@ -764,7 +772,7 @@ function calcKDR(x){if((x>5)||(x==0)){document.getElementById("set_db_mk_kode_ak
 			
 			function getLastCode(){
 				var d = document.getElementById("set_db_mk_1_a").title;
-				if(d.length<=2){alert("Lenght of Code Min. = 3,\nChoose Type and Course.");}
+				if(d.length<=2){alert("Lenght of Code Min. = 3,\nChoose Type and Programs.");}
 				else{$.post("Ajax/database_db_mk.php",{code:"getlastcode", kode_mk:d}, function(data_) {
 						if(data_==""){alert("No MK with this code");document.getElementById("set_db_mk_1_b").value="001";calcKDR(1);}else{
 						alert("Last Code was "+data_+".");
@@ -836,7 +844,7 @@ function calcKDR(x){if((x>5)||(x==0)){document.getElementById("set_db_mk_kode_ak
 				var value = "";
 				value = document.getElementById("set_db_mk_1_a").title+""+document.getElementById("set_db_mk_1_b").value+"|"+document.getElementById("set_db_mk_2").value+"|"+document.getElementById("set_db_mk_3").value+"|"+document.getElementById("set_db_mk_4").value+"|"+document.getElementById("set_db_mk_5").value+"|"+document.getElementById("set_db_mk_6_jam").value+":"+document.getElementById("set_db_mk_6_mnt").value+":"+document.getElementById("set_db_mk_6_dtk").value+"|"+document.getElementById("set_db_mk_7_jam").value+":"+document.getElementById("set_db_mk_7_mnt").value+":"+document.getElementById("set_db_mk_7_dtk").value+"|";
 				var x;if('.$code_.'!=1){
-				x = confirm("Are You also want to change relationshop code [course,faculty,students,requirement]");
+				x = confirm("Are You also want to change relationshop code [programs,lecturer,students,requirement]");
 				if(x){x="true";}else{x="false";}}else{x="true";}
 				ShowHiddenPanel(true,\'loading\',\'Ajax/n.php\',\'.main_panel\');
 				$.post("Ajax/database_db_mk.php",{code:'.$code_.', kode_mk:"'.$kode_mk.'" ,value:value, value2:x}, function(data_) {
@@ -860,6 +868,11 @@ function calcKDR(x){if((x>5)||(x==0)){document.getElementById("set_db_mk_kode_ak
 
 
 
+			if('.$code_.'==1){
+			document.getElementById("set_db_mk_jenis").value = "0";
+			document.getElementById("set_db_mk_jurusan").value = "PU";
+			GoChangeLabelKodeJurusan("PU");GoChangeLabelKodeJenis("0");
+			}
 			
 			</script>
 			';

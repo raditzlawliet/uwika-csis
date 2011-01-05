@@ -1,5 +1,4 @@
 <?php
-session_start();
 include 'transfer_dosen.php';
 
 $code = htmlentities($_POST['code_hidden']);
@@ -102,33 +101,24 @@ switch($code){
 			<script>
 			function GoSAVE(v){  //1 add, 2 modif
 			if(v==3){HidePanel();return false;}
+				var xx = document.getElementById("set_db_d_1a").title.length;
+				if(xx<8){alert("Pilih Jenis, Jurusan & Angkatan");return false;}
 				var leng = document.getElementById("set_db_d_1b").value.length;
 				if(leng==0){document.getElementById("set_db_d_1b").value = "001";}
 				if(leng==1){document.getElementById("set_db_d_1b").value = "00"+document.getElementById("set_db_d_1b").value;}
 				if(leng==2){document.getElementById("set_db_d_1b").value = "0"+document.getElementById("set_db_d_1b").value;}
-				var bajengan = "nrp|password_bck|password|";
 				var value = "";
 				value = document.getElementById("set_db_d_1a").title +""+document.getElementById("set_db_d_1b").value +"|"+document.getElementById("set_db_d_2bck").title+"|"+document.getElementById("set_db_d_2enc").title+"|";
-				value = value +document.getElementById("set_db_d_3").value +"|"+document.getElementById("set_db_d_4").value +"|"+document.getElementById("set_db_d_5").value +"|"+document.getElementById("set_db_mahasiswa_tanggal_lahir_thn").value +"-"+document.getElementById("set_db_mahasiswa_tanggal_lahir_bln").value +"-"+document.getElementById("set_db_mahasiswa_tanggal_lahir_hri").value+"|";
-				value = value +document.getElementById("set_db_mahasiswa_alamat").value +"|"+document.getElementById("set_db_mahasiswa_asal_sekolah").value +"|"+document.getElementById("set_db_d_6").value +"|"+document.getElementById("set_db_mahasiswa_probis").value+"|"+document.getElementById("set_db_mahasiswa_tanggal_masuk_thn").value +"-"+document.getElementById("set_db_mahasiswa_tanggal_masuk_bln").value +"-"+document.getElementById("set_db_mahasiswa_tanggal_masuk_hri").value+"|";
-value = value +document.getElementById("set_db_mahasiswa_semester").value +"|"+document.getElementById("set_db_mahasiswa_ipk").value +"|"+document.getElementById("set_db_mahasiswa_sisa_sks").value +"|"+document.getElementById("set_db_d_7").title+"|"+document.getElementById("set_db_d_8").value;
-
-				ShowHiddenPanel(true,\'loading\',\'Ajax/n.php\',\'.main_panel\');
-				$.post("Ajax/database_db_m.php",{nrp: "'.$nrp.'", setpassword:setpassmhs, value : value, value2:bajengan, code:v}, function(data_) {
+				value = value +document.getElementById("set_db_d_3").value +"|"+document.getElementById("set_db_d_4").value +"|"+document.getElementById("set_db_d_5").value +"|";
+				value = value+document.getElementById("set_db_d_6").value+"|"+ document.getElementById("set_db_d_7").title+"|"+document.getElementById("set_db_d_8").value;
+								ShowHiddenPanel(true,\'loading\',\'Ajax/n.php\',\'.main_panel\');
+				$.post("Ajax/database_db_d.php",{nrp: "'.$nrp.'", setpassword:setpassmhs, value : value, code:v}, function(data_) {
 					alert(data_);
-					search(\'db_m\');
+					search(\'db_d\');
 					HidePanel();
 				}); 
 			}
-
-			function checkipk(text){
-				var t = parseFloat(text.value);
-				if((t>4)||(t<0)){alert("Wrong Value... Range 0.00 ~ 4.00");text.value = 0.00;}				
-			}
-			function checksks(text){
-				var t = parseFloat(text.value);
-				if((t>24)||(t<0)){alert("Wrong Value... Range 0 ~ 24");text.value = 0;}				
-			}
+			
 			function setuid(v){
 				if(v!=3){
 				var pass = getNRP();
@@ -136,18 +126,6 @@ value = value +document.getElementById("set_db_mahasiswa_semester").value +"|"+d
 					document.getElementById("set_db_d_7").title = data;
 					$("#set_db_d_7").html(document.getElementById("set_db_d_7").title);
 				});
-				}
-			}
-			function setsks(v){
-				if(v!=3){
-				var p = parseFloat(document.getElementById("set_db_mahasiswa_ipk").value);
-				var sks = 24;
-				if(p<=1)sks=9;
-				else if(p<1.5)sks=12;
-				else if(p<2)sks=15;
-				else if(p<2.5)sks=18;
-				else if(p<3)sks=21;
-				document.getElementById("set_db_mahasiswa_sisa_sks").value = sks;
 				}
 			}
 			function setpassword(v){
@@ -165,10 +143,13 @@ value = value +document.getElementById("set_db_mahasiswa_semester").value +"|"+d
 			document.getElementById("set_db_d_2enc").title = "'.$data['password'].'";
 			document.getElementById("set_db_d_5").value = "'.$data['jenis_kelamin'].'";
 			document.getElementById("set_db_d_1c").value = "'.substr($data['nrp'],6,2).'";
+			document.getElementById("set_db_d_1d").value = "'.substr($data['nrp'],0,3).'";
 			document.getElementById("set_db_d_6a").value = "'.$data['kode_fakultas'].'";
+			if("'.$code_.'"=="1"){alert("Fill the Blank !");}else{
 			GoChangeLabelKodeFakultas("'.$data['kode_fakultas'].'");
-			document.getElementById("set_db_d_6").value = "'.$data['kode_jurusan_prioritas'].'";
 			GoChangeLabelKodeJurusan("'.$data['kode_jurusan_prioritas'].'");
+			}
+			document.getElementById("set_db_d_6").value = "'.$data['kode_jurusan_prioritas'].'";
 			function getNRP(){
 				return document.getElementById("set_db_d_1a").title +""+document.getElementById("set_db_d_1b").value;
 			}
@@ -225,6 +206,12 @@ value = value +document.getElementById("set_db_mahasiswa_semester").value +"|"+d
 				}
 				GoChangeLabelKodeJurusan(hardcoded_values[combo1_value][0]);
 				GoChangeNrpDepan();
+			}
+			if('.$code_.'==1){document.getElementById("set_db_d_6a").value = "FE";
+			document.getElementById("set_db_d_6").value = "611";
+			document.getElementById("set_db_d_1c").value = "11";
+			document.getElementById("set_db_d_1d").value = "151";
+			GoChangeLabelKodeJurusan("611");GoChangeLabelKodeFakultas("FE");
 			}
 
 			</script>
