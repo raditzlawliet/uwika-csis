@@ -24,6 +24,7 @@ include_once 'session.php';
 <script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
 <script type="text/javascript" src="js/jquery.bgiframe.min.js"></script>
 <script type="text/javascript" src="js/jquery.ajaxQueue.js"></script>
+<script type="text/javascript" src="js/fadeSlideShow-minified.js"></script>
 
 <link rel="stylesheet" type="text/css" href="jquery.autocomplete.css" />
 <link href="index.css" rel="stylesheet" type="text/css" />
