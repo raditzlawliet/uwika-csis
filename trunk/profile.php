@@ -17,6 +17,10 @@
 <script type="text/javascript" src="js/jpost-login.js"></script>
 <script type="text/javascript" src="js/jpost-logoff.js"></script>
 <script type="text/javascript" src="js/jpost-login-timer-error.js"></script>
+<script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
+<script type="text/javascript" src="js/jquery.bgiframe.min.js"></script>
+<script type="text/javascript" src="js/jquery.ajaxQueue.js"></script>
+<script type="text/javascript" src="js/fadeSlideShow-minified.js"></script>
 
 <link href="index.css" rel="stylesheet" type="text/css" />
 <link href="panel.css" rel="stylesheet" type="text/css" />
