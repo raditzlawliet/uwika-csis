@@ -8,7 +8,7 @@ function PostLogoff(){
 }
 
 function handleResponLogoff(JSONRespons){
-			$('#cek_logoff').html('logoff status : '+ JSONRespons.status);
+			//$('#cek_logoff').html('logoff status : '+ JSONRespons.status);
 			if(JSONRespons.status == 1){
 				 HidePanel();
 				 logoffResponse(); //sukses
@@ -21,4 +21,9 @@ function handleResponLogoff(JSONRespons){
 function logoffResponse(){
 	$("#alert_login").html("Login Again ^^a. ");
 	InitializeTimerCekSession();
+	$("#main").html('<div><center><img src="images/throbber_white.gif"></center></div>');
+	$.post("Ajax/photo.php",{code:"main", uid:""}, function(data) {
+	  $("#main").html("");
+	  $("#main").append(data);
+	});
 }

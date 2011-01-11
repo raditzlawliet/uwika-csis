@@ -2,7 +2,45 @@
 session_start();
 include '../config.php';
 include 'calc.php';
-
+function getValueSettingsOf($sets){
+		$sql = "SELECT *\n"
+		. "FROM settings WHERE `settings`.`settings` = '$sets'";
+		$rs = mysql_query($sql);
+		$data;
+		while($row = mysql_fetch_array($rs)){
+			$data = $row['value'];
+		}
+        mysql_free_result($rs);
+        unset($sql, $rs);
+		return $data;
+}
+function resetDataSMSDatabaseMahasiswa($v){
+	$sql="SELECT nrp,ipk,semester FROM t_mahasiswa";
+	$t_thn = getValueSettingsOf('tahun');
+	$t_sms = getValueSettingsOf('semester');
+	$rs = mysql_query($sql);
+	while($row = mysql_fetch_array($rs)){
+		$data[0] = $row['nrp'];
+		$i = substr($data[0],3,2);
+		$i=$i+0; $thn;
+		if($i<10)$thn = "0";
+		else $thn = "";
+		if($i>=45)$thn = "19".$thn."".$i;
+		else $thn = "20".$thn."".$i;
+		$thn=$thn+0;$t_thn=$t_thn+0;$t_sms=$t_sms+0;
+		$sms=((($t_thn-$thn)*2)+$t_sms);
+		$sql2="UPDATE `t_mahasiswa` SET semester = $sms WHERE `t_mahasiswa`.`nrp` = '$data[0]'";
+		$rs2 = mysql_query($sql2);
+		if (!mysql_query($sql2))
+		  {		
+			  die('Error: ' . mysql_error().'');
+		  }
+		unset($sql2);
+	}
+	mysql_free_result($rs);
+	unset($sql, $rs);
+	return $data;
+}
 function setSemesterPlusToAll($v,$val,$o){
 	$sql="SELECT nrp,ipk,semester FROM t_mahasiswa";
 	$rs = mysql_query($sql);
@@ -43,24 +81,16 @@ function resetDataSKSDatabaseMahasiswa($v){
 		$data[0] = $row['nrp'];
 		$data[2] = $row['semester'];
 		$sks = 24;
-		if($data[2]!=1){
+		if(($data[2]!=1)&&($data[2]!=0)){
 			$data[3] = ($data[2]-1);
-			$sql2="SELECT nrp,ips FROM `t_ips` WHERE nrp='$data[0]' AND semester ='$data[3]'";
-			$rs2 = mysql_query($sql2);
-			$sks = 9; $data[4]=0;
-			while($row = mysql_fetch_array($rs2)){
-				$data[4] = $row['ips'];
-			}
-			mysql_free_result($rs2);
-			unset($sql2, $rs2);
-			$data[4] = $data[4]+0;
-			if($data[4]<=3){$sks=21;}
+			$data[4] = $row['ipk']+0;
+			if($data[4]<3){$sks=21;}
 			if($data[4]<2.5){$sks=18;}
 			if($data[4]<2){$sks=15;}
 			if($data[4]<1.5){$sks=12;}
 			if($data[4]<1){$sks=9;}
 		}
-		$sql2="UPDATE `t_mahasiswa` SET `sisa_sks` = '$sks' WHERE `t_mahasiswa`.`nrp` = '$data[0]'";
+		$sql2="UPDATE `t_mahasiswa` SET `sisa_sks` = '$sks',`sks_awal` = '$sks'  WHERE `t_mahasiswa`.`nrp` = '$data[0]'";
 		$rs2 = mysql_query($sql2);
 		if (!mysql_query($sql2))
 		  {		
@@ -74,7 +104,7 @@ function resetDataSKSDatabaseMahasiswa($v){
 }
 
 function addDataDatabaseMahasiswa($nrp,$data,$set){
-	$sql="INSERT INTO `t_mahasiswa` (`nrp` ,`password` ,`nama` ,`aka` ,`jenis_kelamin` ,`tanggal_lahir` ,`alamat` ,`asal_sekolah` ,`kode_jurusan` ,`probis`, `tanggal_masuk` ,`semester` ,`ipk` ,`sisa_sks` ,`uid` ,`admin`)VALUES ('$data[0]', '$data[2]', '$data[3]', '$data[4]', '$data[5]', '$data[6]', '$data[7]', '$data[8]', '$data[9]', '$data[10]', '$data[11]', '$data[12]', '$data[13]', '$data[14]', '$data[15]', '$data[16]')";
+	$sql="INSERT INTO `t_mahasiswa` (`nrp` ,`password` ,`nama` ,`aka` ,`jenis_kelamin` ,`tanggal_lahir` ,`alamat` ,`asal_sekolah` ,`kode_jurusan` ,`probis`, `tanggal_masuk` ,`semester` ,`ipk` ,`sisa_sks` ,`uid` ,`admin`, `sks_awal`)VALUES ('$data[0]', '$data[2]', '$data[3]', '$data[4]', '$data[5]', '$data[6]', '$data[7]', '$data[8]', '$data[9]', '$data[10]', '$data[11]', '$data[12]', '$data[13]', '$data[14]', '$data[15]', '$data[16]', '$data[17]')";
 	if (!mysql_query($sql))
 	  {		
 		  die('Error: ' . mysql_error().'');
@@ -90,7 +120,7 @@ function addDataDatabaseMahasiswa($nrp,$data,$set){
 
 function setDataDatabaseMahasiswa($nrp,$data,$set){
 	$k = 1;if($set)$k=2;
-	$sql = "UPDATE `t_mahasiswa` SET nrp='$data[0]',password='$data[2]',nama='$data[3]',aka= '$data[4]',jenis_kelamin='$data[5]',tanggal_lahir='$data[6]',alamat='$data[7]',asal_sekolah='$data[8]',kode_jurusan='$data[9]',probis='$data[10]',tanggal_masuk='$data[11]',semester='$data[12]',ipk='$data[13]',sisa_sks='$data[14]',uid='$data[15]',admin='$data[16]' WHERE t_mahasiswa.nrp = '$nrp'";
+	$sql = "UPDATE `t_mahasiswa` SET nrp='$data[0]',password='$data[2]',nama='$data[3]',aka= '$data[4]',jenis_kelamin='$data[5]',tanggal_lahir='$data[6]',alamat='$data[7]',asal_sekolah='$data[8]',kode_jurusan='$data[9]',probis='$data[10]',tanggal_masuk='$data[11]',semester='$data[12]',ipk='$data[13]',sisa_sks='$data[14]',uid='$data[15]',admin='$data[16]',sks_awal='$data[17]' WHERE t_mahasiswa.nrp = '$nrp'";
 	if (!mysql_query($sql))
 	  {		
 		  die('Error: ' . mysql_error().'');
@@ -149,7 +179,7 @@ function getTabelDatabaseMahasiswa($search,$searchin,$orderby,$order,$color,$sta
 			$s = '<div>'.$s;
 			$rs = mysql_query($sql);
 			$mk = '<table id="db" class="'.$color.'">
-			<tr id="header_table"><th>NRP</th><th width="25%">Name</th><th>Gender</th><th>Fakultas/Jurusan</th><th>Class</th><th>SMS</th><th>Remaining SKS</th><th>IPK</th><th>ActION</tr></tr>
+			<tr id="header_table"><th>NRP</th><th width="25%">Name</th><th>Gender</th><th>Fakultas/Jurusan</th><th>Class</th><th>SMS</th><th>SKS</th><th>Sisa SKS</th><th>IPK</th><th>ActION</tr></tr>
 			';
 			$k = 0;
 			while($row = mysql_fetch_array($rs)){
@@ -170,7 +200,8 @@ function getTabelDatabaseMahasiswa($search,$searchin,$orderby,$order,$color,$sta
 				.$probis.'</td><td id="center">'
 				/*.$row['semester'].*/
 				.$row['semester'].'</td><td id="center">'
-				.$row['sisa_sks'].' SKS</td><td id="center">'
+				.$row['sks_awal'].'</td><td id="center">'
+				.$row['sisa_sks'].'</td><td id="center">'
 				.$row['ipk'].'</td><td id="center">'
 				.'<a id="v" onclick="javascript:edit_db_m(3,\''.$nrp.'\')" href="#!">&nbsp;</a><a href="#!"><a id="e" onclick="javascript:edit_db_m(2,\''.$nrp.'\')" href="#!">&nbsp;</a><a href="#!"><a id="x" onclick="javascript:edit_db_m(4,\''.$nrp.'\')" href="#!">&nbsp;</a></td>'
 				.'</tr>';
@@ -231,6 +262,7 @@ function getDataDatabaseMahasiswa($nrp){
 				$data['semester'] = $row['semester'];	
 				$data['ipk'] = $row['ipk'];	
 				$data['sisa_sks'] = $row['sisa_sks'];	
+				$data['sks_awal'] = $row['sks_awal'];	
 				$data['uid'] = $row['uid'];	
 				$data['admin'] = $row['admin'];	
 			}

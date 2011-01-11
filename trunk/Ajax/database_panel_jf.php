@@ -17,8 +17,8 @@ switch($code){
 				$set_height_mk_list = 250;
 			}
 			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>PROGRAMS</b></h1><p>
-				<div id="db_cmd"><a id="refresh_yellow" class="submit" onclick="javascript:searchR(\'db_jf\');" href="#!">Refresh</a>&nbsp;<a id="add_yellow" class="submit" onclick="javascript:edit_db_jf(1,null);" href="#!">Add New Programs</a>
+				<center><h1 style="letter-spacing:20px;"><b>JURUSAN</b></h1><p>
+				<div id="db_cmd"><a id="refresh_yellow" class="submit" onclick="javascript:searchR(\'db_jf\');" href="#!">Refresh</a>&nbsp;<a id="add_yellow" class="submit" onclick="javascript:edit_db_jf(1,null);" href="#!">Tambah Jurusan</a>
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
 				<div style="text-align:left;padding-left:25px;">
@@ -52,8 +52,8 @@ switch($code){
 				</div><p>
 				</center>
 				
-				<center><h1 style="letter-spacing:20px;"><b>FACULTY</b></h1><p>
-				<div id="db_cmd"><a id="refresh_yellow" class="submit" onclick="javascript:searchR(\'db_jf2\');" href="#!">Refresh</a>&nbsp;<a id="add_yellow" class="submit" onclick="javascript:edit_db_jf2(1,null);" href="#!">Add New Faculty</a>
+				<center><h1 style="letter-spacing:20px;"><b>FAULTAS</b></h1><p>
+				<div id="db_cmd"><a id="refresh_yellow" class="submit" onclick="javascript:searchR(\'db_jf2\');" href="#!">Refresh</a>&nbsp;<a id="add_yellow" class="submit" onclick="javascript:edit_db_jf2(1,null);" href="#!">Tambah Fakultas</a>
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
 				<div style="text-align:left;padding-left:25px;">
@@ -120,7 +120,7 @@ switch($code){
 					data = "&code_edit=" + encodeURI(kd) + "&nrp=" + encodeURI(nrp);
 					ShowHiddenPanel(false,"db_jf","Ajax/database_panel_hidden_jf.php",".main_panel",data);
 					}else{
-						var x = confirm("Are you want to delete this data ("+nrp+") ?");
+						var x = confirm("Apa kamu yakin mau menghapus data ini ("+nrp+") ?");
 						if(x){
 						$.post("Ajax/database_db_jf.php",{code:kd, nrp:nrp}, function(data) {
 							alert(data);
@@ -133,7 +133,7 @@ switch($code){
 					data = "&code_edit=" + encodeURI(kd) + "&nrp=" + encodeURI(nrp);
 					ShowHiddenPanel(false,"db_jf2","Ajax/database_panel_hidden_jf.php",".main_panel",data);
 					}else{
-						var x = confirm("Are you want to delete this data ("+nrp+") ?");
+						var x = confirm("Apa kamu yakin mau menghapus data ini ("+nrp+") ?");
 						if(x){
 							kd="2"+""+kd;
 						$.post("Ajax/database_db_jf.php",{code:kd, nrp:nrp}, function(data) {

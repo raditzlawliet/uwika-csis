@@ -33,6 +33,12 @@ switch($code){
 		exit($message);
 		break;
 	}
+	case 'refresh_sms_db_mhs' :{
+		$message = "Reset Successfull";
+		resetDataSMSDatabaseMahasiswa(1);
+		exit($message);
+		break;
+	}
 	
 	case 'reset_semester' :{
 		if($value2=="true"){

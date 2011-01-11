@@ -59,13 +59,13 @@ switch($code){
 			<td><input class="input" id="set_db_j_4" value="'.$data['kode_depan_mata_kuliah'].'"maxlength="2" size="3" '.$view.'\></td>
 			';
 			
-			$out = '<div><b><center>P R O G R A M S</center></b>
+			$out = '<div><b><center>J U R U S A N</center></b>
 			<div style="border:1px solid #ccc;border-top:none;overflow:auto; height:'.$set_height.'px;">
 			<table style="background:#FFE1E2;padding-top:5px;padding-right:5px;padding-left:5px;width:100%;border:1px solid #ccc;border-bottom:none;">
 			'.$table.'
 			</table>
 			</div>
-			<p><table style="float:right;"><tr><td><a onclick="javascript:GoSAVE('.$code_.')" class="button" href="#!"><b>&nbsp;SAVE&nbsp;</b></a></td><td><a onclick="javascript:HidePanel();" class="button" id="diff" href="#!"><b>CANCEL</b></a></td></tr></table>
+			<p><table style="float:right;"><tr><td><a onclick="javascript:GoSAVE('.$code_.')" class="button" href="#!"><b>&nbsp;SIMPAN&nbsp;</b></a></td><td><a onclick="javascript:HidePanel();" class="button" id="diff" href="#!"><b>BATAL</b></a></td></tr></table>
 			</div>
 			<script>
 			function GoSAVE(v){  //1 add, 2 modif
@@ -150,13 +150,13 @@ switch($code){
 			<td><input class="input" id="set_db_j_2" value="'.$data['nama_fakultas'].'"maxlength="49" size="30" '.$view.'\></td>
 			';
 			
-			$out = '<div><b><center>F A C U L T Y</center></b>
+			$out = '<div><b><center>F A K U L T A S</center></b>
 			<div style="border:1px solid #ccc;border-top:none;overflow:auto; height:'.$set_height.'px;">
 			<table style="background:#FFE1E2;padding-top:5px;padding-right:5px;padding-left:5px;width:100%;border:1px solid #ccc;border-bottom:none;">
 			'.$table.'
 			</table>
 			</div>
-			<p><table style="float:right;"><tr><td><a onclick="javascript:GoSAVE('.$code_.')" class="button" href="#!"><b>&nbsp;SAVE&nbsp;</b></a></td><td><a onclick="javascript:HidePanel();" class="button" id="diff" href="#!"><b>CANCEL</b></a></td></tr></table>
+			<p><table style="float:right;"><tr><td><a onclick="javascript:GoSAVE('.$code_.')" class="button" href="#!"><b>&nbsp;SIMPAN&nbsp;</b></a></td><td><a onclick="javascript:HidePanel();" class="button" id="diff" href="#!"><b>BATAL</b></a></td></tr></table>
 			</div>
 			<script>
 			function GoSAVE(v){  //1 add, 2 modif

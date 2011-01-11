@@ -24,21 +24,21 @@
 }
 
 .footer_subpanel p{
-	color: #000;
+	color: black;
 }
 
 .footer_subpanel h1{
 	line-height:1;
 	text-align:center;
 	font-size:9px;
-	color: #000;
+	color: black;
 }
 .footer_subpanel #red{
 	font-style:normal;
 	line-height:1;
 	text-align:center;
 	font-size:9px;
-	color: #F00;
+	color: black;
 }
 .footer_subpanel #red_noline{
 	font-style:normal;
@@ -96,7 +96,7 @@ a.footer_trigger{
 	text-decoration: none;
 	letter-spacing:-1px;
 	font-family: verdana, helvetica, arial, sans-serif;
-	color:#fff;
+	color: black;
 	font-weight: 700;
 	-moz-border-radius-bottomleft: 20px;
 	-webkit-border-bottom-left-radius: 20px;
@@ -168,6 +168,6 @@ a.trigger_footer_cancel{
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border:1px dotted white;
-	color:white;
+	color:black;
 	font-size:10px;
 }

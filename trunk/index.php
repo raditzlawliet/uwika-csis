@@ -74,13 +74,18 @@ include_once 'session.php';
 	<div id="container_space">
     	<div id="main">
 		<script>
-        if(window.location.hash) {
+        //if(window.location.hash) {
           // Fragment exists
-          $('#main').append(window.location.hash);
-        } else {
-          $('#main').append("Doesn't hav hash !");
+          //$('#main').append(window.location.hash);
+        //} else {
+          //$('#main').append("Doesn't hav hash !");
           // Fragment doesn't exist
-        }
+		  $("#main").html('<div><center><img src="images/throbber_white.gif"></center></div>');
+			$.post("Ajax/photo.php",{code:"main", uid:""}, function(data) {
+			  $("#main").html("");
+			  $("#main").append(data);
+			});
+        //}
         </script>
         </div>
 	</div>
@@ -183,13 +188,13 @@ include_once 'session.php';
 	<h1>Click <em id="red">ABOUT</em> for more info</h1>
 </div>
 
-<div class="footer_panel" id="footer_q_panel"style="filter:alpha(opacity=90); display:block;">
+<!--<div class="footer_panel" id="footer_q_panel"style="filter:alpha(opacity=90); display:block;">
 	<em id="cek_session" style="font-style:normal;">none</em> | 
     <em id="array_session" style="font-style:normal;">none</em> |
 	<em id="cek_timer_error" style="font-style:normal;">none</em> |
     <em id="cek_login" style="font-style:normal;">none</em> | 
     <em id="cek_logoff" style="font-style:normal;">none</em>
-</div>
+</div>-->
 <script>InitializeTimerCekSession();</script>
 </body>
 </html>

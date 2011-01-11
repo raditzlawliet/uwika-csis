@@ -12,7 +12,7 @@ switch($code){
 			case 1:{ //add
 				$view = '';
 				$addd= '001';
-				$kunci='&nbsp; &nbsp; A D D';
+				$kunci='&nbsp; &nbsp; T A M B A H';
 				break;}
 			case 2:{ //modify
 				$view= '';
@@ -20,7 +20,7 @@ switch($code){
 				break;}
 			case 3:{ //view
 				$view = 'disabled="true"';
-				$kunci='&nbsp; &nbsp; V I E W';
+				$kunci='&nbsp; &nbsp; L I H A T';
 				break;}
 			case 4:{ //delete
 				break;}
@@ -58,32 +58,32 @@ switch($code){
 			}
 			
 			$table = $table.
-			'<tr><td>1<small>st</small> Programs</td><td> : </td>
+			'<tr><td>Jurusan 1<small>st</small></td><td> : </td>
 			<td><select class="input" onchange="javascript:GoChangeLabelKodeJurusanV(this)" id="set_db_mk_jurusan" title="jurusan" dir="ltr" '.$view.'>'.$opt_jurusan.'</select>&nbsp;&frasl;&nbsp;<label id="set_db_mk_kode_jurusan">'.substr($data['kode_mata_kuliah'],0,2).'</label></td>
 			
-			<td>Type</td><td> : </td><td><select onchange="javascript:GoChangeLabelKodeJenisV(this)" class="input" id="set_db_mk_jenis" title="jenis" dir="ltr" '.$view.'><option value="0">Study</option><option value="5">Practice (Specialist, T)</option><option value="1">Religius (General, PU)</option><option value="2">Language (General, PU)</option></select>&nbsp;&frasl;&nbsp;<label id="set_db_mk_kode_jenis">'.substr($data['kode_mata_kuliah'],2,1).'</label></td></tr>
+			<td>Tipe</td><td> : </td><td><select onchange="javascript:GoChangeLabelKodeJenisV(this)" class="input" id="set_db_mk_jenis" title="jenis" dir="ltr" '.$view.'><option value="0">Belajar / Materi</option><option value="5">Praktikum (Specialis, T)</option><option value="1">Kepercayaan (Umum, PU)</option><option value="2">Bahasa (Umum, PU)</option></select>&nbsp;&frasl;&nbsp;<label id="set_db_mk_kode_jenis">'.substr($data['kode_mata_kuliah'],2,1).'</label></td></tr>
 			
-			<tr><td width="15%">Code <a class="submit" style="padding:0px;background:none;color:red;border:none;border-bottom:solid 1px;" onclick="javascript:getLastCode();" href="#!">Get Last Code</a></td><td width="2%"> : </td>
+			<tr><td width="15%">Kode <a class="submit" style="padding:0px;background:none;color:red;border:none;border-bottom:solid 1px;" onclick="javascript:getLastCode();" href="#!">Get Last Code</a></td><td width="2%"> : </td>
 			<td><label id="set_db_mk_1_a" title="'.substr($data['kode_mata_kuliah'],0,3).'">'.substr($data['kode_mata_kuliah'],0,3).'</label><input onchange="javascript:cekKODEMK(this);" class="input" id="set_db_mk_1_b" value="'.$addd.substr($data['kode_mata_kuliah'],3,4).'" size="1" maxlength="3" '.$view.'\> <label style="color:red;">-> </label>A<select onchange="javascript:changeKDr();" class="input" id="set_db_mk_kode_akhir" '.$view.' ><option value="1">1</option><option value="6">6</option></select><label> r.</label><select onchange="javascript:changeKDr();" class="input" id="set_db_mk_kode_akhir_revisi" '.$view.' ><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select><label style="color:red;"> -> </label></td><td><label style="color:red">A - Last Code 1/6 + r.</label></td><td></td><td><label style="color:red">r. Revision Next Study</label></td></tr>
 			
-			<tr><td>Name</td><td> : </td>
+			<tr><td>Nama</td><td> : </td>
 			<td><input class="input" id="set_db_mk_2" value="'.$data['nama_mata_kuliah'].'"maxlength="49" size="30" '.$view.'\></td>
 			<td><label style="color:red">ex. Kalkulus I (A=1,r=0) = 1</label></td><td></td><td><label style="color:red">Kalkulus II (A=1, r=1) = 2</label></td></tr>
 			
 			<tr><td>SKS</td><td> : </td>
 			<td><select onchange="changeSKSV(this);" class="input" id="set_db_mk_3" dir="ltr" '.$view.'><option value="1">1 SKS</option><option value="2">2 SKS</option><option value="3">3 SKS</option><option value="4">4 SKS</option><option value="5">5 SKS</option><option value="6">6 SKS</option><option value="7">7 SKS</option><option value="8">8 SKS</option><option value="9">9 SKS</option><option value="10">10 SKS</option></select>&nbsp;<label id="time_sks">60m</label>&nbsp;<label style="color:red;">(1SKS = 50m)&nbsp;</label><a onclick="javascript:changeTimeEnd();" class="submit" href="#!">Calc</a></td>
 			
-			<td><label style="color:red">Calc to Calculate it from TB in TE</label></td><td></td><td><label style="color:red">Down Here</label></td></tr>
+			<td><label style="color:red">Calc: hitung dari WM k WS</label></td><td></td><td><label style="color:red">Bawah Sni</label></td></tr>
 									
 			<tr><td>Probis</td><td> : </td>
 			<td><select class="input" id="set_db_mk_4" dir="ltr" '.$view.'><option value="0">No / Morning Class</option><option value="1">Yes / Probis Class</option></select></td>
-			<td>Time Begin (hh:mm:ss)</td><td> : </td>
+			<td>Waktu Mulai (hh:mm:ss)</td><td> : </td>
 			<td><select class="input" id="set_db_mk_6_jam" dir="ltr" '.$view.'>'.$jam_.'</select> : <select class="input" id="set_db_mk_6_mnt" dir="ltr" '.$view.'>'.$mnt_.'</select> : <select class="input" id="set_db_mk_6_dtk" dir="ltr" '.$view.'>'.$mnt_.'</select></td></tr>
 
-			<tr><td>Day</td><td> : </td>
-			<td><select class="input" id="set_db_mk_5" dir="ltr" '.$view.'><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thrusday</option><option value="5">Friday</option><option value="6">Saturday</option></select></td>
+			<tr><td>Hari</td><td> : </td>
+			<td><select class="input" id="set_db_mk_5" dir="ltr" '.$view.'><option value="1">Senin</option><option value="2">Selasa</option><option value="3">Rabu</option><option value="4">Kamis</option><option value="5">Jumat</option><option value="6">Sabtu</option></select></td>
 
-			<td>Time End (hh:mm:ss)</td><td> : </td>
+			<td>Waktu Selesai (hh:mm:ss)</td><td> : </td>
 			<td><select class="input" id="set_db_mk_7_jam" dir="ltr" '.$view.'>'.$jam_.'</select> : <select class="input" id="set_db_mk_7_mnt" dir="ltr" '.$view.'>'.$mnt_.'</select> : <select class="input" id="set_db_mk_7_dtk" dir="ltr" '.$view.'>'.$mnt_.'</select></td></tr>
 			<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
 			
@@ -103,11 +103,11 @@ switch($code){
 			}
 			
 			$table2 = $table2.
-			'<tr><td width="50%">List of Programs that Registered this Subject</td><td><a id="submitdb" onclick="javascript:goAddMK_J();" class="submit" href="#!">Add</a>&nbsp;<a id="submitdb" onclick="javascript:goDelMK_J();" class="submit" href="#!">Del</a>&nbsp;<a id="submitdb" onclick="javascript:goEditMK_J();" class="submit" href="#!">Edit</a></td></tr>
+			'<tr><td width="50%">List Jurusan yang sudah terdaftar di MK ini</td><td><a id="submitdb" onclick="javascript:goAddMK_J();" class="submit" href="#!">Add</a>&nbsp;<a id="submitdb" onclick="javascript:goDelMK_J();" class="submit" href="#!">Del</a>&nbsp;<a id="submitdb" onclick="javascript:goEditMK_J();" class="submit" href="#!">Edit</a></td></tr>
 			<tr><td id="mk_j_list" width="50%"><select class="input" style="width:95%;" id="list_set_db_mk_j" onchange="javascript:goViewMK_J();" size="5">'.$data_j_op.'</select></td>
 			<td>
 				<table>
-				<tr><td>Programs Name</td><td>:</td><td><select class="input" onchange="javascript:GoChangeLabelKodeJurusanJV(this)" id="set_db_mk_j_1" title="jurusan" dir="ltr" disabled>'.$opt_jurusanJ.'</select>&nbsp;&frasl;&nbsp;<label id="set_db_mk_j_kode_jurusan"></label></td></tr>
+				<tr><td>Nama Jurusan</td><td>:</td><td><select class="input" onchange="javascript:GoChangeLabelKodeJurusanJV(this)" id="set_db_mk_j_1" title="jurusan" dir="ltr" disabled>'.$opt_jurusanJ.'</select>&nbsp;&frasl;&nbsp;<label id="set_db_mk_j_kode_jurusan"></label></td></tr>
 				<tr><td>Semester</td><td>:</td><td><select class="input" id="set_db_mk_j_2" dir="ltr" disabled><option value="0">0 (if u want to hide it)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></td></tr>
 				<tr><td><a id="submitdb" onclick="javascript:goSaveMK_J();" class="submit" href="#!">Save</a><a id="submitdb" onclick="javascript:goCancelMK_J();" class="submit" href="#!">Cancel</a></td><td></td></tr>
 				</table>
@@ -115,43 +115,43 @@ switch($code){
 			';
 			
 			$table3 = $table3.
-			'<tr><td width="50%">List of Faculty that Registered this Subject</td><td><a id="submitdb" onclick="javascript:goAddMK_D();" class="submit" href="#!">Add</a>&nbsp;<a id="submitdb" onclick="javascript:goDelMK_D();" class="submit" href="#!">Del</a>&nbsp;<a id="submitdb" onclick="javascript:goEditMK_D();" class="submit" href="#!">Edit</a></td></tr><tr><td id="mk_d_list" width="50%"><select class="input" style="width:95%;" id="list_set_db_mk_d" onchange="javascript:goViewMK_D();" size="5">'.$data_d_op.'</select></td>
+			'<tr><td width="50%">List Dosen yang sudah terdaftar di MK ini</td><td><a id="submitdb" onclick="javascript:goAddMK_D();" class="submit" href="#!">Add</a>&nbsp;<a id="submitdb" onclick="javascript:goDelMK_D();" class="submit" href="#!">Del</a>&nbsp;<a id="submitdb" onclick="javascript:goEditMK_D();" class="submit" href="#!">Edit</a></td></tr><tr><td id="mk_d_list" width="50%"><select class="input" style="width:95%;" id="list_set_db_mk_d" onchange="javascript:goViewMK_D();" size="5">'.$data_d_op.'</select></td>
 			<td>
 				<table>
-				<tr><td>Faculty NRP</td><td>:</td><td><input class="input" id="set_db_mk_d_1" maxlength="11" size="30" disabled="true"\>&nbsp;'.$status["q"].'</td></tr>
-				<tr><td>Faculty Name</td><td>:</td><td><input class="input" id="set_db_mk_d_2" style="background:#FFE1E2;border:none;" maxlength="49" size="30" disabled="true"\></td></tr>
+				<tr><td>NRP Dosen</td><td>:</td><td><input class="input" id="set_db_mk_d_1" maxlength="11" size="30" disabled="true"\>&nbsp;'.$status["q"].'</td></tr>
+				<tr><td>Nama Dosen</td><td>:</td><td><input class="input" id="set_db_mk_d_2" style="background:#FFE1E2;border:none;" maxlength="49" size="30" disabled="true"\></td></tr>
 				<tr><td><a id="submitdb" onclick="javascript:goSaveMK_D();" class="submit" href="#!">Save</a><a id="submitdb" onclick="javascript:goCancelMK_D();" class="submit" href="#!">Cancel</a></td><td></td></tr>
 				</table>
 			</td></tr>
 			';
 			
 			$table4 = $table4.
-			'<tr><td width="50%">List of Requirement Subject that Registered this Subject</td><td><a id="submitdb" onclick="javascript:goAddMK_S();" class="submit" href="#!">Add</a>&nbsp;<a id="submitdb" onclick="javascript:goDelMK_S();" class="submit" href="#!">Del</a>&nbsp;<a id="submitdb" onclick="javascript:goEditMK_S();" class="submit" href="#!">Edit</a></td></tr><tr><td id="mk_s_list" width="50%"><select class="input" style="width:95%;" id="list_set_db_mk_s" onchange="javascript:goViewMK_S();" size="5">'.$data_s_op.'</select><p>&nbsp;<br></td>
+			'<tr><td width="50%">List Syarat yang sudah terdaftar di MK ini</td><td><a id="submitdb" onclick="javascript:goAddMK_S();" class="submit" href="#!">Add</a>&nbsp;<a id="submitdb" onclick="javascript:goDelMK_S();" class="submit" href="#!">Del</a>&nbsp;<a id="submitdb" onclick="javascript:goEditMK_S();" class="submit" href="#!">Edit</a></td></tr><tr><td id="mk_s_list" width="50%"><select class="input" style="width:95%;" id="list_set_db_mk_s" onchange="javascript:goViewMK_S();" size="5">'.$data_s_op.'</select><p>&nbsp;<br></td>
 			<td>
 				<table>
-				<tr><td>Subject Code</td><td>:</td><td><input class="input" id="set_db_mk_s_1" maxlength="7" size="30" disabled="true"\>&nbsp;'.$status["q"].'</td></tr>
-				<tr><td>Subject Name</td><td>:</td><td><input class="input" id="set_db_mk_s_1a" style="background:#FFE1E2;border:none;" maxlength="49" size="30" disabled="true"\></td></tr>
-				<tr><td>Requirement Code</td><td>:</td><td><select class="input" id="set_db_mk_s_2" dir="ltr" disabled><option value="0">0 (Must Complete this Subject)</option><option value="1">1 (Must Take this Subject)</option></select></td></tr>
+				<tr><td>Kode MK</td><td>:</td><td><input class="input" id="set_db_mk_s_1" maxlength="7" size="30" disabled="true"\>&nbsp;'.$status["q"].'</td></tr>
+				<tr><td>Nama MK</td><td>:</td><td><input class="input" id="set_db_mk_s_1a" style="background:#FFE1E2;border:none;" maxlength="49" size="30" disabled="true"\></td></tr>
+				<tr><td>Kode Syarat</td><td>:</td><td><select class="input" id="set_db_mk_s_2" dir="ltr" disabled><option value="0">0 (Harus Lulus MK ini)</option><option value="1">1 (Harus Mengambil MK ini)</option></select></td></tr>
 				<tr><td><a id="submitdb" onclick="javascript:goSaveMK_S();" class="submit" href="#!">Save</a><a id="submitdb" onclick="javascript:goCancelMK_S();" class="submit" href="#!">Cancel</a></td><td></td></tr>
 				</table>
 			</td></tr>
 			';
 			for($i=2050;$i>=1960;$i--){$c_m = $c_m.'<option value="'.$i.'/2">'.$i.'/2</option>';$c_m = $c_m.'<option value="'.$i.'/1">'.$i.'/1</option>';}
 			$table5 = $table5.
-			'<tr><td width="50%">List of Students Subject that Registered this Subject <select onchange="javascript:reloadMK_M()" class="input" id="slct_list_set_db_mk_m" dir="ltr"><option value="g">All</option>'.$c_m.'</select></td><td><a id="submitdb" onclick="javascript:goAddMK_M();" class="submit" href="#!">Add</a>&nbsp;<a id="submitdb" onclick="javascript:goDelMK_M();" class="submit" href="#!">Del</a>&nbsp;<a id="submitdb" onclick="javascript:goEditMK_M();" class="submit" href="#!">Edit</a></td></tr><tr><td id="mk_m_list" width="50%"><select class="input" style="width:95%;" id="list_set_db_mk_m" onchange="javascript:goViewMK_M();" size="11">'.$data_m_op.'</select><p>&nbsp;<br></td>
+			'<tr><td width="50%">List Mahasiswa yang sudah terdaftar di MK ini <select onchange="javascript:reloadMK_M()" class="input" id="slct_list_set_db_mk_m" dir="ltr"><option value="g">All</option>'.$c_m.'</select></td><td><a id="submitdb" onclick="javascript:goAddMK_M();" class="submit" href="#!">Add</a>&nbsp;<a id="submitdb" onclick="javascript:goDelMK_M();" class="submit" href="#!">Del</a>&nbsp;<a id="submitdb" onclick="javascript:goEditMK_M();" class="submit" href="#!">Edit</a></td></tr><tr><td id="mk_m_list" width="50%"><select class="input" style="width:95%;" id="list_set_db_mk_m" onchange="javascript:goViewMK_M();" size="11">'.$data_m_op.'</select><p>&nbsp;<br></td>
 			<td>
 				<table>
-				<tr><td>Students NRP</td><td>:</td><td><input class="input" id="set_db_mk_m_1" maxlength="8" size="30" disabled="true"\>&nbsp;'.$status["q"].'</td></tr>
-				<tr><td>Students Name</td><td>:</td><td><input class="input" id="set_db_mk_m_1a" style="background:#FFE1E2;border:none;" maxlength="49" size="30" disabled="true"\></td></tr>
+				<tr><td>NRP Mahasiswa</td><td>:</td><td><input class="input" id="set_db_mk_m_1" maxlength="8" size="30" disabled="true"\>&nbsp;'.$status["q"].'</td></tr>
+				<tr><td>Nama</td><td>:</td><td><input class="input" id="set_db_mk_m_1a" style="background:#FFE1E2;border:none;" maxlength="49" size="30" disabled="true"\></td></tr>
 				<tr><td>Semester</td><td>:</td><td><input class="input" id="set_db_mk_m_2" maxlength="2" size="2" disabled="true"\>&nbsp;Masa&nbsp;:&nbsp;<select class="input" id="set_db_mk_m_3a" title="fakultas" dir="ltr" disabled>'.$thn_.'</select><select class="input" id="set_db_mk_m_3b" dir="ltr" disabled><option value="1">1 (Ganjil)</option><option value="2">2 (Genap)</option></select></td></tr>
 				
-				<tr><td>Day Registered</td><td>:</td><td><select class="input" id="set_db_mk_m_4" dir="ltr" disabled><option value="0">Sunday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thrusday</option><option value="5">Friday</option><option value="6">Saturday</option></select></td></tr>
+				<tr><td>Hari Registrasi</td><td>:</td><td><select class="input" id="set_db_mk_m_4" dir="ltr" disabled><option value="0">Sunday</option><option value="1">Senin</option><option value="2">Selasa</option><option value="3">Rabu</option><option value="4">Kamis</option><option value="5">Jumat</option><option value="6">Sabtu</option></select></td></tr>
 				
-				<tr><td>Time Registered</td><td>:</td><td><select class="input" id="set_db_mk_m_5_jam" dir="ltr" disabled>'.$jam_.'</select> : <select class="input" id="set_db_mk_m_5_mnt" dir="ltr" disabled>'.$mnt_.'</select> : <select class="input" id="set_db_mk_m_5_dtk" dir="ltr" disabled>'.$mnt_.'</select></td></tr>
+				<tr><td>Waktu Registered</td><td>:</td><td><select class="input" id="set_db_mk_m_5_jam" dir="ltr" disabled>'.$jam_.'</select> : <select class="input" id="set_db_mk_m_5_mnt" dir="ltr" disabled>'.$mnt_.'</select> : <select class="input" id="set_db_mk_m_5_dtk" dir="ltr" disabled>'.$mnt_.'</select></td></tr>
 				
-				<tr><td>Date Registered</td><td>:</td><td><select class="input" id="set_db_mk_m_6_thn" title="fakultas" dir="ltr" disabled>'.$thn_.'</select> - <select class="input" id="set_db_mk_m_6_bln" title="fakultas" dir="ltr" disabled>'.$bln_.'</select> - <select class="input" id="set_db_mk_m_6_hri" title="fakultas" dir="ltr" disabled>'.$hri_.'</select>&nbsp;<label style="color:red"> (YYYY-MM-DD)</label></td></tr>
+				<tr><td>Tgl Registered</td><td>:</td><td><select class="input" id="set_db_mk_m_6_thn" title="fakultas" dir="ltr" disabled>'.$thn_.'</select> - <select class="input" id="set_db_mk_m_6_bln" title="fakultas" dir="ltr" disabled>'.$bln_.'</select> - <select class="input" id="set_db_mk_m_6_hri" title="fakultas" dir="ltr" disabled>'.$hri_.'</select>&nbsp;<label style="color:red"> (YYYY-MM-DD)</label></td></tr>
 				
-				<tr><td>Score</td><td>:</td><td><input class="input" id="set_db_mk_m_7" maxlength="4" size="2" disabled="true"\>&nbsp;Is Complete ?&nbsp;:&nbsp;<select class="input" id="set_db_mk_m_8" dir="ltr" disabled><option value="0">0 (Not Complete)</option><option value="1">1 (Complete)</option></select></td></tr>
+				<tr><td>Nilai</td><td>:</td><td><input class="input" id="set_db_mk_m_7" maxlength="6" size="2" disabled="true"\>&nbsp;Lulus ?&nbsp;:&nbsp;<select class="input" id="set_db_mk_m_8" dir="ltr" disabled><option value="0">0 (Belum)</option><option value="1">1 (Sudah)</option></select></td></tr>
 				
 				<tr><td><a id="submitdb" onclick="javascript:goSaveMK_M();" class="submit" href="#!">Save</a><a id="submitdb" onclick="javascript:goCancelMK_M();" class="submit" href="#!">Cancel</a></td><td></td></tr>
 				</table>
@@ -159,29 +159,29 @@ switch($code){
 			</td></tr>
 			';			
 			
-			$outb='<b><center>S U B J E C T &nbsp; - &nbsp; P R O G R A M S</center></b>
+			$outb='<b><center>M A T A K U L I A H &nbsp; - &nbsp; J U R U S A N</center></b>
 			<div id="mk_sc"><table style="background:#FFE1E2;padding-top:5px;padding-right:5px;padding-left:5px;width:100%;border:1px solid #ccc;border-bottom:none;">
 			'.$table2.'
-			</table><b><center>S U B J E C T &nbsp; - &nbsp; F A C U L T Y</center></b>
+			</table><b><center>M A T A K U L I A H &nbsp; - &nbsp; D O S E N</center></b>
 			</div><div id="mk_sf"><table style="background:#FFE1E2;padding-top:5px;padding-right:5px;padding-left:5px;width:100%;border:1px solid #ccc;border-bottom:none;">
 			'.$table3.'
-			</table><b><center>S U B J E C T &nbsp; - &nbsp; R E Q U I R E M E N T</center></b>
+			</table><b><center>M A T A K U L I A H &nbsp; - &nbsp; S Y A R A T</center></b>
 			</div><div id="mk_sr"><table style="background:#FFE1E2;padding-top:5px;padding-right:5px;padding-left:5px;width:100%;border:1px solid #ccc;border-bottom:none;">
 			'.$table4.'
-			</table><b><center>S U B J E C T &nbsp; - &nbsp; S T U D E N T S</center></b>
+			</table><b><center>M A T A K U L I A H &nbsp; - &nbsp; M A H A S I S W A</center></b>
 			</div><div id="mk_ss"><table style="background:#FFE1E2;padding-top:5px;padding-right:5px;padding-left:5px;width:100%;border:1px solid #ccc;border-bottom:none;">
 			'.$table5.'
 			</table></div>';
 			if($code_==1)$outb='';
 			
-			$out = '<div><b><center>S U B J E C T '.$kunci.'</center></b>
+			$out = '<div><b><center>'.$kunci.' M A T A K U L I A H</center></b>
 			<div style="border:1px solid #ccc;border-top:none;overflow:auto; height:'.$set_height.'px;">
 			<div id="mk_"><table style="background:#FFE1E2;padding-top:5px;padding-right:5px;padding-left:5px;width:100%;border:1px solid #ccc;border-bottom:none;">
 			'.$table.'
 			</table></div>
 			'.$outb.'
 			</div>
-			<p><table style="float:right;"><tr><td><a onclick="javascript:GoSAVE('.$code_.')" class="button" href="#!"><b>&nbsp;SAVE&nbsp;</b></a></td><td><a onclick="javascript:HidePanel();" class="button" id="diff" href="#!"><b>CANCEL</b></a></td></tr></table>
+			<p><table style="float:right;"><tr><td><a onclick="javascript:GoSAVE('.$code_.')" class="button" href="#!"><b>&nbsp;SIMPAN&nbsp;</b></a></td><td><a onclick="javascript:HidePanel();" class="button" id="diff" href="#!"><b>BATAL</b></a></td></tr></table>
 			</div>
 			<script>
 			var list_set_db_mk_mx = new Array();
@@ -620,7 +620,9 @@ switch($code){
 			}
 			function goViewMK_M(){
 				var a=document.getElementById("list_set_db_mk_m").value;
-				$.post("Ajax/transfer_mk2_inner.php",{code:"mk_m", code_in:"get",kode_mk:"'.$kode_mk.'",nrp:a}, function(data_) {
+				var b=document.getElementById("list_set_db_mk_m").selectedIndex;
+				var c=list_set_db_mk_mx[b]+"|";
+				$.post("Ajax/transfer_mk2_inner.php",{code:"mk_m", code_in:"get",kode_mk:"'.$kode_mk.'",nrp:a, data:c}, function(data_) {
 						respons = eval(\'(\' + data_ + \')\');
 						document.getElementById("set_db_mk_m_1").value=respons.nrp;
 						document.getElementById("set_db_mk_m_1a").value=respons.nama;
@@ -718,8 +720,9 @@ switch($code){
 					mk_m_lock();
 					s_mk_m=1;
 					var a=document.getElementById("list_set_db_mk_m").value;
-					$.post("Ajax/transfer_mk2_inner.php",{code:"mk_m", code_in:"get",kode_mk:"'.$kode_mk.'",nrp:a}, function(data_) {
-							respons = eval(\'(\' + data_ + \')\');
+					var b=document.getElementById("list_set_db_mk_m").selectedIndex;
+					var c=list_set_db_mk_mx[b]+"|";
+					$.post("Ajax/transfer_mk2_inner.php",{code:"mk_m", code_in:"get",kode_mk:"'.$kode_mk.'",nrp:a, data:c}, function(data_) {
 							document.getElementById("set_db_mk_m_1").value=respons.nrp;
 							document.getElementById("set_db_mk_m_1a").value=respons.nama;
 							document.getElementById("set_db_mk_m_2").value=respons.semester;
@@ -844,7 +847,7 @@ function calcKDR(x){if((x>5)||(x==0)){document.getElementById("set_db_mk_kode_ak
 				var value = "";
 				value = document.getElementById("set_db_mk_1_a").title+""+document.getElementById("set_db_mk_1_b").value+"|"+document.getElementById("set_db_mk_2").value+"|"+document.getElementById("set_db_mk_3").value+"|"+document.getElementById("set_db_mk_4").value+"|"+document.getElementById("set_db_mk_5").value+"|"+document.getElementById("set_db_mk_6_jam").value+":"+document.getElementById("set_db_mk_6_mnt").value+":"+document.getElementById("set_db_mk_6_dtk").value+"|"+document.getElementById("set_db_mk_7_jam").value+":"+document.getElementById("set_db_mk_7_mnt").value+":"+document.getElementById("set_db_mk_7_dtk").value+"|";
 				var x;if('.$code_.'!=1){
-				x = confirm("Are You also want to change relationshop code [programs,lecturer,students,requirement]");
+				x = confirm("Apa kamu yakin juga mau mengganti Kode Relasi [jurusan,dosen,mahasiswa,syarat]");
 				if(x){x="true";}else{x="false";}}else{x="true";}
 				ShowHiddenPanel(true,\'loading\',\'Ajax/n.php\',\'.main_panel\');
 				$.post("Ajax/database_db_mk.php",{code:'.$code_.', kode_mk:"'.$kode_mk.'" ,value:value, value2:x}, function(data_) {

@@ -76,6 +76,9 @@ a.submit#add_yellow{
 	border:1px solid #ccc;
 	text-align:left;
 }
+#main h1{
+	font-size:17px;
+}
 #main #db{
 	width:95%;
 	border:1px solid #CCC;
@@ -156,6 +159,12 @@ a.submit#add_yellow{
 #main table#db.bw tr#diff{background:#EEE;}
 #main table#db.bw tr#diff:hover{background:#8D8D8D;color:white;}
 #main table#db.bw tr:hover{background:#8D8D8D;color:white;}
+#main table#db.none {background:none;border:none}
+#main table#db.none th{background:none;color:black;border:none;}
+#main table#db.none tr{background:white;border:none;}
+#main table#db.none tr#diff{background:#EEE;}
+#main table#db.none tr#diff:hover{background:#EEE;color:black;}
+#main table#db.none tr:hover{background:white;color:black;}
 
 #main a#e {background:url('images/e.png') 50% 50% no-repeat;padding:7px;text-decoration:none;}
 #main a#v {background:url('images/v.png') 50% 50% no-repeat;padding:7px;text-decoration:none;}

@@ -182,17 +182,20 @@ input.submit{
 
 #header_id_student{
 	padding: 10px 5px 10px 25px;
-	top: 0px; right: 148px;
+//	top: 0px; right: 148px;
+	top: 0px; right: 75px;
 	-moz-border-radius-topright: 10px;
 	-webkit-border-top-right-radius: 10px;
 	background:url(images/down.png) 5% 48% no-repeat;
 }
 #header_id_student:hover{
-	top: -1px; right: 147px;
+//	top: -1px; right: 147px;
+	top: -1px; right: 74px;
 	background:#255670 url(images/down.png) 5% 48% no-repeat;
 }
 #header_id_student.active{
-	top: -1px; right: 147px;
+//	top: -1px; right: 147px;
+	top: -1px; right: 74px;
 	background:white url(images/up.png) 5% 45% no-repeat;
 	color:black;
 	border:1px black solid;
@@ -243,7 +246,8 @@ input.submit{
 
 #header_id_student_panel{
 	top: 44px;
-	right: 147px;
+//	right: 147px;
+	right: 74px;
 	-moz-border-radius-bottomright: 5px;
 	-webkit-border-bottom-right-radius: 5px;
 	-moz-border-radius-topleft: 5px;
@@ -338,7 +342,8 @@ input.submit{
 
 #header_id_admin{
 	padding: 16px 5px 16px 25px;
-	top: 0px; right: 462px;
+//	top: 0px; right: 462px;
+	top: 0px; right: 175px;
 	-moz-border-radius-topleft: 10px;
 	-webkit-border-top-left-radius: 10px;
 	-moz-border-radius-topright: 10px;
@@ -347,11 +352,13 @@ input.submit{
 	color:white;
 }
 #header_id_admin:hover{
-	top: -1px; right: 461px;
+//	top: -1px; right: 461px;
+	top: -1px; right: 174px;
 	background:red url(images/down.png) 5% 48% no-repeat;
 }
 #header_id_admin.active{
-	top: -1px; right: 461px;
+//	top: -1px; right: 461px;
+	top: -1px; right: 174px;
 	background:red url(images/down.png) 5% 48% no-repeat;
 	color:white;
 	border:1px black solid;
@@ -360,7 +367,8 @@ input.submit{
 
 #header_id_admin_panel{
 	top: 44px;
-	right: 462px;
+//	right: 462px;
+	right: 174px;
 	-moz-border-radius-bottomright: 5px;
 	-webkit-border-bottom-right-radius: 5px;
 	-moz-border-radius-topleft: 5px;

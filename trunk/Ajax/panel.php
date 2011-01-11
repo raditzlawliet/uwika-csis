@@ -17,22 +17,22 @@ switch($code){
 		break;
 	}
 	case 3 : { //account panel
-			$header_logoff = "<a id=\"header_id_account\" class=\"header_trigger\" onclick=\"javascript:header_account_click()\" href=\"#!\">ACCOUNT</a>";
+//			$header_logoff = "<a id=\"header_id_account\" class=\"header_trigger\" onclick=\"javascript:header_account_click()\" href=\"#!\">ACCOUNT</a>";
 			exit($header_logoff);
 		break;
 	}
 	case 4 : { //info student panel
-			$header_logoff = "<a id=\"header_id_student\" class=\"header_trigger\" onclick=\"javascript:header_student_click()\" href=\"#!\">STUDENT<br \>INFORMATION</a>";
+			$header_logoff = "<a id=\"header_id_student\" class=\"header_trigger\" onclick=\"javascript:header_student_click()\" href=\"#!\">INFORMASI<br \>MAHASISWA</a>";
 			exit($header_logoff);
 		break;
 	}
 	case 5 : { //info student panel
-			$header_logoff = "<a id=\"header_id_faculty\" class=\"header_trigger\" onclick=\"javascript:header_faculty_click()\" href=\"#!\">LECTURER<br \>INFORMATION</a>";
+//			$header_logoff = "<a id=\"header_id_faculty\" class=\"header_trigger\" onclick=\"javascript:header_faculty_click()\" href=\"#!\">LECTURER<br \>INFORMATION</a>";
 			exit($header_logoff);
 		break;
 	}
 	case 6 : { //info student panel
-			$header_logoff = "<a id=\"header_id_employee\" class=\"header_trigger\" onclick=\"javascript:header_employee_click()\" href=\"#!\">EMPLOYEE<br \>INFORMATION</a>";
+//			$header_logoff = "<a id=\"header_id_employee\" class=\"header_trigger\" onclick=\"javascript:header_employee_click()\" href=\"#!\">EMPLOYEE<br \>INFORMATION</a>";
 			exit($header_logoff);
 		break;
 	}
@@ -149,7 +149,7 @@ switch($code_panel){
 					ShowHiddenPanel(true,\'agreement\',\'Ajax/panel.php\',\'.main_panel\');
 				}
 		</script>';
-		exit($header_logoff_panel);
+//		exit($header_logoff_panel);
 		break;
 	}
 	case 4 : { //st7udent panel
@@ -158,19 +158,21 @@ switch($code_panel){
 		$c = '';
 		switch($_SESSION['turn']){
 			case 0 : {
-				$c = '	<li><a onclick="javascript:GoKRS();" href="#!krs">K R S</a></li>
-						<li><a onclick="javascript:GoLIBRARY();" href="#!library">L I B R A R Y</a></li>
+				$c = '	<li><a onclick="javascript:GoKRS();" href="#!krs">K R S &nbsp; </a></li>
+						<li><a onclick="javascript:GoKRSx();" href="#!khs">L A P O R A N &nbsp; &nbsp; K R S &nbsp; </a></li>
+						<li><a onclick="javascript:GoKHS();" href="#!khs">L A P O R A N &nbsp; &nbsp; K H S &nbsp; </a></li>';
+				$x='	<li><a onclick="javascript:GoLIBRARY();" href="#!library">L I B R A R Y</a></li>
 						<li><a onclick="javascript:GoELEARNING();" href="#!e-learning">E &nbsp; - &nbsp; L E A R N I N G</a></li>
 				 ';
 				 break;
 			}
 			case 1 : {
-				$c = '	<li><a onclick="javascript:GoINFORMATIONSTUDENT();" href="#!information_student">I N F O R M A T I O N&nbsp; &nbsp; &nbsp;&nbsp;S T U D E N T</a></li>
+				$c = '	<li><a onclick="javascript:GoINFORMATIONSTUDENT();" href="#!information_student">I N F O R M A S I&nbsp; &nbsp; &nbsp;&nbsp;M A H A S I S W A</a></li>
 				';
 				 break;
 			}
 			case 2 : {
-				$c = '	<li><a onclick="javascript:GoINFORMATIONSTUDENT();"href="#!information_student">I N F O R M A T I O N&nbsp; &nbsp; &nbsp;&nbsp;S T U D E N T</a></li>
+				$c = '	<li><a onclick="javascript:GoINFORMATIONSTUDENT();" href="#!information_student">I N F O R M A S I&nbsp; &nbsp; &nbsp;&nbsp;M A H A S I S W A</a></li>
 				';
 				 break;
 			}
@@ -187,6 +189,22 @@ switch($code_panel){
 					header_student_click();
 					$("#main").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
 					$.post("Ajax/krs.php",{code:"krs", uid:"'.$_SESSION["uid"].'"}, function(data) {
+					  $("#main").html("");
+					  $("#main").append(data);
+					});
+				}
+				function GoKHS(){
+					header_student_click();
+					$("#main").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
+					$.post("Ajax/khs.php",{code:"khs", uid:"'.$_SESSION["uid"].'"}, function(data) {
+					  $("#main").html("");
+					  $("#main").append(data);
+					});
+				}
+				function GoKRSx(){
+					header_student_click();
+					$("#main").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
+					$.post("Ajax/krsr.php",{code:"krs", uid:"'.$_SESSION["uid"].'"}, function(data) {
 					  $("#main").html("");
 					  $("#main").append(data);
 					});
@@ -262,7 +280,7 @@ switch($code_panel){
 				$header_logoff_panel = '
 				<div class="header_panel" id="header_id_admin_panel">
 				<ul>
-				<li><a onclick="javascript:GoDATABASE();" href="#!">D A T A B A S E</a></li>
+				<li><a onclick="javascript:GoDATABASE();" href="#!">D A T A B A S E &nbsp; &nbsp; &amp; &nbsp; &nbsp; L A P O R A N</a></li>
 				<li><a onclick="javascript:GoSETTINGS();" href="#!">S E T T I N G S</a></li>
 				</ul>
 				</div>
@@ -305,7 +323,7 @@ switch($code_hidden){
 			</div>
 			<script>
 			function Agreeclick(){
-				$("#main").load("Ajax/profile.php");
+				$("#main").load("Ajax/photo.php");
 				HidePanel();
 				InitializeTimer();
 				InitializeTimerCekSession();
@@ -349,19 +367,27 @@ switch($code_hidden){
 			$i=51;
 			do{
 				if($i!=91){
+					if(($i==52)||($i==53)){
+						$table = $table.'
+						<tr><td style="text-transform:capitalize;" width="15%">'.$settings[$n[$i]]['settings'].'</td><td width="2%"> : </td>
+						<td><input id="set_admin_'.$i.'" value="'.$settings[$n[$i]]['value'].'" disabled="true" size="10"/></td>
+						<td style="font-size:10px;">'.$settings[$n[$i]]['deskripsi'].'</td></tr>
+						';
+					}else{
 				$table = $table.'
 				<tr><td style="text-transform:capitalize;" width="15%">'.$settings[$n[$i]]['settings'].'</td><td width="2%"> : </td>
-				<td><input id="set_admin_'.$i.'" value="'.$settings[$n[$i]]['value'].'" size="10"\></td>
+				<td><input id="set_admin_'.$i.'" value="'.$settings[$n[$i]]['value'].'" size="10" disabled="true"\></td>
 				<td style="font-size:10px;">'.$settings[$n[$i]]['deskripsi'].'</td></tr>
-				';
+				';}
 				}else{
-				$manual = $settings[$n[$i]]['value'];
+					
+				$manual = "1"; //$settings[$n[$i]]['value'];
 				$check = ' ';
 				$x = false;
 				if($manual=="1"){$check = ' checked ';$x = true;}
 				$table = $table.'
 				<tr><td style="text-transform:capitalize;" width="15%">'.$settings[$n[$i]]['settings'].'</td><td width="2%"> : </td>
-				<td><input onclick="javascript:GoClickManual(this.checked);" id="set_admin_'.$i.'" type="checkbox" value="'.$manual.'" '.$check.' /></td>
+				<td><input id="set_admin_'.$i.'" type="checkbox" value="'.$manual.'" '.$check.' /></td>
 				<td style="font-size:10px;">'.$settings[$n[$i]]['deskripsi'].'</td></tr>
 				';
 				}
@@ -372,6 +398,7 @@ switch($code_hidden){
 			}while($i!=100);
 			$panel_hidden = '<div><b><center>S E T T I N G S</center></b>
 			<div style="border:1px solid #ccc;border-top:none;overflow:auto; height:'.$set_height.'px;">
+			<br>Settingan hanya yang aktif saja yang masih berlaku, sisanya sudah kadaluarsa tak digunakan.<br>
 			<table style="background:#FFE1E2;padding-top:5px;padding-right:5px;padding-left:5px;width:100%;border:1px solid #ccc;border-bottom:none;">
 			'.$table.'
 			</table>
@@ -385,7 +412,7 @@ switch($code_hidden){
 					var i=1;
 					do{
 						var tmp = "set_admin_"+i;
-						if(i!=91){if(i<51){document.getElementById(tmp).disabled=a;}else{document.getElementById(tmp).disabled=!a;}}
+						if(i!=91){if((i<51)||(i==53)||(i==52)||(i==91)){document.getElementById(tmp).disabled=a;}else{document.getElementById(tmp).disabled=!a;}}
 						i++;
 						if(i==11)i=51;
 						if(i==57)i=91;
@@ -452,7 +479,7 @@ switch($code_hidden){
 			$syarat_ = 0;
 			if($syarat[0]['ada']){
 				$e = $e.'<table id="list_mk_req">';
-				$e = $e."<tr><th id=\"center\">No.</th><th>Mata Kuliah</th><th>Alert</th><th id=\"center\">Requirement</th><th id=\"center\">Result</th></tr>";
+				$e = $e."<tr><th id=\"center\">No.</th><th>Mata Kuliah</th><th>Peringatan</th><th id=\"center\">Syarat</th><th id=\"center\">Hasil</th></tr>";
 				for($i = 0; $i<=$syarat[0][k];$i++){
 //					$e = $e.($i+1).". ".$syarat[$i]['kode_mk_syarat']." ".$syarat[$i]['kode_syarat']."<br>";
 					//if dia lulus, maka bs ambil, jika tidak. maka g bs ambil
@@ -509,7 +536,7 @@ switch($code_hidden){
 							$t_c = $t3;
 							$t_r = $t2;
 							$set_height = $set_height-25;
-							$e = $e."You Already Take this Mata Kuliah before and it's complete, but you can take it again<br>";
+							$e = $e."Kamu Pernah mengambil Mata Kuliah ini sebelumnya dan Lulus. Sekarang kamu bisa ambil lagi<br>";
 					}else{					
 						if($s_r['masa']==$masa){
 							$t_c = $t1;
@@ -517,7 +544,7 @@ switch($code_hidden){
 							$sdh = true;
 						}else{
 							$set_height = $set_height-25;
-							$e = $e."You Already Take this Mata Kuliah before but it's fail, and You can Take it again<br>";
+							$e = $e."Kamu Pernah mengambil Mata Kuliah ini sebelumnya, tetapi belum lulus. Sekarang kamu bisa ambil lagi<br>";
 							$t_c = $t3;
 							$t_r = $t2;
 						}
@@ -537,7 +564,7 @@ switch($code_hidden){
 					}
 				}
 				if(!$sama_mk_tabrak){
-					$e = $e."<div style=\"padding-top:3px;\">You have 'Time Crash' in this Mata Kuliah with your Mata Kuliah you have taked</div>";
+					$e = $e."<div style=\"padding-top:3px;\">Kamu punya tabrakan jadwal dengan Mata Kuliah yang sudah kamu Ambil</div>";
 					$t_c = $t3;
 					$t_r = $t3;
 				}
@@ -545,14 +572,14 @@ switch($code_hidden){
 				$sks_m = getSKSMahasiswa($data_profile['nrp']);
 				$sks_mk = getSKSMataKuliah($kode_mk);
 				if(!$sdh){if($sks_m < $sks_mk){
-					$e = $e."<div style=\"padding-top:3px;\">Your SKS Doesn't have much Requirement to take this Mata Kuliah</div>";
+					$e = $e."<div style=\"padding-top:3px;\">SKS kamu tidak mencukupi untuk mendaftar Mata Kuliah ini</div>";
 					$t_c = $t3;
 					$t_r = $t3;
 				}}
 				
 			$regist_cancel = '
-			<td id="krs_cancel_class">'.$t_c.'<b>CANCEL THIS CLASS</b></a></td>
-			<td id="krs_register_class">'.$t_r.'<b>REGISTER THIS CLASS</b></a></td>
+			<td id="krs_cancel_class">'.$t_c.'<b>BATALKAN KELAS</b></a></td>
+			<td id="krs_register_class">'.$t_r.'<b>DAFTARKAN KELAS</b></a></td>
 			';
 			$dosen = $data_mk['nama'].' ('.$data_mk['nrp'].')';
 			if($data_mk['k']>1){
@@ -571,9 +598,9 @@ switch($code_hidden){
 			<tr><td style="width:21%;">Kode Mata Kuliah </td><td style="width:2%;">:</td><td>'.$data_mk['kode_mata_kuliah'].'</td><td width="6%">S K S</td><td width="2%">:</td><td>'.$data_mk['jumlah_sks'].'</td></tr>
 			<tr><td>Nama Mata Kuliah </td><td>:</td><td>'.$data_mk['nama_mata_kuliah'].'</td></tr>
 			<tr><td>Jadwal </td><td>:</td><td>'.getHari($data_mk['hari']).', '.$data_mk['jam_mulai'].' - '.$data_mk['jam_selesai'].'</td><td width="6%">Quota</td><td width="2%">:</td><td>'.$data_mk['quota'].'</td></tr>
-			<tr><td>Dosen Pengajar </td><td>:</td><td>'.$dosen.'</td><td width="6%">Registered</td><td width="2%">:</td><td>'.$data_mk['registered'].'</td></tr>
+			<tr><td>Dosen Pengajar </td><td>:</td><td>'.$dosen.'</td><td width="6%">Terdaftar</td><td width="2%">:</td><td>'.getListStudentRegisteredMataKuliahX($kode_mk,$t_thn,$t_sms).'</td></tr>
 			</table>
-			<div style="text-transform:uppercase;letter-spacing:1px;color:#A00;"><center><b>'.$e.'<br>registered list of this mata kuliah</b><p></center></div>
+			<div style="text-transform:uppercase;letter-spacing:1px;color:#A00;"><center><b>'.$e.'<br>Mahasiswa yang sudah terdaftar di mata kuliah ini</b><p></center></div>
 			<div id="div_ov_list_mk_student" style="height:'.$set_height.'px;">
 				<table id="list_mk_student">
 					<tr id="header_table"><th>N R P</th><th width="31%">Name</th><th>Time Register</th><th>FKLTS - JRSN</th><th>SMS - THN</th></tr>
@@ -594,12 +621,12 @@ switch($code_hidden){
 			}
 			function Cancel_Class_Click(){
 				if(klik==0){klik=1;
-				HidePanel();
+//				HidePanel();
 				ShowHiddenPanel(true,\'loading\',\'Ajax/n.php\',\'.main_panel\');
 				$.post("Ajax/mk_.php",{code:"cancel_class", kode_mk:"'.$data_mk['kode_mata_kuliah'].'", nrp:"'.$data_profile['nrp'].'", masa:"'.$masa.'"},
 					function(data) {
 						if(data==1){
-							$(".krs_sisa_sks").html("'.($sks_n+$sks_n_mk).'");
+							$(".krs_sisa_sks").html("'.$data_profile['sks_awal'].' - '.($sks_n+$sks_n_mk).'");
 							alert("Pembatalan Mata Kuliah '.$data_mk['nama_mata_kuliah'].' Sukses !");
 						}else{
 							alert("Pembatalan Mata Kuliah '.$data_mk['nama_mata_kuliah'].' Gagal !");
@@ -611,12 +638,12 @@ switch($code_hidden){
 			}
 			function Register_Class_Click(){
 				if(klik==0){klik=1;
-				HidePanel();
+//				HidePanel();
 				ShowHiddenPanel(true,\'loading\',\'Ajax/n.php\',\'.main_panel\');
 				$.post("Ajax/mk_.php",{code:"register_class", kode_mk:"'.$data_mk['kode_mata_kuliah'].'", nrp:"'.$data_profile['nrp'].'", masa:"'.$masa.'"},
 					function(data) {
 						if(data==1){
-							$(".krs_sisa_sks").html("'.($sks_n-$sks_n_mk).'");
+							$(".krs_sisa_sks").html("'.$data_profile['sks_awal'].' - '.($sks_n-$sks_n_mk).'");
 							alert("Pendaftaran Mata Kuliah '.$data_mk['nama_mata_kuliah'].' Sukses !");
 						}else if(data==0){
 							alert("Pendaftaran Mata Kuliah '.$data_mk['nama_mata_kuliah'].' Gagal !, SKS Tidak Mencukupi");

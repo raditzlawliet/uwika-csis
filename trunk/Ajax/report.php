@@ -10,7 +10,7 @@ $ad=htmlentities($_REQUEST['ad']);
 $start = ($page-1)*30;
 $show = explode("|",$show);
 $x = explode("|",$search2);
-$data = $_POST['report'];
+$data = $_POST['data'];
 exit($data);
 
 ?>

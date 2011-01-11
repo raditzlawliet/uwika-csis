@@ -16,10 +16,10 @@ switch($code){
 			if(!isset($_COOKIE['set_height_mk_list'])){
 				$set_height_mk_list = 350;
 			}
-			$out = '<div style="text-align:center;width:99%;padding:5px;"><a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor">SUBJECT</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_d">SUBJECT R LECTURER</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_j">SUBJECT R PROGRAMS</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_m">SUBJECT R STUDENTS</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_s">SUBJECT R REQUIREMENT</a>&nbsp;
+			$out = '<div style="text-align:center;width:99%;padding:5px;"><a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor">MATA KULIAH</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_d">MATA KULIAH - DOSEN</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_j">MATA KULIAH - JURUSAN</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_m">MATA KULIAH R MAHASISWA</a>&nbsp;<a id="refresh_blue" style="background:url(\'images/down.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#subject_anchor_s">MATA KULIAH - SYARAT</a>&nbsp;
 				</div><div id="subject_anchor"></div>
-				<center><h1 style="letter-spacing:20px;"><b>SUBJECT</b></h1><p>
-				<div id="db_cmd"><a id="refresh_blue" class="submit" onclick="javascript:searchR(\'db_mk\');" href="#!">Refresh</a>&nbsp;<a id="add_blue" class="submit" onclick="javascript:edit_db_mk(1,null);" href="#!">Add New Subject</a>&nbsp;
+				<center><h1 style="letter-spacing:20px;"><b>MATA KULIAH</b></h1><p>
+				<div id="db_cmd"><a id="refresh_blue" class="submit" onclick="javascript:searchR(\'db_mk\');" href="#!">Refresh</a>&nbsp;<a id="add_blue" class="submit" onclick="javascript:edit_db_mk(1,null);" href="#!">Tambah MK</a>&nbsp;
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
 				<div style="text-align:left;padding-left:25px;">
@@ -59,7 +59,7 @@ switch($code){
 				</div><p></center>
 				<a class="submit" style="background:url(\'images/up.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#container_space">TOP</a>
 				<div id="subject_anchor_d"></div>
-				<center><h1 style="letter-spacing:20px;"><b>SUBJECT - LECTURER</b></h1><p>
+				<center><h1 style="letter-spacing:20px;"><b>MATA KULIAH - DOSEN</b></h1><p>
 				<div id="db_cmd"><a id="refresh" class="submit" onclick="javascript:searchR(\'db_mk_d\');" href="#!">Refresh</a>&nbsp;
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
@@ -90,7 +90,7 @@ switch($code){
 				</div><p></center>
 				<a class="submit" style="background:url(\'images/up.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#container_space">TOP</a>
 				<div id="subject_anchor_j"></div>
-				<center><h1 style="letter-spacing:20px;"><b>SUBJECT - PROGRAMS</b></h1><p>
+				<center><h1 style="letter-spacing:20px;"><b>MATA KULIAH - JURUSAN</b></h1><p>
 				<div id="db_cmd"><a id="refresh_yellow" class="submit" onclick="javascript:searchR(\'db_mk_j\');" href="#!">Refresh</a>&nbsp;
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
@@ -123,7 +123,7 @@ switch($code){
 				</div><p></center>
 				<a class="submit" style="background:url(\'images/up.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#container_space">TOP</a>
 				<div id="subject_anchor_m"></div>
-				<center><h1 style="letter-spacing:20px;"><b>SUBJECT - STUDENTS</b></h1><p>
+				<center><h1 style="letter-spacing:20px;"><b>MATA KULIAH - MAHASISWA</b></h1><p>
 				<div id="db_cmd"><a id="refresh" class="submit" onclick="javascript:searchR(\'db_mk_m\');" href="#!">Refresh</a>&nbsp;
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
@@ -168,7 +168,7 @@ switch($code){
 				</div><p></center>
 				<a class="submit" style="background:url(\'images/up.png\') 1% 50% no-repeat;padding:3px;padding-left:23px;" href="#container_space">TOP</a>
 				<div id="subject_anchor_s"></div>
-				<center><h1 style="letter-spacing:20px;"><b>SUBJECT - REQUIREMENT</b></h1><p>
+				<center><h1 style="letter-spacing:20px;"><b>MATA KULIAH - SYARAT</b></h1><p>
 				<div id="db_cmd"><a id="refresh_blue" class="submit" onclick="javascript:searchR(\'db_mk_s\');" href="#!">Refresh</a>&nbsp;
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
@@ -252,9 +252,9 @@ switch($code){
 					data = "&code_edit=" + encodeURI(kd) + "&kode_mk=" + encodeURI(kd_mk);
 					ShowHiddenPanel(false,"db_mk","Ajax/database_panel_hidden_mk.php",".main_panel",data);
 					}else{
-						var x = confirm("Are you want to delete this data ("+kd_mk+") ?");
+						var x = confirm("Apa kamu yakin mau menghapus data ini ("+kd_mk+") ?");
 						if(x){
-							var y = confirm("Are You also Want to delete data relationshio with this data ("+kd_mk+") [programs,students,lecturer,requirement] ?");
+							var y = confirm("Apa kamu yakin mau menghapus relasi data dengan data MK ini ("+kd_mk+") [jurusan,mahasiswa,dosen,syarat] ?");
 							var z;if(y){z="true";}else{z="false";}
 							$.post("Ajax/database_db_mk.php",{code:kd, kode_mk:kd_mk, value2:z}, function(data) {
 								alert(data);

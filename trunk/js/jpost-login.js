@@ -16,7 +16,7 @@ function PostLogin(){
 	postAjax(source, values, hanres);
 }
 function handleResponLogin(JSONRespons){
-			$('#cek_login').html('login status : '+ JSONRespons.status);
+			//$('#cek_login').html('login status : '+ JSONRespons.status);
 			if(JSONRespons.status == 1){
 				StopTheClockCekSession()
 				document.getElementById(obj).innerHTML = JSONRespons.message;
