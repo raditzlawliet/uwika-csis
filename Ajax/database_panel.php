@@ -13,13 +13,14 @@ $admin = htmlentities($_POST['admin']);
 
 switch($code){
 	case 'db_h' : { //db awal
-	$q='		
-				<center><h1 style="letter-spacing:20px;"><b>LIST</b></h1><p>
+	$q='		<center><h1 style="letter-spacing:20px;"><b>PENDATAAN & LAPORAN</b></h1><p>
 				<div id="db" style="width:100%;">
 					<div id="db_menu">
 					<ul>
-						<a id="db_l_mk" onclick="javascript:GoHELL2(\'db_l_mk\',\'Ajax/database_panel_l_mk.php\');" href="#!">LIST PER-MATA KULIAH</a>
-						<a id="db_l_m" onclick="javascript:GoHELL2(\'db_l_m\',\'Ajax/database_panel_l_m.php\');" href="#!">LIST PER-MAHASISWA</a>
+						<a id="db_l_mk" style="letter-spacing:0px;" onclick="javascript:GoHELL2(\'db_l_mk\',\'Ajax/database_panel_l_mk.php\');" href="#!">LIST MAHASISWA PER-MATKUL</a>
+						<a id="db_l_m" style="letter-spacing:0px;"onclick="javascript:GoHELL2(\'db_l_m\',\'Ajax/database_panel_l_m.php\');" href="#!">LIST MATKUL PER-MAHASISWA (KHS&KRS)</a>
+						<a id="db_i_m" style="letter-spacing:0px;"onclick="javascript:GoHELL2(\'db_i_m\',\'Ajax/database_panel_i_m.php\');" href="#!">INPUT NILAI PER MAHASISWA</a>
+						<a id="db_i_ips" style="letter-spacing:0px;"onclick="javascript:GoHELL2(\'db_i_ips\',\'Ajax/database_panel_i_ips.php\');" href="#!">INPUT NILAI PER MATKUL</a>
 					</ul>
 					</div>
 					<h1 style="margin-bottom:27px;"></h1>
@@ -29,8 +30,8 @@ switch($code){
 				</center>
 				<script>
 				function GoHELL2(ids,src){
-					var doku = new Array("db_l_m","db_l_mk");
-					for(var i = 0;i<2;i++){
+					var doku = new Array("db_l_m","db_l_mk","db_i_m","db_i_ips");
+					for(var i = 0;i<4;i++){
 						document.getElementById(doku[i]).className = "";
 					}
 					document.getElementById(ids).className = "active";
@@ -51,9 +52,9 @@ switch($code){
 			}
 			$out = '
 				<center><h1 style="letter-spacing:20px;"><b>STUDENT</b></h1><p>
-				<div id="db_cmd"><a id="refresh" class="submit" onclick="javascript:searchR(\'db_m\');" href="#!">Refresh</a>&nbsp;<a id="add" class="submit" onclick="javascript:edit_db_m(1,null);" href="#!">Add New Account</a>&nbsp;<a id="refresh" class="submit" onclick="javascript:resetSKS();" href="#!">Refresh SKS for KRS</a>&nbsp;<a id="add" class="submit" onclick="javascript:resetSemester(1,true);" href="#!">1 Semester</a>&nbsp;<a id="del" class="submit" onclick="javascript:resetSemester(1,false);" href="#!">1 Semester</a>
-				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
-				</div>
+				<div id="db_cmd"><a id="refresh" class="submit" onclick="javascript:searchR(\'db_m\');" href="#!">Tampilkan Ulang</a>&nbsp;<a id="add" class="submit" onclick="javascript:edit_db_m(1,null);" href="#!">Tambah MHS</a>&nbsp;<a id="refresh" class="submit" onclick="javascript:resetSMS();" href="#!">Penyetingan Auto Ulang SMS</a>&nbsp;<a id="refresh" class="submit" onclick="javascript:resetSKS();" href="#!">Penyetingan Auto Ulang SKS</a>&nbsp;<p><a id="add" class="submit" onclick="javascript:resetSemester(1,true);" href="#!">1 SMS [E]</a>&nbsp;<a id="del" class="submit" onclick="javascript:resetSemester(1,false);" href="#!">1 SMS [E]</a>
+				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px
+				</div><div id="db_cmd">E : Error Only (Untuk Berjaga2 jika ada kesalahan) &nbsp;</div>
 				<div style="text-align:left;padding-left:25px;">
 				Search <input onKeyUp="javascript:search(\'db_m\');" id="search_db_m" class="input" type="text" size="15" maxlength="50" />
 				In <select onchange="javascript:search(\'db_m\');" id="search_in_db_m" class="select" title="Search In" dir="ltr">
@@ -69,6 +70,7 @@ switch($code){
 				<option value="tanggal_masuk">DATE REGISTRATION</option>
 				<option value="semester">SEMESTER</option>
 				<option value="ipk">IPK</option>
+				<option value="sks_awal">SKS</option>
 				<option value="sisa_sks">REMAINING SKS</option>
 				</select>
 				&nbsp; &nbsp;				&nbsp; &nbsp;				&nbsp; &nbsp;
@@ -85,6 +87,7 @@ switch($code){
 				<option value="tanggal_masuk">DATE REGISTRATION</option>
 				<option value="semester">SEMESTER</option>
 				<option value="ipk">IPK</option>
+				<option value="sks_awal">SKS</option>
 				<option value="sisa_sks">REMAINING SKS</option>
 				</select>
 				By <select onchange="javascript:search(\'db_m\');" id="sort_by_db_m" class="select" title="Sort By" dir="ltr">
@@ -121,10 +124,21 @@ switch($code){
 				}
 
 				function resetSKS(){
-					var x = confirm("Are You Sure want to Reset SKS ?\nReset Settings is 24 SKS for all Semester 1,\nif IPS last Semester (Except Semester 1) are < 3 then they get 21 SKS,\nif IPS last Semester (Except Semester 1) are < 2.5 then they get 18 SKS,\nif IPS last Semester (Except Semester 1) are < 2 then they get 15 SKS,\nif IPS last Semester (Except Semester 1) are < 1.5 then they get 12 SKS,\nif IPS last Semester (Except Semester 1) are < 1 then they get 9 SKS.\n\nTHIS USUALLY USING WHERE SEMESTER ALL OF STUDENT HAS INCREASED 1 OR CHANGE FROM GENAP TO GANJIL OR GANJIL TO GENAP.");
+					var x = confirm("PENYETINGGAN AUTO ULANG LIMIT SKS BERDASARKAN IPK TERAKHIR (SEMESTER-1)\n\nApa kamu yakin mau mensetting ulang SKS Limit menjadi default ?\n Default SKS Limit adalah 24 untuk semua semester 1 dan 0, \nJika IPK Semester terakhir < 3 (Kecuali Semester 1 dan 0) maka mereka mendapatkan 21 SKS, \nJika IPK Semester terakhir < 2.5 (Kecuali Semester 1 dan 0) maka mereka mendapatkan 18 SKS, \nJika IPK Semester terakhir < 2 (Kecuali Semester 1 dan 0) maka mereka mendapatkan 15 SKS, \nJika IPK Semester terakhir < 1.5 (Kecuali Semester 1 dan 0) maka mereka mendapatkan 12 SKS, \nJika IPK Semester terakhir < 1 (Kecuali Semester 1 dan 0) maka mereka mendapatkan 9 SKS, \nJika IPK Semester terakhir Tidak ada/Data belum terinput (Kecuali Semester 1 dan 0) maka mereka mendapatkan 9 SKS (dianggap 0).\n\nINI BIASANYA DIGUNAKAN DIMANA SEMESTER SUDAH BERGANTI MENJADI SEMESTER BARU (AWAL SEBELUM KRS MULAI, BERGANTINYA SEMESTER GENAP MENJADI GANJIL ATAU SEBALIKNYA). \n\nSEBAIKNYA KAMU MEREFRESH MENSETTING TAHUN DAN SEMESTER PADA MENU DATABASE -> SETTING, \n\nSETELAH ITU MEREFRESH ULANG SEMESTER MEREKA, BARULAH RESET LIMIT SKS INI DIGUNAKAN.");
 				if(x){
 					ShowHiddenPanel(true,\'loading\',\'Ajax/n.php\',\'.main_panel\');
 					$.post("Ajax/database_db_m.php",{code:"refresh_sks_db_mhs"}, function(data) {
+						alert(data);
+						HidePanel();
+						search(\'db_m\');
+					});	
+					}
+				}
+				function resetSMS(){
+					var x = confirm("PENYETTINGAN AUTO ULANG SEMESTER BERDASARKAN NRP DAN MASA(SETTINGS TAHUN DAN SETTINGS SEMESTER DI MENU SETTINGS) KRS SEKARANG\n\nApa kamu yakin mau mensetting ulang Semester Mahasiswa menjadi Default awal ? \nyaitu, 2 Angka Digit NRP yaitu ANGKATAN (3 Digit dari depan NRP) sebagai Tahun Awal masuk, dan MASA sebagai tahun Semester berlangsung.\n\nContoh : \n\nNRP - 31109036, Angkatan 2009 (Arti : pertengahan tahun tersebut dia masuk), \nMASA - 2010/1, tahun 2010-2011 Semester Ganjil (perkiraan bulan Agustust - Januari Tahun berikutnya).\nJadi dihitung ((2010 - 2009) * 2) + (Jika masa/1 maka + 1, masa/2 maka +2) = 3\n\nNRP - 31108001, Angkatan 2008, Masa - 2010/2\nJadi, ((2010-2008)*2)+(2)=6");
+				if(x){
+					ShowHiddenPanel(true,\'loading\',\'Ajax/n.php\',\'.main_panel\');
+					$.post("Ajax/database_db_m.php",{code:"refresh_sms_db_mhs"}, function(data) {
 						alert(data);
 						HidePanel();
 						search(\'db_m\');

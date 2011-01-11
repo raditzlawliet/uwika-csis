@@ -17,7 +17,7 @@ switch($code){
 				$set_height_mk_list = 250;
 			}
 			$out = '
-				<center><h1 style="letter-spacing:20px;"><b>EMPLOYEE</b></h1><p>
+				<center><h1 style="letter-spacing:20px;"><b>KARYAWAN</b></h1><p>
 				<div id="db_cmd"><a id="refresh" class="submit" onclick="javascript:searchR(\'db_k\');" href="#!">Refresh</a>&nbsp;<a id="add" class="submit" onclick="javascript:edit_db_k(1,null);" href="#!">Add New Account</a>
 				Default Panel : <input  onchange="javascript:SetHeightMkKeyUp(this,1)" onKeyUp="javascript:SetHeightMkKeyUp(this,0)" id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 				</div>
@@ -86,7 +86,7 @@ switch($code){
 					data = "&code_edit=" + encodeURI(kd) + "&nrp=" + encodeURI(nrp);
 					ShowHiddenPanel(false,"db_k","Ajax/database_panel_hidden_k.php",".main_panel",data);
 					}else{
-						var x = confirm("Are you want to delete this data ("+nrp+") ?");
+						var x = confirm("Apa kamu yakin mau menghapus data ini ("+nrp+") ?");
 						if(x){
 						$.post("Ajax/database_db_k.php",{code:kd, nrp:nrp}, function(data) {
 							alert(data);

@@ -88,8 +88,20 @@ AND (
 			unset($sql, $rs);
 			return $data;
 }
+function getSMSMahasiswa($nrp){
+			$sql = "SELECT semester \n"
+			. "FROM t_mahasiswa\n"
+			. "WHERE nrp = '$nrp'";
+			$rs = mysql_query($sql);
+			while($row = mysql_fetch_array($rs)){
+				$data = $row['semester'];
+			}
+			mysql_free_result($rs);
+			unset($sql, $rs);
+			return $data;
+}
 function addStudentRegisteredMataKuliah($kode_mk,$nrp,$masa,$sks){
-			$sms = getDataMahasiswa("semester",$nrp);
+			$sms = getSMSMahasiswa($nrp);
 			$d = date(w);
 			$tgl = date(Y)."-".date(m)."-".date(d);
 			$time = date(H).":".date(i).":".date(s);
@@ -234,6 +246,28 @@ function getStudentIsRegisteredMataKuliah($kode_mk,$nrp){
 			return $data;
 	
 }
+function getListStudentRegisteredMataKuliahX($kode_mk,$tahun,$semester){
+			$masa = getMasa($tahun,$semester);
+			$sql = "SELECT mkm.kode_mata_kuliah, m.nrp, m.nama, mkm.hari_register,mkm.time_register,mkm.tanggal_register,m.kode_jurusan,m.semester\n"
+			. "FROM tr_mata_kuliah_mahasiswa as mkm \n"
+			. "JOIN t_mahasiswa as m ON mkm.nrp = m.nrp \n"
+			. "where kode_mata_kuliah = '$kode_mk' AND masa = '$masa'\n"
+			. "order by mkm.tanggal_register DESC, mkm.time_register DESC";
+			$rs = mysql_query($sql);
+			$mk = "";
+			$k = 0;
+			while($row = mysql_fetch_array($rs)){
+				$tr = '';
+				if(($k%2)==1){
+					$tr = ' id="diff" ';
+				}
+				$k++;
+			}
+			mysql_free_result($rs);
+			unset($sql, $rs);
+			return $k;
+}
+
 function getListStudentRegisteredMataKuliah($kode_mk,$tahun,$semester){
 			$masa = getMasa($tahun,$semester);
 			$sql = "SELECT mkm.kode_mata_kuliah, m.nrp, m.nama, mkm.hari_register,mkm.time_register,mkm.tanggal_register,m.kode_jurusan,m.semester\n"
@@ -336,10 +370,10 @@ function getListMataKuliahPerSemester($kode_jurusan,$sms,$probis,$nrp){
 			<tr id="header_table"><th>Kode</th><th>Nama Mata Kuliah</th><th>SKS</th><th>Hari</th><th>Jam Mulai</th><th>Jam Selesai</th><th>Status</th></tr>
 			';
 			$k = 0;
-			$status = array("a"=>'<img src="images/a.png" width="15px"\ title="Already Complete this Mata Kuliah, but you can take it again">',
-							"v"=>'<img src="images/v.png" width="15px"\ title="Already Registered Now">',
-							"r"=>'<img src="images/r.png" width="15px"\ title="Already Registered Before, but Not Complete">',
-							"x"=>'<img src="images/x.png" width="15px"\ title="Didn\'t Match Requirement or Can\'t Participate Now">',
+			$status = array("a"=>'<img src="images/a.png" width="15px"\ title="Already Complete - Anda sudah menyelesaikan Mata Kuliah ini, dan anda masih bisa mengambilnya lagi.">',
+							"v"=>'<img src="images/v.png" width="15px"\ title="Already Complete - Anda sudah menyelesaikan Mata Kuliah ini, dan anda masih bisa mengambilnya lagi.">',
+							"r"=>'<img src="images/r.png" width="15px"\ title="Already Registered Before, but Not Complete -  Anda sudah pernah daftar Mata Kuliah ini, tetapi gagal. dan anda bisa mengambilnya lagi.">',
+							"x"=>'<img src="images/x.png" width="15px"\ title="Didn\'t Match Requirement or Can\'t Participate Now - Anda belum dapat mengambil mata kuliah ini disebabkan Tabrakan Waktu atau SKS habis atau Syarat belum terpenuhi.">',
 							"n"=>'');
 			$t_thn = getValueSettingsOf('tahun');
 			$t_sms = getValueSettingsOf('semester');
@@ -468,14 +502,14 @@ function getListMataKuliahPerNRP($nrp,$masa,$krs_true,$show_msg){
 			. "AND mkj.kode_jurusan = '$kode_jurusan'\n"
 			. "ORDER BY hari, mk.jam_mulai ASC, mk.jam_selesai ASC, mk.kode_mata_kuliah ASC";
 			$rs = mysql_query($sql);
-			$mk = '<div id="header_krs_semester">L I S T &nbsp; &nbsp; S U B J E C T &nbsp; &nbsp; T H A T &nbsp; &nbsp; Y O U &nbsp; &nbsp; H A V E &nbsp; &nbsp; T A K E N</div>
+			$mk = '<div id="header_krs_semester">L I S T &nbsp; &nbsp; M A T A &nbsp; &nbsp; K U L I A H &nbsp; &nbsp; Y A N G &nbsp; &nbsp; S U D A H &nbsp; &nbsp; A N D A &nbsp; &nbsp; A M B I L</div>
 <table id="mk">
 			<tr id="header_table"><th id="mk_nrp">Kode</th><th id="mk_nrp">Nama Mata Kuliah</th><th id="mk_nrp">SKS</th><th id="mk_nrp">Semester</th><th id="mk_nrp">Hari</th><th id="mk_nrp">Jam Mulai</th><th id="mk_nrp">Jam Selesai</th><th id="mk_nrp">Status</th></tr>';
 			$k = 0;
-			$status = array("a"=>'<img src="images/a.png" width="15px"\ title="Already Complete this Mata Kuliah, but you can take it again">',
-							"v"=>'<img src="images/v.png" width="15px"\ title="Already Registered Now">',
-							"r"=>'<img src="images/r.png" width="15px"\ title="Already Registered Before, but Not Complete">',
-							"x"=>'<img src="images/x.png" width="15px"\ title="Didn\'t Match Requirement or Can\'t Participate Now">',
+			$status = array("a"=>'<img src="images/a.png" width="15px"\ title="Already Complete - Anda sudah menyelesaikan Mata Kuliah ini, dan anda masih bisa mengambilnya lagi.">',
+							"v"=>'<img src="images/v.png" width="15px"\ title="Already Complete - Anda sudah menyelesaikan Mata Kuliah ini, dan anda masih bisa mengambilnya lagi.">',
+							"r"=>'<img src="images/r.png" width="15px"\ title="Already Registered Before, but Not Complete -  Anda sudah pernah daftar Mata Kuliah ini, tetapi gagal. dan anda bisa mengambilnya lagi.">',
+							"x"=>'<img src="images/x.png" width="15px"\ title="Didn\'t Match Requirement or Can\'t Participate Now - Anda belum dapat mengambil mata kuliah ini disebabkan Tabrakan Waktu atau SKS habis atau Syarat belum terpenuhi.">',
 							"n"=>'');
 				$ada = false;
 			while($row = mysql_fetch_array($rs)){
@@ -588,22 +622,22 @@ function getListMataKuliahPerNRP($nrp,$masa,$krs_true,$show_msg){
 				.'</tr>';
 				$k++;
 			}
-			$status = array("a"=>'<img src="images/a.png" width="15px"\ title="Already Complete this Mata Kuliah, but you can take it again">',
-							"v"=>'<img src="images/v.png" width="15px"\ title="Already Registered Now">',
-							"r"=>'<img src="images/r.png" width="15px"\ title="Already Registered Before, but Not Complete">',
-							"x"=>'<img src="images/x.png" width="15px"\ title="Didn\'t Match Requirement or Can\'t Participate Now">',
+			$status = array("a"=>'<img src="images/a.png" width="15px"\ title="Already Complete - Anda sudah menyelesaikan Mata Kuliah ini, dan anda masih bisa mengambilnya lagi.">',
+							"v"=>'<img src="images/v.png" width="15px"\ title="Already Complete - Anda sudah menyelesaikan Mata Kuliah ini, dan anda masih bisa mengambilnya lagi.">',
+							"r"=>'<img src="images/r.png" width="15px"\ title="Already Registered Before, but Not Complete -  Anda sudah pernah daftar Mata Kuliah ini, tetapi gagal. dan anda bisa mengambilnya lagi.">',
+							"x"=>'<img src="images/x.png" width="15px"\ title="Didn\'t Match Requirement or Can\'t Participate Now - Anda belum dapat mengambil mata kuliah ini disebabkan Tabrakan Waktu atau SKS habis atau Syarat belum terpenuhi.">',
 							"n"=>'');
 			$mk = $mk.'</table>
 			<p>
-			<div style="text-align:left;letter-spacing:2px;font-size:11px;"><b> &nbsp; LEGEND</b></div>
+			<div style="text-align:left;letter-spacing:2px;font-size:11px;"><b> &nbsp; CATATAN</b></div>
 			<div style="text-align:left;">
 			<table id="legend_krs">
-			<tr><th id="center">Code</th><th id="center">Description (Hover your mouse top of images)</th></tr>
-			<tr><td id="center">'.$status["n"].'</td><td>Nothing Interest means that You can take this Mata Kuliah.</td>
-			<tr><td id="center">'.$status["a"].'</td><td>You Have Complete this Mata Kuliah, but you able to take it again.</td>
-			<tr class="blue"><td id="center">'.$status["v"].'</td><td>You Already Registered Now in this Mata Kuliah</td>
-			<tr class="red"><td id="center">'.$status["r"].'</td><td>You Already Registered Before, but Not Complete. Therefore you able to take it again.</td>
-			<tr class="red"><td id="center">'.$status["x"].'</td><td>You Didn\'t Match Requirement or Can\'t Participate Now (Reqirement of this Mata Kuliah or TimeCrash with the Other Mata Kuliah). Therefore you disable to take it.</td>
+			<tr><th id="center">Kode</th><th id="center">Deskripsi (Arahkan Mouse diatas gambar)</th></tr>
+			<tr><td id="center">'.$status["n"].'</td><td>Nothing Interest - Artinya anda bisa mengambil Mata Kuliah ini.</td>
+			<tr><td id="center">'.$status["a"].'</td><td>Already Complete - Anda sudah menyelesaikan Mata Kuliah ini, dan anda masih bisa mengambilnya lagi.</td>
+			<tr class="blue"><td id="center">'.$status["v"].'</td><td>Already Registered Now - Anda sudah mendaftarkan Mata Kuliah ini pada tahun ajaran sekarang.</td>
+			<tr class="red"><td id="center">'.$status["r"].'</td><td>Already Registered Before, but Not Complete -  Anda sudah pernah daftar Mata Kuliah ini, tetapi gagal. dan anda bisa mengambilnya lagi.</td>
+			<tr class="red"><td id="center">'.$status["x"].'</td><td>Didn\'t Match Requirement or Can\'t Participate Now - Anda belum dapat mengambil mata kuliah ini disebabkan Tabrakan Waktu atau SKS habis atau Syarat belum terpenuhi.</td>
 			</table>
 			</div>
 			<script>function GoDAFTARKRSMK2(kode_mk,uid){
@@ -680,6 +714,7 @@ function getProfile($uid,$turn){
 			$data_profile['kode_jurusan'] = $row['kode_jurusan'];
 			$data_profile['semester']= $row['semester'];
 			$data_profile['sisa_sks']= $row['sisa_sks'];
+			$data_profile['sks_awal']= $row['sks_awal'];
 			$data_profile['probis']= $row['probis'];
 			$data_jurusan = getFakultasJurusan($data_profile['kode_jurusan']);
 			$data_profile['nama_fakultas'] = $data_jurusan['nama_fakultas'];

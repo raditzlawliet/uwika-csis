@@ -48,8 +48,8 @@ if($code=="mat_kul"){
 			if(!isset($_COOKIE['set_height_mk_list'])){
 				$set_height_mk_list = 250;
 			}
-			$mk = '<div id="red_mozilla" style="width:50%;"><b>Hint!</b> Choose the Mata Kuliah down here, by click it.<br>Default Height Scroll "description of Mata Kuliah" when you click it is <b>250px</b>,<br>
-			<form action="javascript:SetHeightMkClick(this)" method="post">set your default here : 
+			$mk = '<div id="red_mozilla" style="width:50%;"><b>Hint!</b> Pilih Mata Kuliah dibawah ini dengan mengekliknya.<br>Tinggi Scroll "Deskripsi Mata Kuliah" ketika kamu mengekliknya skrng <b>250px</b>,<br>
+			<form action="javascript:SetHeightMkClick(this)" method="post">set Tinggi Scroll : 
 			<input id="set_height_mk_list" name="set_height_mk_list" type="text" style="font-size:9px;" size="2" maxlength="5" value="'.$set_height_mk_list.'"/> px 
 			<input id="SetHeightMk" name="SetHeightMk" style="font-size:9px;font-weight:bold;border:1px solid #FFE6E7;background:#D2FFD5;"type="submit" value="SET" />				
 			</form>

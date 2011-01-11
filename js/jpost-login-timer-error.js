@@ -20,7 +20,7 @@ function StopTheClock()
 
 function StartTheTimer()
 {	
-	$("#cek_timer_error").html("Timer Error secs : "+secs);
+	//$("#cek_timer_error").html("Timer Error secs : "+secs);
     if (secs==0)
     {
         StopTheClock()

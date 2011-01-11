@@ -19,9 +19,9 @@ function LoginLogoffPanel(){
 		if(!panelLogin){PostLogoff();HidePanel();ShowLoginPanel();}
 	}else{}
 //	$("#array_session").html("Array : "+panelLogin+" "+panelLogoff+" "+panelHome[5]+" "+panelHome[1]+" "+panelHome[2]+" "+panelHome[3]+" "+panelHome[4]);
-	$.post("Ajax/session.php",{code:99}, function(data) {
-	  $("#array_session").html(data);
-	});
+//	$.post("Ajax/session.php",{code:99}, function(data) {
+//	  $("#array_session").html(data);
+//	});
 }
 
 function ShowLoginPanel(){
@@ -138,7 +138,7 @@ function postCekSession(){
 }
 
 function handleResponCekSession(JSONRespons){
-			$('#cek_session').html('session cookies status : '+ JSONRespons.status);
+			//$('#cek_session').html('session cookies status : '+ JSONRespons.status);
 			if(JSONRespons.status == 1){ //login true
 				session = 2;
 				LoginLogoffPanel();

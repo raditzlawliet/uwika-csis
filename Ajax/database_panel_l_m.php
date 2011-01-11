@@ -19,7 +19,7 @@ switch($code){
 			$out = '<br>
 				<center><h1 style="letter-spacing:15px;"><b>LIST PER-MAHASISWA</b></h1><p>
 				<div id="db_cmd">
-				List Mata Kuliah dari NRP <input onchange="javascript:search(\'db_l_m\');" id="search_db_l_m" class="input" type="text" size="15" maxlength="50" />	&nbsp;<img src="images/q.png" width="15px" title="Hint ! Ketik NRP setelah itu tekan Lihat ! (Otomatis akan berubah jika text / pilihan ada yang berubah.">&nbsp;<a id="refresh_pink" class="submit" onclick="javascript:searchR(\'db_l_m\');" href="#!">Lihat</a>&nbsp;
+				List Mata Kuliah dari NRP <input id="search_db_l_m" class="input" type="text" size="15" maxlength="50" />	&nbsp;<img src="images/q.png" width="15px" title="Hint ! Ketik NRP setelah itu tekan Lihat ! (Otomatis akan berubah jika text / pilihan ada yang berubah.">&nbsp;<a id="refresh_pink" class="submit" onclick="javascript:searchR(\'db_l_m\');" href="#!">Lihat</a>&nbsp;
 				Urut <select onchange="javascript:search(\'db_l_m\');" id="sort_db_l_m" class="select"  title="Sort" dir="ltr">
 				<option value="t_mata_kuliah.kode_mata_kuliah">Kode Mata Kuliah</option>
 				<option value="nama_mata_kuliah">Nama Mata Kuliah</option>
@@ -49,7 +49,7 @@ switch($code){
 				</select>
 				</div>
 				<div id="db_cmd"><table id="show">
-				<tr><td>Auto script : <a id="refresh_pink" class="submit" onclick="javascript:asKey(\'as_masa_now\');" href="#!">Pengambilan MK Sekarang</a>&nbsp;<a id="refresh_pink" class="submit" onclick="javascript:asKey(\'as_lulus\');" href="#!">MK yang Telah Lulus</a>&nbsp;<a id="refresh_pink" class="submit" onclick="javascript:asKey(\'as_krs\');" href="#!">List KRS Mahasiswa</a>&nbsp;</td></tr></table>
+				<tr><td>Auto script : <a id="refresh_pink" class="submit" onclick="javascript:asKey(\'as_lulus\');" href="#!">MK yang Telah Lulus</a>&nbsp;<a id="refresh_pink" class="submit" onclick="javascript:asKey(\'as_krs\');" href="#!">List KRS Mahasiswa [T]</a>&nbsp;<a id="refresh_pink" class="submit" onclick="javascript:asKey(\'as_khs\');" href="#!">List KhS Mahasiswa [T]</a>&nbsp;<a id="refresh_pink" class="submit" onclick="javascript:asKey(\'as_khs2\');" href="#!">KHS Lama[T]</a><div id="showr" style="float:right;margin-top:10px;"><form style="margin:-4px;float:right;" action="Ajax/report_l_m.php" method="post"><input style="border:1px solid #FFB0FF;background:#FFB0FF;font-size:11px;margin:3px;"; type="submit" value="Tampilkan Laporan Semua Mahasiswa !"/><input name="code" type="hidden" value="db_l_m" /><input name="search_text" type="hidden" value="\'+search_text+\'" /><input name="search_in" type="hidden" value="\'+search_in+\'" /><input name="sort_text" type="hidden" value="\'+sort_text+\'" /><input name="sort_by" type="hidden" value="\'+sort_by+\'" /><input name="color" type="hidden" value="\'+color+\'" /><input name="page" type="hidden" value="\'+page+\'" /><input name="limit" type="hidden" value="\'+limit+\'" /><input name="show" type="hidden" value="\'+show+\'" /><input name="search2" type="hidden" value="\'+search2+\'" /><input name="sx" type="hidden" value="\'+sx+\'" /><input name="ad" type="hidden" value="\'+ad+\'" /><input name="all" type="hidden" value="all" /><input name="ab" type="hidden" value="\'+ab+\'" /></form></div></td></tr></table>
 				<table id="show">
 				<tr><td>Cari Tabel : </td><td><input id="search_db_l_m_2_1" class="input" type="text" size="15" maxlength="50" /></td><td>
 				Di <select id="search_in_db_l_m_2_1" class="select"  title="Sort" dir="ltr">
@@ -68,7 +68,7 @@ switch($code){
 				<option value="lulus">Lulus</option>
 				</select></td><td>
 				Op <select id="operasi_db_l_m_2_1" class="select" title="Color"><option value="=">Sama Dengan</option><option value="LIKE">Seperti</option></select></td><td>
-				Penghubung <select id="penghubung_db_l_m_2_1" class="select" title="Color"><option value="AND">Dan</option><option value="OR">Atau</option></select></td><td><a href="#!">Tambah</a></td></tr>
+				Penghubung <select id="penghubung_db_l_m_2_1" class="select" title="Color"><option value="AND">Dan</option><option value="OR">Atau</option></select></td><td></td></tr>
 				<tr><td><a id="refresh_pink" class="submit" onclick="javascript:searchRQ(\'db_l_m\');" href="#!">Lihat</a>&nbsp;</td>
 				</table>
 				</div>
@@ -90,7 +90,7 @@ switch($code){
 				<td><input onchange="javascript:search(\'db_l_m\');" id="db_l_m_c_11" type="checkbox" value="" checked />Nilai</td>
 				<td><input onchange="javascript:search(\'db_l_m\');" id="db_l_m_c_limit" type="checkbox" value="" />Limit</td></tr>
 				</table><div id="report_l_m">
-				MK : Mata Kuliah, M : Mahasiswa, R : Registrasi. &nbsp;
+				MK : Mata Kuliah, M : Mahasiswa, R : Registrasi, T : Table Ditata. &nbsp;
 				</div>
 				</div>
 				<div id="db_l_mahasiswa">
@@ -98,6 +98,7 @@ switch($code){
 				</div><p>
 				</center>
 				<script>
+				
 				$("#search_db_l_m").autocomplete("Ajax/transfer_mk2_inner.php?qj=mkm", {
 					minChars: 0,
 					width: 310,
@@ -124,7 +125,11 @@ switch($code){
 					}
 				});
 				var sx = 1;
+				var ab=0;
+				var diff=0;
+				var diff2=0;
 				document.getElementById("color_db_l_m").selectedIndex = 4;
+				search("db_l_m");
 				function asKey(key){
 					if(key=="as_masa_now"){
 						document.getElementById(\'search_db_l_m_2_1\').value = "'.getValueSettingsOf("tahun").'/'.getValueSettingsOf("semester").'";
@@ -138,18 +143,48 @@ switch($code){
 						document.getElementById(\'operasi_db_l_m_2_1\').value = "=";
 						document.getElementById(\'penghubung_db_l_m_2_1\').value = "AND";
 						}
-						if(key=="as_krs"){
-						document.getElementById(\'search_db_l_m_2_1\').value = "'.getValueSettingsOf("tahun").'/'.getValueSettingsOf("semester").'";
-						document.getElementById(\'search_in_db_l_m_2_1\').value = "masa";
-						document.getElementById(\'operasi_db_l_m_2_1\').value = "=";
-						document.getElementById(\'penghubung_db_l_m_2_1\').value = "AND";
-						for(var i=0;i<13;i++){document.getElementById(\'db_l_m_c_\'+i).checked=false;}
-						document.getElementById(\'db_l_m_c_1\').checked=true;
-						document.getElementById(\'db_l_m_c_2\').checked=true;
-						document.getElementById(\'db_l_m_c_3\').checked=true;
-						document.getElementById(\'db_l_m_c_4\').checked=true;
-						document.getElementById(\'db_l_m_c_5\').checked=true;
-						document.getElementById(\'db_l_m_c_0\').checked=true;
+					if(key=="as_khs"){
+							document.getElementById(\'search_db_l_m_2_1\').value = "";
+							document.getElementById(\'search_in_db_l_m_2_1\').value = "semester";
+							document.getElementById(\'operasi_db_l_m_2_1\').value = "=";
+							document.getElementById(\'penghubung_db_l_m_2_1\').value = "AND";
+							for(var i=0;i<13;i++){document.getElementById(\'db_l_m_c_\'+i).checked=false;}
+							document.getElementById(\'db_l_m_c_1\').checked=true;
+							document.getElementById(\'db_l_m_c_2\').checked=true;
+							document.getElementById(\'db_l_m_c_0\').checked=true;
+							document.getElementById(\'db_l_m_c_11\').checked=true;
+							document.getElementById(\'db_l_m_c_12\').checked=true;
+							ab=1;
+					}
+					if(key=="as_khs2"){
+							var smms = prompt("NRP Sesuai dengan yang ada di kotak Cari, Sekarang Masukkan Semesternya : ");
+							document.getElementById(\'search_db_l_m_2_1\').value = smms;
+							document.getElementById(\'search_in_db_l_m_2_1\').value = "semester";
+							document.getElementById(\'operasi_db_l_m_2_1\').value = "=";
+							document.getElementById(\'penghubung_db_l_m_2_1\').value = "AND";
+							for(var i=0;i<13;i++){document.getElementById(\'db_l_m_c_\'+i).checked=false;}
+							document.getElementById(\'db_l_m_c_1\').checked=true;
+							document.getElementById(\'db_l_m_c_2\').checked=true;
+							document.getElementById(\'db_l_m_c_0\').checked=true;
+							document.getElementById(\'db_l_m_c_11\').checked=true;
+							document.getElementById(\'db_l_m_c_12\').checked=true;
+							diff2 = smms;
+							ab=1;
+							diff=1;
+					}
+					if(key=="as_krs"){
+							document.getElementById(\'search_db_l_m_2_1\').value = "'.getValueSettingsOf("tahun").'/'.getValueSettingsOf("semester").'";
+							document.getElementById(\'search_in_db_l_m_2_1\').value = "masa";
+							document.getElementById(\'operasi_db_l_m_2_1\').value = "=";
+							document.getElementById(\'penghubung_db_l_m_2_1\').value = "AND";
+							for(var i=0;i<13;i++){document.getElementById(\'db_l_m_c_\'+i).checked=false;}
+							document.getElementById(\'db_l_m_c_1\').checked=true;
+							document.getElementById(\'db_l_m_c_2\').checked=true;
+							document.getElementById(\'db_l_m_c_3\').checked=true;
+							document.getElementById(\'db_l_m_c_4\').checked=true;
+							document.getElementById(\'db_l_m_c_5\').checked=true;
+							document.getElementById(\'db_l_m_c_0\').checked=true;
+							ab=2;
 						}
 					search(\'db_l_m\');
 				}
@@ -174,23 +209,26 @@ switch($code){
 						search2 = search2+document.getElementById(\'operasi_\'+db+\'_2_1\').value+"|";
 						search2 = search2+document.getElementById(\'penghubung_\'+db+\'_2_1\').value+"|";
 					}
+					$("#showr").html(\'<form style="margin:-4px;float:right;" action="Ajax/report_l_m.php" method="post"><input style="border:1px solid #FFB0FF;background:#FFB0FF;font-size:11px;margin:3px;"; type="submit" value="Tampilkan Laporan Semua Mahasiswa !"/><input name="code" type="hidden" value="db_l_m" /><input name="search_text" type="hidden" value="\'+search_text+\'" /><input name="search_in" type="hidden" value="\'+search_in+\'" /><input name="sort_text" type="hidden" value="\'+sort_text+\'" /><input name="sort_by" type="hidden" value="\'+sort_by+\'" /><input name="color" type="hidden" value="\'+color+\'" /><input name="page" type="hidden" value="\'+page+\'" /><input name="limit" type="hidden" value="\'+limit+\'" /><input name="show" type="hidden" value="\'+show+\'" /><input name="search2" type="hidden" value="\'+search2+\'" /><input name="sx" type="hidden" value="\'+sx+\'" /><input name="ad" type="hidden" value="\'+ad+\'" /><input name="all" type="hidden" value="all" /><input name="ab" type="hidden" value="\'+ab+\'" /><input name="diff" type="hidden" value="\'+diff+\'" /><input name="diff2" type="hidden" value="\'+diff2+\'" /></form>\');
 					if((search_text==null)||(search_text=="")||(search_text==" ")||(search_text=="  ")){
 						$("#db_l_mahasiswa").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
 						$("#db_l_mahasiswa").html("Isi NRP mahasiswa dengan benar, agar list bisa tertampilkan.");
+						ab=0;
 					}else{
 						$("#db_l_mahasiswa").html(\'<div><center><img src="images/throbber_white.gif"></center></div>\');
-						$.post("Ajax/database_ajax_l_m.php",{code:db, search_text:search_text, search_in:search_in, sort_text:sort_text, sort_by:sort_by, color:color,page:page,limit:limit, show:show,search2:search2, sx:sx, ad:ad}, function(data) {
+						$.post("Ajax/database_ajax_l_m.php",{code:db, search_text:search_text, search_in:search_in, sort_text:sort_text, sort_by:sort_by, color:color,page:page,limit:limit, show:show,search2:search2, sx:sx, ad:ad, ab:ab, diff:diff,diff2:diff2}, function(data) {
  							$("#db_l_mahasiswa").html(data);
-							$("#report_l_m").html(\'<form action="Ajax/report_l_m.php" method="post">MK : Mata Kuliah, M : Mahasiswa, R : Registrasi. &nbsp;<input style="border:1px solid #FFB0FF;background:#FFB0FF;font-size:11px;margin:3px;"; type="submit" value="Tampilkan Laporan !"/><input name="code" type="hidden" value="\'+db+\'" /><input name="search_text" type="hidden" value="\'+search_text+\'" /><input name="search_in" type="hidden" value="\'+search_in+\'" /><input name="sort_text" type="hidden" value="\'+sort_text+\'" /><input name="sort_by" type="hidden" value="\'+sort_by+\'" /><input name="color" type="hidden" value="\'+color+\'" /><input name="page" type="hidden" value="\'+page+\'" /><input name="limit" type="hidden" value="\'+limit+\'" /><input name="show" type="hidden" value="\'+show+\'" /><input name="search2" type="hidden" value="\'+search2+\'" /><input name="sx" type="hidden" value="\'+sx+\'" /><input name="ad" type="hidden" value="\'+ad+\'" /></form>\');
+							$("#report_l_m").html(\'<form action="Ajax/report_l_m.php" method="post">MK : Mata Kuliah, M : Mahasiswa, R : Registrasi. &nbsp;<input style="border:1px solid #FFB0FF;background:#FFB0FF;font-size:11px;margin:3px;"; type="submit" value="Tampilkan Laporan !"/><input name="code" type="hidden" value="\'+db+\'" /><input name="search_text" type="hidden" value="\'+search_text+\'" /><input name="search_in" type="hidden" value="\'+search_in+\'" /><input name="sort_text" type="hidden" value="\'+sort_text+\'" /><input name="sort_by" type="hidden" value="\'+sort_by+\'" /><input name="color" type="hidden" value="\'+color+\'" /><input name="page" type="hidden" value="\'+page+\'" /><input name="limit" type="hidden" value="\'+limit+\'" /><input name="show" type="hidden" value="\'+show+\'" /><input name="search2" type="hidden" value="\'+search2+\'" /><input name="sx" type="hidden" value="\'+sx+\'" /><input name="ad" type="hidden" value="\'+ad+\'" /><input name="ab" type="hidden" value="\'+ab+\'" /><input name="diff" type="hidden" value="\'+diff+\'" /><input name="diff2" type="hidden" value="\'+diff2+\'" /></form>\');
+							ab=0;diff=0;
 						}); 
-					}	
+					}
 				}
 				function edit_db_l_m(kd,nrp){
 					if(kd!=4){
 					data = "&code_edit=" + encodeURI(kd) + "&nrp=" + encodeURI(nrp);
 					ShowHiddenPanel(false,"db_l_m","Ajax/database_panel_hidden_l_m.php",".main_panel",data);
 					}else{
-						var x = confirm("Are you want to delete this data ("+nrp+") ?");
+						var x = confirm("Apa kamu yakin mau menghapus data ini ("+nrp+") ?");
 						if(x){
 						$.post("Ajax/database_db_l_m.php",{code:kd, nrp:nrp}, function(data) {
 							alert(data);

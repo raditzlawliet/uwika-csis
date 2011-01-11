@@ -11,7 +11,7 @@ switch($code){
 		switch($code_){
 			case 1:{ //add
 				$view = '';
-				$addd = '<label style="color:red;">Usually 0 for new students.</label>';
+				$addd = '<label style="color:red;">Biasanya 0 untuk mahasiswa baru.</label>';
 				break;}
 			case 2:{ //modify
 				$view= '';	
@@ -27,7 +27,7 @@ switch($code){
 				$set_height = $_COOKIE['set_height_mk_list'];
 			}
 			$data = getDataDatabaseMahasiswa($nrp);
-			for($i=11;$i!=999;$i--){
+			for($i=40;$i!=999;$i--){
 				if($i<10)$thn = "0";
 				else $thn = "";
 				
@@ -40,7 +40,7 @@ switch($code){
 				if($i==75)$i=1000;
 			}
 			$thn_;$bln_;$hri_;
-			for($i=2011;$i>=1920;$i--){$thn_ = $thn_.'<option value="'.$i.'">'.$i.'</option>';}
+			for($i=2019;$i>=1920;$i--){$thn_ = $thn_.'<option value="'.$i.'">'.$i.'</option>';}
 			for($i=1;$i<=31;$i++){if($i<10)$x = "0";else $x = "";if($i<=12)$bln_ = $bln_.'<option value="'.$x.$i.'">'.$x.$i.'</option>';$hri_ = $hri_.'<option value="'.$x.$i.'">'.$x.$i.'</option>';}
 				
 			$fakultas = getDatabaseFakultas();
@@ -93,11 +93,13 @@ switch($code){
 			<td>Tanggal Masuk</td><td> : </td>
 			<td><select class="input" id="set_db_mahasiswa_tanggal_masuk_thn" title="fakultas" dir="ltr" '.$view.'>'.$thn_.'</select><select class="input" id="set_db_mahasiswa_tanggal_masuk_bln" title="fakultas" dir="ltr" '.$view.'>'.$bln_.'</select><select class="input" id="set_db_mahasiswa_tanggal_masuk_hri" title="fakultas" dir="ltr" '.$view.'>'.$hri_.'</select></td><td><label style="color:red"> (YYYY-MM-DD)</label></td></tr>
 			<tr><td>Semester</td><td> : </td>
-			<td><input class="input" id="set_db_mahasiswa_semester" value="'.$data['semester'].'" maxlength="2" size="2" '.$view.'\>&nbsp;'.$addd.'</td></tr>
+			<td><input class="input" id="set_db_mahasiswa_semester" value="'.$data['semester'].'" maxlength="2" size="2" '.$view.'\>&nbsp;<a class="submit" onclick="javascript:setsms('.$code_.');" href="#!">Cri SMS dr NRP & MASA</a></td><td>&nbsp;</td><td>&nbsp;</td><td>'.$addd.'</td></tr>
 			<tr><td>IPK</td><td> : </td>
-			<td><input onchange="javascript:checkipk(this);" class="input" id="set_db_mahasiswa_ipk" value="'.$data['ipk'].'" maxlength="4" size="2" '.$view.'\>&nbsp;<a class="submit" onclick="javascript:setipk('.$code_.');" href="#!">Get IPK From IPS</a></td></tr>
+			<td><input onchange="javascript:checkipk(this);" class="input" id="set_db_mahasiswa_ipk" value="'.$data['ipk'].'" maxlength="4" size="2" '.$view.'\>&nbsp;<a class="submit" onclick="javascript:setipk('.$code_.');" href="#!">Cri IPK From IPS</a></td></tr>
+			<td>S K S Awal/Limit</td><td> : </td>
+			<td><input onchange="javascript:checksks(this);" class="input" id="set_db_mahasiswa_sks_awal" value="'.$data['sks_awal'].'" maxlength="2" size="2" '.$view.'\>&nbsp;<a class="submit" onclick="javascript:setsks('.$code_.');" href="#!">Cri SKS dr IPK</a></td>
 			<td>Sisa S K S</td><td> : </td>
-			<td><input onchange="javascript:checksks(this);" class="input" id="set_db_mahasiswa_sisa_sks" value="'.$data['sisa_sks'].'" maxlength="2" size="2" '.$view.'\>&nbsp;<a class="submit" onclick="javascript:setsks('.$code_.');" href="#!">Get SKS From IPK</a></td>
+			<td><input onchange="javascript:checksks(this);" class="input" id="set_db_mahasiswa_sisa_sks" value="'.$data['sisa_sks'].'" maxlength="2" size="2" '.$view.'\>&nbsp;</td>
 			<tr><td>U I D</td><td> : </td>
 			<td><label style="color:red;" id="set_db_mahasiswa_uid">'.$data['uid'].'</label></td>
 			<td>Admin</td><td> : </td>
@@ -112,7 +114,7 @@ switch($code){
 			'.$table.'
 			</table>
 			</div>
-			<p><table style="float:right;"><tr><td><a onclick="javascript:GoSAVE('.$code_.')" class="button" href="#!"><b>&nbsp;SAVE&nbsp;</b></a></td><td><a onclick="javascript:HidePanel();" class="button" id="diff" href="#!"><b>CANCEL</b></a></td></tr></table>
+			<p><table style="float:right;"><tr><td><a onclick="javascript:GoSAVE('.$code_.')" class="button" href="#!"><b>&nbsp;SIMPAN&nbsp;</b></a></td><td><a onclick="javascript:HidePanel();" class="button" id="diff" href="#!"><b>BATAL</b></a></td></tr></table>
 			</div>
 			<script>
 			document.getElementById("set_db_mahasiswa_password_enc").title = "'.$data['password'].'";
@@ -145,7 +147,7 @@ switch($code){
 				value = document.getElementById("set_db_nrp_depan").title +""+document.getElementById("set_db_mahasiswa_nrp_belakang").value +"|"+document.getElementById("set_db_mahasiswa_password_bck").title+"|"+document.getElementById("set_db_mahasiswa_password_enc").title+"|";
 				value = value +document.getElementById("set_db_mahasiswa_nama").value +"|"+document.getElementById("set_db_mahasiswa_aka").value +"|"+document.getElementById("set_db_mahasiswa_jenis_kelamin").value +"|"+document.getElementById("set_db_mahasiswa_tanggal_lahir_thn").value +"-"+document.getElementById("set_db_mahasiswa_tanggal_lahir_bln").value +"-"+document.getElementById("set_db_mahasiswa_tanggal_lahir_hri").value+"|";
 				value = value +document.getElementById("set_db_mahasiswa_alamat").value +"|"+document.getElementById("set_db_mahasiswa_asal_sekolah").value +"|"+document.getElementById("set_db_mahasiswa_jurusan").value +"|"+document.getElementById("set_db_mahasiswa_probis").value+"|"+document.getElementById("set_db_mahasiswa_tanggal_masuk_thn").value +"-"+document.getElementById("set_db_mahasiswa_tanggal_masuk_bln").value +"-"+document.getElementById("set_db_mahasiswa_tanggal_masuk_hri").value+"|";
-value = value +document.getElementById("set_db_mahasiswa_semester").value +"|"+document.getElementById("set_db_mahasiswa_ipk").value +"|"+document.getElementById("set_db_mahasiswa_sisa_sks").value +"|"+document.getElementById("set_db_mahasiswa_uid").title+"|"+document.getElementById("set_db_mahasiswa_admin").value;
+value = value +document.getElementById("set_db_mahasiswa_semester").value +"|"+document.getElementById("set_db_mahasiswa_ipk").value +"|"+document.getElementById("set_db_mahasiswa_sisa_sks").value +"|"+document.getElementById("set_db_mahasiswa_uid").title+"|"+document.getElementById("set_db_mahasiswa_admin").value+"|"+document.getElementById("set_db_mahasiswa_sks_awal").value;;
 
 				ShowHiddenPanel(true,\'loading\',\'Ajax/n.php\',\'.main_panel\');
 				$.post("Ajax/database_db_m.php",{nrp: "'.$nrp.'", setpassword:setpassmhs, value : value, value2:bajengan, code:v}, function(data_) {
@@ -163,6 +165,7 @@ value = value +document.getElementById("set_db_mahasiswa_semester").value +"|"+d
 				var t = parseFloat(text.value);
 				if((t>24)||(t<0)){alert("Wrong Value... Range 0 ~ 24");text.value = 0;}				
 			}
+			
 			function setuid(v){
 				if(v!=3){
 				var pass = getNRP();
@@ -172,6 +175,24 @@ value = value +document.getElementById("set_db_mahasiswa_semester").value +"|"+d
 				});
 				}
 			}
+			function setipk(v){
+				if(v!=3){
+				alert("IPK akan dicek dari NRP yang ada di LAYAR yang anda ubah terakhir kali dari Zigma(Nilai Value MK)/Zigma(SKS MK) Yang pernah diambil (Kondisi, WAKTU MAU KHS, Sebelum KRS)");
+				var nrpx=getNRP();
+					$.post("Ajax/database_panel_hidden_2.php",{code:"ipk", nrp:nrpx}, function(data) {
+						document.getElementById("set_db_mahasiswa_ipk").value = data;
+					});
+				}
+			}	
+			function setsms(v){
+				if(v!=3){
+				alert("Semester akan dicek dari NRP yang ada di LAYAR yang anda ubah terakhir kali (Bukan di DB)");
+				var nrpx=getNRP();
+					$.post("Ajax/database_panel_hidden_2.php",{code:"sms", nrp:nrpx}, function(data) {
+						document.getElementById("set_db_mahasiswa_semester").value = data;
+					});
+				}
+			}			
 			function setsks(v){
 				if(v!=3){
 				var p = parseFloat(document.getElementById("set_db_mahasiswa_ipk").value);
@@ -182,6 +203,7 @@ value = value +document.getElementById("set_db_mahasiswa_semester").value +"|"+d
 				else if(p<2.5)sks=18;
 				else if(p<3)sks=21;
 				document.getElementById("set_db_mahasiswa_sisa_sks").value = sks;
+				document.getElementById("set_db_mahasiswa_sks_awal").value = sks;
 				}
 			}
 			function setpassword(v){

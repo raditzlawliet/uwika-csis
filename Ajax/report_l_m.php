@@ -13,6 +13,11 @@ $show=htmlentities($_REQUEST['show']);
 $search2=htmlentities($_REQUEST['search2']);
 $sx=htmlentities($_REQUEST['sx']);
 $ad=htmlentities($_REQUEST['ad']);
+$ab=htmlentities($_REQUEST['ab']);
+$diff=htmlentities($_REQUEST['diff']);
+$diff2=htmlentities($_REQUEST['diff2']);
+$all=htmlentities($_REQUEST['all']);
+
 $start = ($page-1)*30;
 $show = explode("|",$show);
 $x = explode("|",$search2);
@@ -65,9 +70,55 @@ if($ad=="1"){
     	<div id="main" style="width:100%;"><center>
 <?php
 switch($code){
-	case 'db_l_m' : { //db dosen
-			exit(getTabelDatabaseListMataKuliahPerMahasiswa($search_text,$search_in,$sort_text,$sort_by,$color,$start,$limit,$show,$search2x));
-		break;
+	case 'db_l_m' : { //db mahasiswa
+		if($all!="all"){
+			if($ab=="1"){
+				$a = "<center><h1>K H S</h1></center>";
+				$abc = getLastSemester($search_text);
+				$search2x[0]['q']=1;
+				$search2x[0]['c']="AND";
+				$search2x[0]['s']="semester";
+				$search2x[0]['o']="=";
+				$search2x[0]['v']=$abc;
+				if($diff=="1"){
+					$search2x[0]['q']=1;
+					$search2x[0]['c']="AND";
+					$search2x[0]['s']="semester";
+					$search2x[0]['o']="=";
+					$search2x[0]['v']=$diff2;
+					$a=$a.getTabelDatabaseListMataKuliahPerMahasiswaS($search_text,$search_in,$sort_text,$sort_by,$color,$start,$limit,$show,$search2x,$ab);
+					exit($a);
+				}
+				$a = $a.getTabelDatabaseListMataKuliahPerMahasiswa($search_text,$search_in,$sort_text,$sort_by,$color,$start,$limit,$show,$search2x,$ab);
+				exit($a);
+			}
+			if($ab=="2"){
+				$a = "<center><h1>K R S</h1></center>";
+				$a = $a.getTabelDatabaseListMataKuliahPerMahasiswa($search_text,$search_in,$sort_text,$sort_by,$color,$start,$limit,$show,$search2x,$ab);
+				exit($a);
+			}
+			if($ab=="0"){
+				$a = "<center><h1>LAPORAN MAHASISWA</h1></center>";
+				$a = $a.getTabelDatabaseListMataKuliahPerMahasiswa($search_text,$search_in,$sort_text,$sort_by,$color,$start,$limit,$show,$search2x,$ab);
+				exit($a);
+			}
+			break;
+		}else{
+			$data = getAllDataMahasiswa();
+			for($i=0;$i<$data['k'];$i++){
+			if($ab=="1"){
+				$zxc = $zxc."<center><h1>K H S</h1></center>";
+			}
+			if($ab=="2"){
+				$zxc = $zxc."<center><h1>K R S</h1></center>";
+			}
+			if($ab=="0"){
+				$zxc = $zxc."<center><h1>LAPORAN MAHASISWA</h1></center>";
+			}
+				$zxc=$zxc."<p>".getTabelDatabaseListMataKuliahPerMahasiswa($data[$i],$search_in,$sort_text,$sort_by,$color,$start,$limit,$show,$search2x,$ab);
+			}
+			exit($zxc);
+		}
 	}
 }
 ?>

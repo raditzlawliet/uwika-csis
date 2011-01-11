@@ -148,7 +148,7 @@ function getTabelDatabaseMataKuliah_Syarat($search,$searchin,$orderby,$order,$co
 				$k++;
 			}
 			$mk = $mk.'</table><script>function del_mk_s_x(kd_mk,kd_mk2){
-						var x = confirm("Are you want to delete this data ("+kd_mk+" - "+kd_mk2+") ?");
+						var x = confirm("Apa kamu yakin mau menghapus data ini ("+kd_mk+" - "+kd_mk2+") ?");
 						if(x){
 							$.post("Ajax/database_db_mk.php",{code:"del_mk_s", kode_mk:kd_mk, value:kd_mk2}, function(data) {
 								alert(data);
@@ -168,10 +168,10 @@ $mk=$mk.'<br>';
 
 function getTabelDatabaseMataKuliah_Mahasiswa($search,$searchin,$orderby,$order,$color,$start){
 			$s = "Ordering Table with Coloum <b>'".$orderby."'</b> By <b>'".$order."'</b>";
-			$sql = "SELECT * FROM tr_mata_kuliah_mahasiswa as mkm JOIN t_mahasiswa as m ON mkm.nrp=m.nrp JOIN t_mata_kuliah as mk ON mkm.kode_mata_kuliah = mk.kode_mata_kuliah ORDER BY mkm.".$orderby." ".$order;
+			$sql = "SELECT *, mkm.semester AS semesterm FROM tr_mata_kuliah_mahasiswa as mkm JOIN t_mahasiswa as m ON mkm.nrp=m.nrp JOIN t_mata_kuliah as mk ON mkm.kode_mata_kuliah = mk.kode_mata_kuliah ORDER BY mkm.".$orderby." ".$order;
 			if($search!=""){
 				$s = "Searching <b>'".$search."'</b> In Table with Coloum <b>'".$searchin."'</b> and ".$s;
-				$sql = "SELECT * FROM tr_mata_kuliah_mahasiswa as mkm JOIN t_mahasiswa as m ON mkm.nrp=m.nrp JOIN t_mata_kuliah as mk ON mkm.kode_mata_kuliah = mk.kode_mata_kuliah WHERE mkm.".$searchin." LIKE '%".$search."%' ORDER BY mkm.".$orderby." ".$order;
+				$sql = "SELECT *, mkm.semester AS semesterm FROM tr_mata_kuliah_mahasiswa as mkm JOIN t_mahasiswa as m ON mkm.nrp=m.nrp JOIN t_mata_kuliah as mk ON mkm.kode_mata_kuliah = mk.kode_mata_kuliah WHERE mkm.".$searchin." LIKE '%".$search."%' ORDER BY mkm.".$orderby." ".$order;
 			}
 			$rs = mysql_query($sql);$count = mysql_num_rows($rs);$pages = ceil($count/30);
 			mysql_free_result($rs);unset($rs);
@@ -198,7 +198,7 @@ function getTabelDatabaseMataKuliah_Mahasiswa($search,$searchin,$orderby,$order,
 				.$row['nama_mata_kuliah'].'</td><td id="center"><b>'
 				.$row['nrp'].'</b></td><td>'
 				.$row['nama'].'</td><td id="center">'
-				.$row['semester'].'</td><td id="center">'
+				.$row['semesterm'].'</td><td id="center">'
 				.$row['masa'].'</td><td id="center">'
 				.$row['tanggal_register'].'</td><td id="center">'
 				.$row['nilai'].'</td><td id="center">'
@@ -208,7 +208,7 @@ function getTabelDatabaseMataKuliah_Mahasiswa($search,$searchin,$orderby,$order,
 				$k++;
 			}
 			$mk = $mk.'</table><script>function del_mk_m_x(kd_mk,nrp,masa){
-						var x = confirm("Are you want to delete this data ("+kd_mk+" - "+nrp+") ?");
+						var x = confirm("Apa kamu yakin mau menghapus data ini ("+kd_mk+" - "+nrp+") ?");
 						if(x){
 							$.post("Ajax/database_db_mk.php",{code:"del_mk_m", kode_mk:kd_mk, value:nrp, value2:masa}, function(data) {
 								alert(data);
@@ -273,7 +273,7 @@ function getTabelDatabaseMataKuliah_Jurusan($search,$searchin,$orderby,$order,$c
 				$k++;
 			}
 			$mk = $mk.'</table><script>function del_mk_j_x(kd_mk,nrp){
-						var x = confirm("Are you want to delete this data ("+kd_mk+" - "+nrp+") ?");
+						var x = confirm("Apa kamu yakin mau menghapus data ini ("+kd_mk+" - "+nrp+") ?");
 						if(x){
 							$.post("Ajax/database_db_mk.php",{code:"del_mk_j", kode_mk:kd_mk, value:nrp}, function(data) {
 								alert(data);
@@ -324,7 +324,7 @@ function getTabelDatabaseMataKuliah_Dosen($search,$searchin,$orderby,$order,$col
 				$k++;
 			}
 			$mk = $mk.'</table><script>function del_mk_d_x(kd_mk,nrp){
-						var x = confirm("Are you want to delete this data ("+kd_mk+" - "+nrp+") ?");
+						var x = confirm("Apa kamu yakin mau menghapus data ini ("+kd_mk+" - "+nrp+") ?");
 						if(x){
 							$.post("Ajax/database_db_mk.php",{code:"del_mk_d", kode_mk:kd_mk, value:nrp}, function(data) {
 								alert(data);

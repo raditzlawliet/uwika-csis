@@ -32,7 +32,7 @@ switch($code){
 			<td><input onchange="javascript:setuid();" onKeyUp="javascript:setuid();"class="input" id="set_db_k_1" value="'.$data['nrp'].'" maxlength="49" size="15" '.$view.'\></td></tr>
 			<tr><td>Password</td><td> : </td>
 			<td><label id="set_db_k_2bck"></label><label style="color:red;"id="set_db_k_2enc">'.$data['password'].'</label>
-			<td>New Password</td><td> : </td>
+			<td>Password Baru</td><td> : </td>
 			<td><input class="input" id="set_db_k_2" type="password" value="" maxlength="15" size="15" '.$view.'\></td>
 			<td><a class="submit" onclick="javascript:setpassword('.$code_.');" href="#!">Set New Password</a></td></tr>
 			<tr><td>Nama</td><td> : </td>
@@ -55,7 +55,7 @@ switch($code){
 			'.$table.'
 			</table>
 			</div>
-			<p><table style="float:right;"><tr><td><a onclick="javascript:GoSAVE('.$code_.')" class="button" href="#!"><b>&nbsp;SAVE&nbsp;</b></a></td><td><a onclick="javascript:HidePanel();" class="button" id="diff" href="#!"><b>CANCEL</b></a></td></tr></table>
+			<p><table style="float:right;"><tr><td><a onclick="javascript:GoSAVE('.$code_.')" class="button" href="#!"><b>&nbsp;SIMPAN&nbsp;</b></a></td><td><a onclick="javascript:HidePanel();" class="button" id="diff" href="#!"><b>BATAL</b></a></td></tr></table>
 			</div>
 			<script>
 			function GoSAVE(v){  //1 add, 2 modif

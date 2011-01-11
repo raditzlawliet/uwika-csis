@@ -54,8 +54,8 @@ function delOneDataMataKuliahTRSyarat($kode_mk,$kode_mk_syarat){
 	$sql="DELETE FROM `tr_mata_kuliah_syarat`  WHERE `kode_mata_kuliah` = '$kode_mk' AND kode_mata_kuliah_syarat = '$kode_mk_syarat'";
 	if (!mysql_query($sql)){die('Error: ' . mysql_error().'');}unset($sql);}
 
-function getOneDataMataKuliahTRMahasiswa($kode_mk,$nrp){
-	$sql = "SELECT t.nrp,t.nama,j.semester,j.masa,j.hari_register,j.time_register,j.tanggal_register,j.nilai,j.lulus FROM t_mata_kuliah AS m JOIN tr_mata_kuliah_mahasiswa AS j ON m.kode_mata_kuliah=j.kode_mata_kuliah JOIN t_mahasiswa as t ON t.nrp=j.nrp WHERE m.kode_mata_kuliah = '$kode_mk' AND t.nrp='$nrp'";$rs = mysql_query($sql);$data;
+function getOneDataMataKuliahTRMahasiswa($kode_mk,$nrp,$data){
+	$sql = "SELECT t.nrp,t.nama,j.semester,j.masa,j.hari_register,j.time_register,j.tanggal_register,j.nilai,j.lulus FROM t_mata_kuliah AS m JOIN tr_mata_kuliah_mahasiswa AS j ON m.kode_mata_kuliah=j.kode_mata_kuliah JOIN t_mahasiswa as t ON t.nrp=j.nrp WHERE m.kode_mata_kuliah = '$kode_mk' AND t.nrp='$nrp' AND masa='$data[0]'";$rs = mysql_query($sql);$data;
 	while($row = mysql_fetch_array($rs)){
 		$data['nrp'] = $row['nrp'];
 		$data['nama'] = $row['nama'];
@@ -69,7 +69,7 @@ function getOneDataMataKuliahTRMahasiswa($kode_mk,$nrp){
 	}
 	mysql_free_result($rs);unset($sql, $rs);return $data;}
 function setOneDataMataKuliahTRMahasiswa($kode_mk,$nrp,$data){
-	$sql="UPDATE tr_mata_kuliah_mahasiswa SET nrp = '$data[0]',nrp = '$data[0]',semester= '$data[1]',masa= '$data[2]',hari_register= '$data[3]',time_register = '$data[4]',tanggal_register = '$data[5]',nilai = '$data[6]',lulus = '$data[7]' WHERE `kode_mata_kuliah` = '$kode_mk' AND nrp='$nrp' AND masa='$data[8]'";
+	$sql="UPDATE tr_mata_kuliah_mahasiswa SET nrp = '$data[0]',semester= '$data[1]',masa= '$data[2]',hari_register= '$data[3]',time_register = '$data[4]',tanggal_register = '$data[5]',nilai = '$data[6]',lulus = '$data[7]' WHERE `kode_mata_kuliah` = '$kode_mk' AND nrp='$nrp' AND masa='$data[8]'";
 	if (!mysql_query($sql)){die('Error: ' . mysql_error().'');}unset($sql);}
 function addOneDataMataKuliahTRMahasiswa($kode_mk,$data){
 	$sql="INSERT INTO `tr_mata_kuliah_mahasiswa` (kode_mata_kuliah, nrp, semester, masa, hari_register, time_register, tanggal_register, nilai, lulus) VALUES ('$kode_mk', '$data[0]', '$data[1]', '$data[2]', '$data[3]', '$data[4]', '$data[5]', '$data[6]', '$data[7]');";
@@ -195,7 +195,7 @@ switch($code){
 	}
 	case 'mk_m' : { //nrp as kode_mk_syarat
 		switch($code_in){
-			case 'get' : {$msg=json_encode(getOneDataMataKuliahTRMahasiswa($kode_mk,$nrp));exit($msg);
+			case 'get' : {$msg=json_encode(getOneDataMataKuliahTRMahasiswa($kode_mk,$nrp,$data));exit($msg);
 				break;
 			}
 			case 'getall' : {$msg=json_encode(getAllDataMataKuliahTRMahasiswa($kode_mk,$nrp));exit($msg);
